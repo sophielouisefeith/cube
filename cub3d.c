@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:53:05 by sfeith         #+#    #+#                */
-/*   Updated: 2020/02/28 15:51:02 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/02/28 18:36:44 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,27 @@ void    square(t_cub *cub)
 
 t_cub	initialize(t_cub *cub)
 {
-	cub->var.x = 10;
-	cub->var.y = 10;
+	cub->var.x = 10000;
+	cub->var.y = 10000;
 	return(*cub);
 }
 
 int main()
 {
     t_cub	cub;
+	t_img	img;
 
-	cub.var.x = 0;
+	cub.img = &img;
+
+	cub.var.x = 50;
 	cub.var.y = 0;
     cub.img->mlx = mlx_init();
     cub.img->win1 = mlx_new_window(cub.img->mlx, 750, 750, "start");
-    cub.img->img1 = mlx_new_image(cub.img->mlx, 750, 750);
+   	cub.img->img1 = mlx_new_image(cub.img->mlx, 650, 650);
 	cub.img->addr = mlx_get_data_addr(cub.img->img1, &cub.img->bits_per_pixel, &cub.img->line_length, &cub.img->endian); 
 	cub = initialize(&cub);
 	square(&cub);
-    mlx_put_image_to_window(cub.img->mlx, cub.img->win1, cub.img->img1, 0, 0);
+    mlx_put_image_to_window(cub.img->mlx, cub.img->win1, cub.img->img1, 500, 500);
     mlx_hook(cub.img->win1, 2, 1L<<0, pressed_key, &cub);
 	mlx_loop(cub.img->mlx);
 }
