@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:53:05 by sfeith         #+#    #+#                */
-/*   Updated: 2020/02/28 15:43:21 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/02/28 15:51:02 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int main()
 {
     t_cub	cub;
 
-	cub.var.x = 10;
-	cub.var.y = 10;
+	cub.var.x = 0;
+	cub.var.y = 0;
     cub.img->mlx = mlx_init();
     cub.img->win1 = mlx_new_window(cub.img->mlx, 750, 750, "start");
     cub.img->img1 = mlx_new_image(cub.img->mlx, 750, 750);

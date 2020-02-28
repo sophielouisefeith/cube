@@ -6,14 +6,14 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith         #+#    #+#                 #
-#    Updated: 2020/02/28 15:28:33 by sfeith        ########   odam.nl          #
+#    Updated: 2020/02/28 15:50:11 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 MLX = minilibx
 LIBMLX = libmlx.dylib
-SRC = cub3d.c
+SRC = cub3d.c utilities.c
 #OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 # You may also need to specify the path to the  MiniLibX  library,  using the -L flag.
