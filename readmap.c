@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   readmap.c                                          :+:    :+:            */
+/*   readarray.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:01:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/03 21:14:34 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/04 15:06:38 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// ik wil dat hij dus in een keer heel de map leest dus hij moet gewoon lezen tot een /0 teken. dit moet hij mee geven als een string
-// aan split dan geven dus heel de string mee aan split en het split character. 
 
 static int		ft_wordcount(char const *s, char c)
 {
@@ -110,11 +107,6 @@ static char			**ft_split(char const *s, char c)
 	return (words);
 }
 
-
-
-
-
-
 static char			*ft_cut(char *new)
 {
 	int		i;
@@ -129,10 +121,6 @@ static char			*ft_cut(char *new)
 		free(new);
 		return (NULL);
 	}
-	//if (new[i] == '\0')
-	// temp = ft_substr(new, i + 1, ft_strlen(new) - i);
-		// free(new);
-	//printf("wat ben je new[%s]\n", new);
 	return (new);
 
 }
@@ -160,13 +148,11 @@ static char			*ft_treatment(char *new, int ret, int fd)
 		new = ft_strjoin(new, buf);
 		if (new == NULL)
 			return (NULL);
-		// if (ft_strchr(new, '\n'))
-		// 	break ;
 	}
 	return (new);
 }
 
-char				*get_next_line(const int fd)
+static char				*get_next_line(const int fd)
 {
 	int			ret;
 	static char *new;
@@ -184,28 +170,36 @@ char				*get_next_line(const int fd)
 	if (new == NULL)
 		return (NULL);
 	new = ft_cut(new);
-	//printf("wat ben je new[%s]\n", new);
 	if (new == NULL)
-		//return (NULL);
-	// if (r == 0)
 	{
 		free(new);
 		new = NULL;
 	}
-//	printf("wat ben je new[%s]\n", new);
+	//printf("kom maar op [%s]\n", new);
 	return (new);
 }
 
-char	**ft_savemap(char const *s, const int fd)
+char	**ft_savearray(const int fd, t_build *build)
 {
+	// t_map map;
+	// build->map = &map;
 	
-	char **map;
-	
-	*map  = get_next_line(fd);
-	if ( map == 0)
-		return NULL;
-	*map = *ft_split(*map, '\n');
-	if (!map)
-		return NULL;
-	return(map);
+	int y;
+
+	y = 0;
+
+	//printf("kom maar op \n");
+	build->map.str = get_next_line(fd);
+	//printf("kom maar op [%s]\n", build->map.str);
+	// if ( build->map->str == 0)
+	// 	return NULL;
+	build->map.array = ft_split(build->map.str, '\n');
+	// if (!build->map->array)
+	// 	return NULL;
+	while (build->map.array[y])
+	{
+		printf("na split[%s]\n", build->map.array[y]);
+		y++;
+	}
+	return(build->map.array);
 }
