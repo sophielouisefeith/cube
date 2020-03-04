@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/04 16:15:00 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/04 18:01:30 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 
 typedef struct s_map //------------to open the map and safe 3Darray-----------------------------------
 {
+
 	char	*str;
 	char 	**array;
 }
@@ -64,7 +65,7 @@ typedef struct	s_build   // Umbrella struct
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
-char			**ft_savearray(const int fd, t_build *build);
+t_build			*savearray(char *argv);
 //--------------------------------image building -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		image(t_build *build);

@@ -175,31 +175,26 @@ static char				*get_next_line(const int fd)
 		free(new);
 		new = NULL;
 	}
-	//printf("kom maar op [%s]\n", new);
 	return (new);
 }
 
-char	**ft_savearray(const int fd, t_build *build)
+t_build		*savearray(char *argv)
 {
 	// t_map map;
 	// build->map = &map;
 	
-	int y;
-
-	y = 0;
-
-	//printf("kom maar op \n");
-	build->map.str = get_next_line(fd);
-	//printf("kom maar op [%s]\n", build->map.str);
-	// if ( build->map->str == 0)
-	// 	return NULL;
-	build->map.array = ft_split(build->map.str, '\n');
-	// if (!build->map->array)
-	// 	return NULL;
-	while (build->map.array[y])
-	{
-		printf("na split[%s]\n", build->map.array[y]);
-		y++;
-	}
-	return(build->map.array);
+	t_build *new;
+	int fd;
+	
+	fd = open(argv, O_RDONLY);
+	if(fd == 0)
+		return(NULL);
+	new = (t_build*)malloc(sizeof(t_build));
+	new->map.str = get_next_line(fd);
+	if ( new->map.str == 0)
+		return NULL;
+	new->map.array = ft_split(new->map.str, '\n');
+	if (!new->map.array)
+		return NULL;
+	return(new);
 }
