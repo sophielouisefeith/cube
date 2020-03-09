@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
+
+
 static int		ft_wordcount(char const *s, char c)
 {
 	int		i;
@@ -180,8 +185,6 @@ static char				*get_next_line(const int fd)
 
 t_build		*savearray(char *argv)
 {
-	// t_map map;
-	// build->map = &map;
 	
 	t_build *new;
 	int fd;
@@ -196,5 +199,6 @@ t_build		*savearray(char *argv)
 	new->map.array = ft_split(new->map.str, '\n');
 	if (!new->map.array)
 		return NULL;
+	//free(new->map.str);
 	return(new);
 }
