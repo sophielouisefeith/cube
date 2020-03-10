@@ -6,98 +6,71 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/09 17:44:25 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/10 19:40:49 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-// de eerste 9 regels. 
-// ( build.map->array)
 #include "cub3d.h"
-
-// wanneer is het een valid R ? moeten twee waardes inzitten de characters moeten omgezet worden in een getal dus van character naar int atoi 
-void	checkres(char *str, t_build *build)
-{
-	int i;
-
-	i = 0;
-	printf("wat is de string nu[%s][%c]\n", str, str[i]);
-	while((str[i] != ' ' || str[i] != 9 ) && str[i])  //ht en spatie 
-		i++;
-	while(str[i] != ' ' || str[i] >= '0'  && str[i] <= '9')
-	//nu even dat regeltje uit atoi erin zetten 
-	
-	//printf("wat is de string nu[%s][%c]\n", str, str[i]);
-	//build->data->res = 
-	// printf("je bent nu in res");
-	// printf("wat is nu de str[%s]", str);
-	 printf("wat is nu de str[%s]", build->map.str);
-		
-}
-
-void 	initialise(t_build *build)
-{
-	build->data->res = 0;
-	build->data->floor = 0;
-	build->data->ceiling = 0;
-	build->data->north = 0;
-	build->data->south = 0;
-	build->data->west = 0;
-	build->data->east = 0;
-}
+// nog kijken of ze er niet dubbel inzitten -> en als dat zo is moet er een error verschijnen 
+// alle error meldingen checken
+// path openen
+// map gaan lezen als een array. 
+// static void	checkres(char *str, t_build *build)
+// check of hij bestaat 
 
 void	check_input(char *str, t_build *build)
 {
 	int i ;
 
 	i = 0;
-	//-------------------------------------------------------------------------printf("kom je hier in[%s]\n", *build->map.array);
-	// while((str[i] != ' ' || str[i] != 9 ) && str[i])  //ht en spatie 
-	// 	i++;
-	//printf("kom je hier in[%s]\n", *build->map.array);
-	//printf("i[%d]\n", i);
-	if(str[i] == 'R' && str[i + 1] == ' ')
-		checkres(str, build);	
-// if(str[i] == 'F' && str[i + 1] == ' ')
-// 	check_data(str, build);
-// if(str[i] == 'C' && str[i + 1] == ' ')
-// 	check_data(str, build);
-// if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
-// 	check_data(str, build);
-// if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-// 	check_data(str, build);
-// if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-// 	check_data(str, build);
-// if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
-// 	check_data(str, build);
-// if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
-// 	check_data(str, build);
-	
-	
-	
+	// build->map.array[y][i]
+	while((str[i] == ' ' || str[i] == 9 ) && str[i])
+		i++;
+	//------------------------------------------------------------------------------------------------input check of ze er wel inzitten en ook niet dubbel inzitten door dit dus al even een struct aan te zetten 
+	//check_dubbel(str);
+	if(str[i] == 'R' && str[i + 1] == ' ' && build->data.check_res != 1)
+		check_res(str, build);
+	if(str[i] == 'F' && str[i + 1] == ' ')
+		build->data.floor = check_color(str, build);
+	if(str[i] == 'C' && str[i + 1] == ' ')
+		build->data.ceiling = check_color(str, build);
+	if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
+		build->data.sprite = check_path(str);
+	if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.north = check_path(str);
+	if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.south = check_path(str);
+	if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.west = check_path(str);
+	if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.east = check_path(str);
+}
+// colors also can be a 0;
+static void 	initialise(t_build *build)
+{
+	build->data.res_x = 0;
+	build->data.res_y = 0;
+	build->data.floor = -1;
+	build->data.ceiling = -1;
+	build->data.color_r = 0;
+	build->data.check_color = 0;
+	build->data.check_res = 0;
+	// nog even alle andere structs op NULL zetten. 
 }
 
-void 	readstr(t_build *build)
+void 	read_string(t_build *build)
 {
-	//t_build *data;
-	//printf("kom je in data");
-	//printf("kom je in data[s]");
-	//initialise(build);
-	while (*build->map.array != NULL)
+	int rule;
+
+	rule = 0;
+
+	initialise(build);
+	//build->data.str = build->map.array[rule];
+	while (build->map.array[rule]) /// tot 9 pas als je iets hebt opgeslagen dan verhoog je hem.
 	{
-		//--------------------------------------------------------------------------------------printf("kom je hier in[%s]\n", *build->map.array);
-		check_input(*build->map.array, build);
-		build->map.array++;
+		check_input(build->map.array[rule], build);
+		//error messages
+		rule++;
 	}
-
-	// int y;
-
-	// y = 0;
-	// while (build->map.array[y])
-	// {
-	// 	y++;
-	// }
-	
-	
-	// return(build->map.array);
 }

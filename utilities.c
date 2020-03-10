@@ -6,7 +6,7 @@
 /*   By: mmourik <mmourik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/20 09:21:21 by mmourik        #+#    #+#                */
-/*   Updated: 2020/03/03 21:13:30 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/10 18:32:04 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,41 @@ size_t				ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+int		ft_atoi(const char *str)
+{
+	int						i;
+	unsigned long long		b;
+	int						mp;
+
+	i = 0;
+	b = 0;
+	mp = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		mp = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] >= '0' && (str[i] <= '9'))
+	{
+		if (b >= 9223372036854775808ULL && mp == 1)
+			return (-1);
+		if (b >= 9223372036854775809ULL && mp == -1)
+			return (0);
+		b = b * 10 + str[i] - '0';
+		i++;
+	}
+	return ((int)mp * b);
+}
+
+int	ft_isdigit(int c)
+{
+	int i;
+
+	i = 0;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

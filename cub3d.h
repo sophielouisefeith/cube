@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/09 14:30:41 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/10 19:28:24 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
+
+// # ifndef DATA
+// #  define DATA build.
+// # endif
 
 typedef struct s_map //------------to open the map and safe 3Darray-----------------------------------
 {
@@ -29,13 +33,20 @@ typedef struct s_map //------------to open the map and safe 3Darray-------------
 typedef struct s_data //-------------to collect and validate information---------------------
 {
 	char	*str;
-	int		res;
+	int		res_x;
+	int		res_y;
+	int		check_res;
 	int		floor;
 	int		ceiling;
+	int 	color_r;
+	int 	color_g;
+	int		color_b;
+	int		check_color;
 	char	*north;
 	char	*south;
 	char	*west;
 	char	*east;
+	char	*sprite;
 	
 }
 				t_data;
@@ -46,13 +57,18 @@ typedef struct	s_build   // Umbrella struct
 	// t_img		*img;
 	// t_cor		cor;
 	t_map			map;
-	t_data		*data;
+	t_data			data; 
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
 t_build			*savearray(char *argv);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
-void 	readstr(t_build *build);
+void 	read_string(t_build *build);
+//-----------------------------------will read the arrays and saves it in data------------------------
+void	check_res(char *str, t_build *build);
+int		check_color(char *str, t_build *build);
+char	*check_path(char *str);
+void	check_input(char *str, t_build *build);
 //--------------------------------image building -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		image(t_build *build);
@@ -64,6 +80,8 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 //---------------------------------------------------------------------------------------
 
 
