@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/12 13:15:34 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/12 15:03:12 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,30 @@ void	check_input(char *str, t_build *build)
 	int i ;
 
 	i = 0;
-	// build->map.array[y][i]
+
 	while((str[i] == ' ' || str[i] == 9 ) && str[i])
 		i++;
 	//------------------------------------------------------------------------------------------------input check of ze er wel inzitten en ook niet dubbel inzitten door dit dus al even een struct aan te zetten 
 	//check_dubbel(str);
 	if(str[i] == 'R' && str[i + 1] == ' ' && build->data.check_res != 1)
 		check_res(str, build);
-	// if(str[i] == 'F' && str[i + 1] == ' ')
-	// 	check_color(str, build);
+	if(str[i] == 'F' && str[i + 1] == ' ')
+		check_color(str, build);
 	if(str[i] == 'C' && str[i + 1] == ' ')
 		check_color(str, build);
-	// if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
-	// 	build->data.sprite = check_path(str);
-	// if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-	// 	build->data.north = check_path(str);
-	// if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-	// 	build->data.south = check_path(str);
-	// if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
-	// 	build->data.west = check_path(str);
-	// if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
-	// 	build->data.east = check_path(str);
+	if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
+		build->data.sprite = check_path(str);
+	if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.north = check_path(str);
+	if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.south = check_path(str);
+	if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.west = check_path(str);
+	if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
+		build->data.east = check_path(str);
 }
 
-static void 	initialise(t_build *build)
+void 	initialise(t_build *build)
 {
 	build->data.res_x = 0;
 	build->data.res_y = 0;

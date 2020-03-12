@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/12 12:58:04 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/12 14:14:01 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void 	read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------
 void	check_res(char *str, t_build *build);
 void	check_color(char *str, t_build *build);
+int		create_trgb(int r, int g, int b, t_build *build);
 char	*check_path(char *str);
 void	check_input(char *str, t_build *build);
+void 	initialise(t_build *build);
 //---------------------------------error warning----------------------------
 void error(char *str);
 //--------------------------------image building -------------------------------

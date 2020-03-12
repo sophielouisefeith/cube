@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith         #+#    #+#                 #
-#    Updated: 2020/03/12 11:42:27 by sfeith        ########   odam.nl          #
+#    Updated: 2020/03/12 14:49:11 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,6 @@ $(NAME): $(LIBMLX) $(OBJ)
 clean:
 	make clean -C $(MLX)
 	$(RM) $(OBJ) a.out
-fclean: clean
-	$(RM) $(NAME)
+#fclean: clean
+#	$(RM) $(NAME)
 re: fclean all
