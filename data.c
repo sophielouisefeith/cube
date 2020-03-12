@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/10 19:40:49 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/12 13:15:34 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,34 @@ void	check_input(char *str, t_build *build)
 	//check_dubbel(str);
 	if(str[i] == 'R' && str[i + 1] == ' ' && build->data.check_res != 1)
 		check_res(str, build);
-	if(str[i] == 'F' && str[i + 1] == ' ')
-		build->data.floor = check_color(str, build);
+	// if(str[i] == 'F' && str[i + 1] == ' ')
+	// 	check_color(str, build);
 	if(str[i] == 'C' && str[i + 1] == ' ')
-		build->data.ceiling = check_color(str, build);
-	if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
-		build->data.sprite = check_path(str);
-	if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-		build->data.north = check_path(str);
-	if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
-		build->data.south = check_path(str);
-	if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
-		build->data.west = check_path(str);
-	if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
-		build->data.east = check_path(str);
+		check_color(str, build);
+	// if(str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
+	// 	build->data.sprite = check_path(str);
+	// if(str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+	// 	build->data.north = check_path(str);
+	// if(str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ' && str[i + 3] == '.')
+	// 	build->data.south = check_path(str);
+	// if(str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ' && str[i + 3] == '.')
+	// 	build->data.west = check_path(str);
+	// if(str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ' && str[i + 3] == '.')
+	// 	build->data.east = check_path(str);
 }
-// colors also can be a 0;
+
 static void 	initialise(t_build *build)
 {
 	build->data.res_x = 0;
 	build->data.res_y = 0;
 	build->data.floor = -1;
 	build->data.ceiling = -1;
-	build->data.color_r = 0;
+	build->data.color_r = -1;
+	build->data.color_g = -1;
+	build->data.color_b = -1;
 	build->data.check_color = 0;
 	build->data.check_res = 0;
+	//build->data.error_i = 0;
 	// nog even alle andere structs op NULL zetten. 
 }
 

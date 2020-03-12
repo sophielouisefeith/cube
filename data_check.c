@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/10 19:36:45 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/12 13:15:15 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		define_color(char *str, t_build *build, int *i)
 	int color;
 	
 	color = 0;
-	while((str[*i] == ' ' || str[*i] == 9 ) && str[*i]) // tot het eind
+	while((str[*i] == ' ' || str[*i] == 9 ) && str[*i])
 		(*i)++;
 	while(str[*i] >= '0' && str[*i] <= '9' && str[*i])
 	{
@@ -53,35 +53,35 @@ int		define_color(char *str, t_build *build, int *i)
 		if(color < 0 ||color > 255)
 			return(-1);
 	}
-	if(str[*i] == ',')
+	//build->data.check_color++;
+	if(str[*i] == ',' && build->data.check_color < 3)
 		(*i)++;
-	if(!ft_isdigit(str[*i]) && str[*i]!= '\0')
-		return(-1);// ERROR
+	if(!ft_isdigit(str[*i]) && str[*i]!= '\0' && build->data.check_color > 3)
+		return(-1);
 	build->data.check_color++;
 	return (color);
 }
-int		check_color(char *str, t_build *build)
+void	check_color(char *str, t_build *build)
 {
 	int i;
 	int final;
 	
 	i = 1;
-	final = 0;
+	final = 5;
 	while((str[i] == ' ' || str[i] == 9 ) && str[i])
 		i++;
 	build->data.color_r = define_color(str, build, &i);
 	if (build->data.color_r == -1)
-		return(-1);
+		error("color r is not valid\n");
 	build->data.color_g = define_color(str, build, &i);
 	if (build->data.color_g == -1)
-		return(-1);
+		error("color g is not valid\n");
 	build->data.color_b = define_color(str, build, &i);
 	if (build->data.color_b == -1)
-		return(-1);
-	if(build->data.check_color < 4)
-		return(final);
-	else return (-1 );// ERROR 
-		
+		error("color b is not valid.\n");
+	if(build->data.check_color > 3)
+		final = 1;
+	//build->data.check_color = 0;
 }
 
 char	*check_path(char *str)

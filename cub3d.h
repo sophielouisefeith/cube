@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/10 19:28:24 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/12 12:58:04 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ typedef struct s_data //-------------to collect and validate information--------
 	int 	color_g;
 	int		color_b;
 	int		check_color;
+//	int		final_color;
 	char	*north;
 	char	*south;
 	char	*west;
 	char	*east;
 	char	*sprite;
+	int		error_i;
+	
 	
 }
 				t_data;
@@ -66,9 +69,11 @@ t_build			*savearray(char *argv);
 void 	read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------
 void	check_res(char *str, t_build *build);
-int		check_color(char *str, t_build *build);
+void	check_color(char *str, t_build *build);
 char	*check_path(char *str);
 void	check_input(char *str, t_build *build);
+//---------------------------------error warning----------------------------
+void error(char *str);
 //--------------------------------image building -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		image(t_build *build);
