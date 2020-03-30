@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/12 14:14:01 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/27 16:16:17 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct s_data //-------------to collect and validate information--------
 	char	*east;
 	char	*sprite;
 	int		error_i;
+	int		n;
+	int		size_map;
+	int		len_be;
+	int		len_middel;
 	
 	
 }
@@ -74,6 +78,11 @@ int		create_trgb(int r, int g, int b, t_build *build);
 char	*check_path(char *str);
 void	check_input(char *str, t_build *build);
 void 	initialise(t_build *build);
+//---------------------------------valid map----------------------------
+void    rule_one(int y, t_build *build);
+void	middel_part(int y, t_build *build);
+void    rule_last(int y, t_build *build);
+void    count_rules(int y, t_build *build);
 //---------------------------------error warning----------------------------
 void error(char *str);
 //--------------------------------image building -------------------------------

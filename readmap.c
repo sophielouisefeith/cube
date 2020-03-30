@@ -190,8 +190,8 @@ t_build		*savearray(char *argv)
 	int fd;
 	
 	fd = open(argv, O_RDONLY);
-	if(fd == 0)
-		return(NULL);
+	if(fd == -1)
+		error("programme didnt succeed");
 	new = (t_build*)malloc(sizeof(t_build));
 	new->map.str = get_next_line(fd);
 	if ( new->map.str == 0)
