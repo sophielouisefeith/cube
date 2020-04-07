@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/04/06 12:29:22 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/04/07 18:30:08 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_ray //
 {
 	int		pos_y;
 	int		pos_x;
+	
 }				
 				t_ray;
 
@@ -47,6 +48,16 @@ typedef struct	s_cor //---------- coordinates-----------------------------------
 {
 	int		    x;
 	int		    y;
+	int			n;
+	int			e;
+	int			w;
+	int 		z;
+	int		start_pos_x; //double
+	int		start_pos_y; //double
+	int		mapx;
+	int 	mapy;
+	double		dirx;
+	double	diry;
 }				t_cor;		
 
 typedef struct s_map //------------to open the map and safe 3Darray-----------------------------------
@@ -79,9 +90,8 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		n;
 	int		size_map;
 	int		len_be;
-	int		len_middel;
-	
-	
+	int		len_middel;	
+	int		count;
 }
 				t_data;
 							
@@ -112,6 +122,7 @@ void    rule_one(int y, t_build *build);
 void	middel_part(int y, t_build *build);
 void    rule_last(int y, t_build *build);
 void    count_rules(int y, t_build *build);
+void    start_pos(int y, t_build *build);
 //---------------------------------error warning----------------------------
 void error(char *str);
 //--------------------------------image building -------------------------------

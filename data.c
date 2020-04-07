@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/27 16:33:37 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/04/07 15:13:57 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void 	initialise(t_build *build)
 	build->data.check_res = 0;
 	build->data.size_map = 0;
 	build->data.n = 0;
+	build->cor.n = 0;
+	build->cor.e = 0;
+	build->cor.z = 0;
+	build->cor.w = 0;
+	build->data.count = 0;
+	
 	
 	//build->data.error_i = 0;
 	// nog even alle andere structs op NULL zetten. 
@@ -80,6 +86,7 @@ void	check_map(int y,t_build *build)
 	}
 	//printf(" string in check map[%s]\n",build->map.array[y]);
 	//printf(" hoeveel size[%d]\n", build->data.size_map);
+	start_pos(y, build);
 	if(build->data.size_map > 1)
 	{
 		middel_part(y,build);
