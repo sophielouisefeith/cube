@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/26 15:58:16 by SophieLouis    #+#    #+#                */
-/*   Updated: 2020/03/30 14:31:01 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/26 15:58:16 by SophieLouis   #+#    #+#                 */
+/*   Updated: 2020/04/07 12:21:48 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void   middel_part(int y, t_build *build)
     //if(!build->data.len_array )
       //  error("empty rule\n");
     //if ( )
-    printf("lengte eerste[%d]\n",build->data.len_be);
-    printf("lengte middelste[%d]\n",build->data.len_middel);
+    // printf("lengte eerste[%d]\n",build->data.len_be);
+    // printf("lengte middelste[%d]\n",build->data.len_middel);
     while(build->map.array[y][x] != '\0')
     {
         if (x == 0 && build->map.array[y][x]!= '1')
@@ -65,16 +65,16 @@ void   middel_part(int y, t_build *build)
             //count++;
             x = 0;
             x = build->data.len_middel - count;
-            printf("x[%d]\n", x);
+            //printf("x[%d]\n", x);
             while(build->map.array[y][x] < build->data.len_be)
             {
                 x++;
-                printf("x [%d]\n", x);
-                printf("welk karakter [%c]\n", build->map.array[y][x]);
+                // printf("x [%d]\n", x);
+                // printf("welk karakter [%c]\n", build->map.array[y][x]);
            // x = count;
                 if(build->map.array[y][x]!= '1' && build->map.array[y +1][x]!= '1')
                     error("not a protected mid rule\n");
-                    printf("count [%d]\n", count);
+                   // printf("count [%d]\n", count);
                 x++;
             }
         }
@@ -128,3 +128,4 @@ void    rule_last(int y, t_build *build)
 // als het een n is kijkt je poppetje naar het noorden dan is je x = 0 en y= 1
 // if there two N also wrong. 
 // eerst chekken of er een n is als je die vind coordienaten opslaan
+// eerst kijken welke coordinaten er zijn 

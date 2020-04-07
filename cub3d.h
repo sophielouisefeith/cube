@@ -6,21 +6,48 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/27 16:16:17 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/06 12:29:22 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <mlx.h>
+#include <mlx.h>
 #include <stdlib.h>
 #include <stdio.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
+
+
 
 // # ifndef DATA
 // #  define DATA build.
 // # endif
+
+typedef struct s_ray //
+{
+	int		pos_y;
+	int		pos_x;
+}				
+				t_ray;
+
+typedef struct s_img	// Building the image 
+{
+	void		*img1;
+	char		*addr;
+	int			bits_per_pixel;		
+	int			line_length;		
+	int			endian;				
+ 	void	    *mlx;
+ 	void	    *win1;
+}				t_img;
+
+typedef struct	s_cor //---------- coordinates-----------------------------------
+{
+	int		    x;
+	int		    y;
+}				t_cor;		
 
 typedef struct s_map //------------to open the map and safe 3Darray-----------------------------------
 {
@@ -33,8 +60,8 @@ typedef struct s_map //------------to open the map and safe 3Darray-------------
 typedef struct s_data //-------------to collect and validate information---------------------
 {
 	char	*str;
-	int		res_x;
-	int		res_y;
+	double	res_x;
+	double	res_y;
 	int		check_res;
 	int		floor;
 	int		ceiling;
@@ -61,10 +88,11 @@ typedef struct s_data //-------------to collect and validate information--------
 
 typedef struct	s_build   // Umbrella struct 
 {
-	// t_img		*img;
-	// t_cor		cor;
-	t_map			map;
-	t_data			data; 
+	t_img		*img;
+	t_cor		cor;
+	t_map		map;
+	t_data		data; 
+	t_ray       ray;
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
@@ -77,7 +105,8 @@ void	check_color(char *str, t_build *build);
 int		create_trgb(int r, int g, int b, t_build *build);
 char	*check_path(char *str);
 void	check_input(char *str, t_build *build);
-void 	initialise(t_build *build);
+void 	initialize(t_build *build);
+int		define_color(char *str, t_build *build, int *i);
 //---------------------------------valid map----------------------------
 void    rule_one(int y, t_build *build);
 void	middel_part(int y, t_build *build);
@@ -87,7 +116,9 @@ void    count_rules(int y, t_build *build);
 void error(char *str);
 //--------------------------------image building -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
-void    		image(t_build *build);
+void    		square(t_build *build);
+//void			loop(t_build *build);
+//int				render(t_build *build);
 //---------------------------------------utilities------------------------------------
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
@@ -113,27 +144,3 @@ int		ft_isdigit(int c);
 
 
 
-
-
-
-
-
-
-
-
-// typedef struct s_img	// Building the image 
-// {
-// 	void		*img1;
-// 	char		*addr;
-// 	int			bits_per_pixel;		
-// 	int			line_length;		
-// 	int			endian;				
-//  	void	    *mlx;
-//  	void	    *win1;
-// }				t_img;
-
-// typedef struct	s_cor //---------- coordinates-----------------------------------
-// {
-// 	int		    x;
-// 	int		    y;
-// }				t_cor;		

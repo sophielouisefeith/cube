@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/12 15:02:37 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/03/30 15:42:41 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		check_res(char *str, t_build *build)
 		i++;
 	}
 	
-	//--------------------------------------------------------nu nog checken of er dan ook nog getallen achter zitten. 
+	
 }
 
 int		create_trgb(int r, int g, int b, t_build *build)
@@ -102,5 +102,4 @@ void	check_color(char *str, t_build *build)
 char	*check_path(char *str)
 {
 		return(str);
-		// moeten hier nog meer checks bij ?
 }
