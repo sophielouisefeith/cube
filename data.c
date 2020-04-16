@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/07 15:13:57 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/16 15:43:43 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,19 @@ void 	initialise(t_build *build)
 	build->data.check_color = 0;
 	build->data.check_res = 0;
 	build->data.size_map = 0;
-	build->data.n = 0;
-	build->cor.n = 0;
-	build->cor.e = 0;
-	build->cor.z = 0;
-	build->cor.w = 0;
 	build->data.count = 0;
-	
-	
+	build->ray.time = 0;
+	build->ray.oldtime = 0;
+	build->ray.frametime= 0;
+	build->ray.movespeed = 0;
+	build->ray.rotspeed= 0;
+	build->ray.oldirx = 0;
+	// build->ray.moveup = 0;
+	// build->ray.movedown = 0;
+	// build->ray.moveright = 0;
+	// build->ray.moveleft = 0;
+	build->ray.oldplanex = 0;
+	build->ray.oldplaney = 0;
 	//build->data.error_i = 0;
 	// nog even alle andere structs op NULL zetten. 
 }
@@ -167,7 +172,7 @@ void 	check_valid_map(int y,t_build *build)
 		check_map(y, build);
 		y++;
 		build->data.size_map--;
-		printf(" hoeveel size[%d]\n", build->data.size_map);
+		//printf(" hoeveel size[%d]\n", build->data.size_map);
 		//printf("laatste regel moet dit zijn[%s]\n",build->map.array[y]);
 		//printf(" string[%s]",build->map.array[y]);
 		

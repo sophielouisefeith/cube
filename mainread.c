@@ -5,25 +5,52 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 18:55:17 by sfeith         #+#    #+#                */
-/*   Updated: 2020/04/04 14:54:25 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/04/16 12:47:30 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
-{
+// int main(int argc, char **argv)
+// {
 //---------------------------------step1----------------------------------------------
 //first we will call the function savearray to open the map.cub this function reads the map----------------------------------------------
 //and to return the map as an 3darray
 	
-	t_build *build;
-	// t_data 	*data;
+
+int main(int argc, char **argv)
+{
+    t_build	*build;
+	t_img	img;
 	
+
 	if(argc != 2)
-		return(-1);  //ERROR nog functie voor maken
-	build = savearray(argv[1]);
+		error("to many arguments");  
+	build = savearray(argv[1]); 
+	build->img = &img;
+	read_string(build); 
+
+    build->img->mlx = mlx_init();
+    build->img->win = mlx_new_window(build->img->mlx, build->data.res_x, build->data.res_y, "start");
+   	// build->img->img1 = mlx_new_image(build->img->mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
+	// build->img->addr = mlx_get_data_addr(build->img->img1, &build->img->bits_per_pixel, &build->img->line_length, &build->img->endian); // dit moet waarschijnlijk verplaats worden 
+	mlx_hook(build->img->win, 2, 1L<<0, &presskey, build);
+	mlx_loop_hook(build->img->mlx, &make, build); 
+	// mlx_put_image_to_window(build->img->mlx, build->img->win, build->img->img1, 0, 0);
+	mlx_loop(build->img->mlx);
+
+
+
+
+
+	
+	// t_build *build;
+	// // t_data 	*data;
+	
+	// if(argc != 2)
+	// 	return(-1);  //ERROR nog functie voor maken
+	// build = savearray(argv[1]);
 	// int y;
 
 	// y = 0;

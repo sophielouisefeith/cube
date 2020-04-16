@@ -6,15 +6,15 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2020/04/07 12:35:11 by SophieLouis   ########   odam.nl          #
+#    Updated: 2020/04/16 16:37:29 by SophieLouis   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 MLX = minilibx
 LIBMLX = libmlx.dylib
-SRC = cub3d.c utilities.c readmap.c  data.c data_check.c error.c mainbuild.c \
-		data_map.c  start_pos.c
+SRC = cub3d.c utilities.c readmap.c  data.c data_check.c error.c \
+		data_map.c  start_pos.c #raycast.c move.c 
 LINKING = -lmlx  -framework OpenGL -framework AppKit
 #OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror

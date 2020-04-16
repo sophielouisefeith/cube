@@ -6,18 +6,19 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/07 18:30:08 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/16 16:36:25 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <time.h>
 
 
 
@@ -27,8 +28,22 @@
 
 typedef struct s_ray //
 {
-	int		pos_y;
-	int		pos_x;
+	double time;
+	double oldtime;
+	double frametime;
+	double movespeed;
+	double rotspeed;
+	double oldirx;
+	double oldplanex;
+	double oldplaney;
+	double planex;
+	double planey;
+	int		moveup;
+	int		movedown;
+	int		moveright;
+	int		moveleft;
+	int		update;
+	
 	
 }				
 				t_ray;
@@ -41,22 +56,16 @@ typedef struct s_img	// Building the image
 	int			line_length;		
 	int			endian;				
  	void	    *mlx;
- 	void	    *win1;
+ 	void	    *win;
 }				t_img;
 
 typedef struct	s_cor //---------- coordinates-----------------------------------
 {
-	int		    x;
-	int		    y;
-	int			n;
-	int			e;
-	int			w;
-	int 		z;
-	int		start_pos_x; //double
-	int		start_pos_y; //double
+	double		start_pos_x; //double
+	double		start_pos_y; //double
 	int		mapx;
 	int 	mapy;
-	double		dirx;
+	double	dirx;
 	double	diry;
 }				t_cor;		
 
@@ -80,7 +89,6 @@ typedef struct s_data //-------------to collect and validate information--------
 	int 	color_g;
 	int		color_b;
 	int		check_color;
-//	int		final_color;
 	char	*north;
 	char	*south;
 	char	*west;
@@ -98,7 +106,7 @@ typedef struct s_data //-------------to collect and validate information--------
 
 typedef struct	s_build   // Umbrella struct 
 {
-	t_img		*img;
+	t_img		img;
 	t_cor		cor;
 	t_map		map;
 	t_data		data; 
@@ -125,9 +133,12 @@ void    count_rules(int y, t_build *build);
 void    start_pos(int y, t_build *build);
 //---------------------------------error warning----------------------------
 void error(char *str);
-//--------------------------------image building -------------------------------
+//--------------------------------image building/raycasting -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		square(t_build *build);
+int   			presskey(int keycode, t_build *build);
+//int     		ray(t_build *build);
+// void         	move(t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
 //---------------------------------------utilities------------------------------------
