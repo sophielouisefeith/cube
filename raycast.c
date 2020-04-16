@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/16 13:15:21 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/16 21:05:38 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 //* je moet dus de muren gaan vinden 
 //* het gaat heel erg om de start positie.
 
+// static void raycast(int x, t_build *build)
+// {
+	
+// }
 
 int     ray(t_build *build)
 {
@@ -25,10 +29,10 @@ int     ray(t_build *build)
 	double raydiry;
 
 	x = 0;
-	// build->ray.planex = 0;
-	// build->ray.planey = 0.66;
+	build->ray.planex = 0;
+	build->ray.planey = 0.66;
 
-	
+	// raycast(x, build);
 	while (x < build->data.res_x)  
 	{
 		camerax = 2 * x / build->data.res_x  - 1;

@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/16 13:20:45 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/16 20:51:03 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 
 
-// int    presskey( int keycode, t_build *build)
-// {
-//     //printf("hallo");
-//     if(keycode == 13)
-//         build->ray.moveup = 1;
-//     if(keycode == 1)
-//         build->ray.movedown = 1 ;
-//     if(keycode == 0)
-//         build->ray.moveleft = 1 ;
-//     if(keycode == 2 )
-//         build->ray.moveright = 1;
+int    presskey( int keycode, t_build *build)
+{
+
+    build->ray.moveup = 0;
+	build->ray.movedown = 0;
+	build->ray.moveright = 0;
+	build->ray.moveleft = 0;
+    build->ray.update = 0;
+    printf("hallo");
+    if(keycode == 13)
+        build->ray.moveup = 1;
+    if(keycode == 1)
+        build->ray.movedown = 1 ;
+    if(keycode == 0)
+        build->ray.moveleft = 1 ;
+    if(keycode == 2 )
+        build->ray.moveright = 1;
     
-//     return(0);
-// }
+    return(0);
+}
 
 void        move(t_build *build)
 {

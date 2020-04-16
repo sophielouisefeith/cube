@@ -6,11 +6,13 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/16 16:36:25 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/16 21:01:24 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+
+
+# include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/types.h>
@@ -19,6 +21,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
+
+
 
 
 
@@ -43,7 +47,12 @@ typedef struct s_ray //
 	int		moveright;
 	int		moveleft;
 	int		update;
-	
+	double camerax;
+	double raydiry;
+	double raydirx;
+	int hit;	
+	int side;
+	double perpwalldist;
 	
 }				
 				t_ray;
@@ -137,8 +146,8 @@ void error(char *str);
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		square(t_build *build);
 int   			presskey(int keycode, t_build *build);
-//int     		ray(t_build *build);
-// void         	move(t_build *build);
+int     		ray(t_build *build);
+void         	move(t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
 //---------------------------------------utilities------------------------------------
