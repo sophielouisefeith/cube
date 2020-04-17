@@ -6,20 +6,11 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/16 21:05:38 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/17 16:57:51 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-// het gaat er dus om dat je de afstand
-//* gaat meten *//
-//* je moet dus de muren gaan vinden 
-//* het gaat heel erg om de start positie.
-
-// static void raycast(int x, t_build *build)
-// {
-	
-// }
 
 int     ray(t_build *build)
 {
@@ -111,8 +102,7 @@ int     ray(t_build *build)
 		}
         x++;
     }
-    // mlx_put_image_to_window(build->img->mlx, build->img->win, build->img->img1, 0, 0);
-    return(0);
-    
+   	mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);
+    return(0); 
 }
 

@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/16 21:01:24 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/17 17:46:30 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct s_img	// Building the image
 
 typedef struct	s_cor //---------- coordinates-----------------------------------
 {
-	double		start_pos_x; //double
-	double		start_pos_y; //double
+	int		start_pos_x; //double
+	int		start_pos_y; //double
 	int		mapx;
 	int 	mapy;
 	double	dirx;
@@ -148,6 +148,7 @@ void    		square(t_build *build);
 int   			presskey(int keycode, t_build *build);
 int     		ray(t_build *build);
 void         	move(t_build *build);
+int				startgame(t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
 //---------------------------------------utilities------------------------------------

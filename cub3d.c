@@ -15,48 +15,81 @@
 int				make(t_build *build)
 {
 	build->img.img1 = mlx_new_image(build->img.mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
-	build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian); // dit moet waarschijnlijk verplaats worden 
-	mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);
+	build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian);
+	if(build->ray.update)
+	{
+		printf("update\n");
+		move(build);
+	}
+	//printf("de waarde van update: %d\n", build->ray.update);
 	ray(build);
-	move(build);
-	mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);
+	build->ray.update = 0;
 	return (0);
 }
 
-
-int main(int argc, char **argv)
+int startgame(t_build *build)
 {
-	//printf("hallo"); 
-    t_build	*build;
-	//t_img	img;
-	
-
-	if(argc != 2)
-		error("to many arguments");  
-	build = savearray(argv[1]); 
-	//build->img = &img; // ------------------  dit zou het kunnen zijn---------- //zou het iets te maken kunnen hebben met img1
-	read_string(build);
-	
-	// build->ray.planex = 0;
-	// build->ray.planey = 0.66;
-	// printf("hallo");
-    build->img.mlx = mlx_init();
+	build->img.mlx = mlx_init();
 	build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, build->data.res_y, "WOLFENSTEIN");
-	//printf("presskey");
-	//presskey(13, build);
 	mlx_hook(build->img.win, 2, 1L<<0, &presskey, build);
-	//make(build);
 	mlx_loop_hook(build->img.mlx, make, build); 
-   	// build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, build->data.res_y, "WOLFENSTEIN");
-  	// build->img.img1 = mlx_new_image(build->img.mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
-	// build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian); // dit moet waarschijnlijk verplaats worden 
-	//mlx_loop(build->img.mlx);
-	// printf("voor presskey");
-	//  mlx_hook(build->img.win, 2, 1L<<0, &presskey, build);
-	//mlx_loop_hook(build->img.mlx, &make, build); 
-	//mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);
 	mlx_loop(build->img.mlx);
-	}
+	return(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// int main(int argc, char **argv)
+// {
+//     t_build	*build;
+// 	//t_img	img;
+// 	if(argc != 2)
+// 		error("to many arguments");  
+// 	build = savearray(argv[1]); 
+// 	//build->img = &img; // ------------------  dit zou het kunnen zijn---------- //zou het iets te maken kunnen hebben met img1
+// 	read_string(build);
+//     build->img.mlx = mlx_init();
+// 	build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, build->data.res_y, "WOLFENSTEIN");
+// 	mlx_hook(build->img.win, 2, 1L<<0, &presskey, build);
+// 	mlx_loop_hook(build->img.mlx, make, build); 
+// 	mlx_loop(build->img.mlx);
+// 	return(0);
+// }
 
 
 

@@ -6,27 +6,38 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/16 20:50:37 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/17 17:58:44 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 static void  direction(int y, int x, t_build *build)
 {
     if(build->map.array[y][x] == 'N')
+    {
+        printf("noord\n");
         build->cor.dirx = 0;
         build->cor.diry = -1;
+    }
     if(build->map.array[y][x] == 'E')
+    {
+        printf("east\n");
         build->cor.dirx = 1;
         build->cor.diry = 0;
+    }
     if(build->map.array[y][x] == 'Z')
+    {
+        printf("zuid\n");
         build->cor.dirx = 0;
         build->cor.diry = 1;
+    }
     if(build->map.array[y][x] == 'W')
+    {
+        printf("west\n");
         build->cor.dirx = -1;
         build->cor.diry = 0;
+    }
   
 }
 
@@ -37,8 +48,8 @@ void    start_pos(int y, t_build *build)
     x = 0;
     while( build->map.array[y][x])
     {
-        if(build->map.array[y][x] == 'N' || build->map.array[y][x] == 'E' ||
-        build->map.array[y][x] == 'Z' || build->map.array[y][x] == 'W')
+        if(build->map.array[y][x] == 'W' || build->map.array[y][x] == 'E'||
+        build->map.array[y][x] == 'N' || build->map.array[y][x] == 'Z')
         {
             build->cor.start_pos_x = x;
             build->cor.start_pos_y = y;
@@ -50,28 +61,3 @@ void    start_pos(int y, t_build *build)
         x++; 
     }
 }
-
-// int    presskey(int keycode, t_build *build)
-// {
-
-//     build->ray.moveup = 0;
-// 	build->ray.movedown = 0;
-// 	build->ray.moveright = 0;
-// 	build->ray.moveleft = 0;
-//     build->ray.update = 0;
-//     printf("presskey");
-    
-//     if(keycode == 13)
-//     {
-//         printf("W");
-//         build->ray.moveup = 1;
-//         // build->ray.update = 1;
-//     }
-//     if(keycode == 1)
-//         build->ray.movedown = 1 ;
-//     if(keycode == 0)
-//         build->ray.moveleft = 1 ;
-//     if(keycode == 2 )
-//         build->ray.moveright = 1;
-//     return(0);
-// }

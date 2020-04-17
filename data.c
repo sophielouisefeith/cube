@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/16 15:43:43 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/17 18:03:27 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void 	initialise(t_build *build)
 	build->ray.time = 0;
 	build->ray.oldtime = 0;
 	build->ray.frametime= 0;
-	build->ray.movespeed = 0;
+	// build->ray.movespeed = 0;
 	build->ray.rotspeed= 0;
 	build->ray.oldirx = 0;
-	// build->ray.moveup = 0;
-	// build->ray.movedown = 0;
-	// build->ray.moveright = 0;
-	// build->ray.moveleft = 0;
+	build->ray.moveup = 0;
+	build->ray.movedown = 0;
+	build->ray.moveright = 0;
+	build->ray.moveleft = 0;
 	build->ray.oldplanex = 0;
 	build->ray.oldplaney = 0;
 	//build->data.error_i = 0;
