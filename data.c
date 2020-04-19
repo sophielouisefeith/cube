@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/17 18:03:27 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/19 10:44:47 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void 	initialise(t_build *build)
 	build->ray.moveleft = 0;
 	build->ray.oldplanex = 0;
 	build->ray.oldplaney = 0;
+	build->ray.side = 0;
+	build->ray.drawstart = 0;
+	build->ray.drawend = 0;
 	//build->data.error_i = 0;
 	// nog even alle andere structs op NULL zetten. 
 }

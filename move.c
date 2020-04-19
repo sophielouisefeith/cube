@@ -6,11 +6,14 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/17 18:28:06 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/19 12:42:04 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// protect go out of the game
+// the errors looking around. 
 
 int    presskey( int keycode, t_build *build)
 {
@@ -96,6 +99,7 @@ static void moveside(t_build *build)
 
 void        move(t_build *build)
 {
+	
     build->ray.oldtime = build->ray.time;
 	build->ray.time = clock();
 	build->ray.frametime = (build->ray.time - build->ray.oldtime) / 1000.0;

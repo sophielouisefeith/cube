@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2020/04/17 17:20:03 by SophieLouis   ########   odam.nl          #
+#    Updated: 2020/04/19 10:36:40 by SophieLouis   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 MLX = minilibx
 LIBMLX = libmlx.a
 SRC = cub3d.c utilities.c readmap.c  data.c data_check.c error.c \
-		data_map.c  start_pos.c raycast.c move.c  mainread.c
+		data_map.c  start_pos.c raycast.c move.c  mainread.c texture.c
 LINKING = -lmlx  -framework OpenGL -framework AppKit
 #OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror -g -Wno-deprecated-declarations

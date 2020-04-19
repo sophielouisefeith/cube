@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/17 17:46:30 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/19 12:48:21 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,16 @@
 // # ifndef DATA
 // #  define DATA build.
 // # endif
+typedef struct s_tex
+{
+	int 	texnum;
+	double  wallx;
+	int 	texx;
+	double  step;
+	double  texpos;
+	int 	texy;
 
+}				t_tex;
 typedef struct s_ray //
 {
 	double time;
@@ -53,9 +62,12 @@ typedef struct s_ray //
 	int hit;	
 	int side;
 	double perpwalldist;
+	int		drawstart;
+	int		drawend;
+	int 	lineheight;
 	
-}				
-				t_ray;
+}				t_ray;
+				
 
 typedef struct s_img	// Building the image 
 {
@@ -83,8 +95,8 @@ typedef struct s_map //------------to open the map and safe 3Darray-------------
 
 	char	*str;
 	char 	**array;
-}
-				t_map;
+}				t_map;
+			
 				
 typedef struct s_data //-------------to collect and validate information---------------------
 {
@@ -109,8 +121,8 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		len_be;
 	int		len_middel;	
 	int		count;
-}
-				t_data;
+}			t_data;
+				
 							
 
 typedef struct	s_build   // Umbrella struct 
@@ -120,6 +132,7 @@ typedef struct	s_build   // Umbrella struct
 	t_map		map;
 	t_data		data; 
 	t_ray       ray;
+	t_tex		tex;
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
@@ -149,6 +162,7 @@ int   			presskey(int keycode, t_build *build);
 int     		ray(t_build *build);
 void         	move(t_build *build);
 int				startgame(t_build *build);
+int     		fill(int x, t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
 //---------------------------------------utilities------------------------------------

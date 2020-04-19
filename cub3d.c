@@ -23,6 +23,7 @@ int				make(t_build *build)
 	}
 	//printf("de waarde van update: %d\n", build->ray.update);
 	ray(build);
+	//texture(build);
 	build->ray.update = 0;
 	return (0);
 }
