@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/19 12:42:04 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/22 13:28:46 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int    presskey( int keycode, t_build *build)
 	build->ray.movedown = 0;
 	build->ray.moveright = 0;
 	build->ray.moveleft = 0;
-	printf("presskeyr\n");
     if(keycode == 13)
 	{
 		printf("w\n");
@@ -33,17 +32,21 @@ int    presskey( int keycode, t_build *build)
         build->ray.movedown = 1;
 		build->ray.update = 1;
 	}
-    if(keycode == 0)
+    if(keycode == 0 ||  keycode == 124)
 	{
         build->ray.moveleft = 1;
 		build->ray.update = 1;
 	}
-    if(keycode == 2 )
+    if(keycode == 2 ||keycode == 123 )
 	{
         build->ray.moveright = 1;
 		build->ray.update = 1;
 	}
+	
+		
+	
     return(0);
+	
 }
 
 static void movefront(t_build *build)
@@ -77,6 +80,7 @@ static void movefront(t_build *build)
 
 static void moveside(t_build *build)
 {
+	// hier nog even kijken naar de rotatie 
 	if(build->ray.moveright == 1)	
 	{
 		build->ray.oldirx = build->cor.dirx;
@@ -86,6 +90,7 @@ static void moveside(t_build *build)
 		build->ray.planex = build->ray.planex * cos(-build->ray.rotspeed) - build->ray.planey * sin(-build->ray.rotspeed);
 		build->ray.planey = build->ray.oldplanex * sin(-build->ray.rotspeed) + build->ray.planey * cos(-build->ray.rotspeed);
 	}
+	// hier moet ik dus nog even gaan kijken naar de rotatie. 
 	if(build->ray.moveleft == 1)
 	{
 		build->ray.oldirx = build->cor.dirx;
@@ -105,8 +110,6 @@ void        move(t_build *build)
 	build->ray.frametime = (build->ray.time - build->ray.oldtime) / 1000.0;
 	//build->ray.movespeed = build->ray.frametime * 5.0;
 	build->ray.rotspeed = build->ray.frametime * 3.0;
-	
-	
 	movefront(build);
 	moveside(build);
 	//build->ray.movespeed = 0;

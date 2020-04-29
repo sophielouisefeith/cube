@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/19 12:48:21 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/29 14:08:25 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,43 @@
 // # ifndef DATA
 // #  define DATA build.
 // # endif
+
+typedef struct s_sprite
+{
+	double  *zbuffer;
+	int		*spriteorder;
+	double  *spritedistance;
+	int		numsprites;
+	double  spritex;
+	double  spritey;
+	double  invdet;
+	double transformx;
+	double transformy;
+	int 	spritescreenx;
+	int		spriteheight;
+	int 	drawstarty;
+	int		drawstartx;
+	int 	drawendy;
+	int		drawendx;
+	int 	spritewidth;
+	int		texx;
+	int 	d;
+	int 	y;
+	int 	texy;
+	int 	stripe;
+	void 	*sprite;
+	char	*dataadres;
+	int			bpp;
+	int		endian;
+	int     line_length;
+	int		width;
+	int		height;
+	
+	
+	
+
+}				t_sprite;
+
 typedef struct s_tex
 {
 	int 	texnum;
@@ -37,9 +74,18 @@ typedef struct s_tex
 	double  step;
 	double  texpos;
 	int 	texy;
+	void  	*texture;
+	void  	*texture_w;
+	char *dataadres;
+	int			bpp;
+	int		endian;
+	int     line_length;
+	int		width;
+	int		height;
 
 }				t_tex;
-typedef struct s_ray //
+
+typedef struct s_ray 
 {
 	double time;
 	double oldtime;
@@ -64,7 +110,7 @@ typedef struct s_ray //
 	double perpwalldist;
 	int		drawstart;
 	int		drawend;
-	int 	lineheight;
+	double 	lineheight;
 	
 }				t_ray;
 				
@@ -78,6 +124,9 @@ typedef struct s_img	// Building the image
 	int			endian;				
  	void	    *mlx;
  	void	    *win;
+	int			floor;
+	int			*fill;
+	// int			bpp;		
 }				t_img;
 
 typedef struct	s_cor //---------- coordinates-----------------------------------
@@ -133,6 +182,7 @@ typedef struct	s_build   // Umbrella struct
 	t_data		data; 
 	t_ray       ray;
 	t_tex		tex;
+	t_sprite	sprite;
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
@@ -154,7 +204,7 @@ void    rule_last(int y, t_build *build);
 void    count_rules(int y, t_build *build);
 void    start_pos(int y, t_build *build);
 //---------------------------------error warning----------------------------
-void error(char *str);
+void 			error(char *str);
 //--------------------------------image building/raycasting -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		square(t_build *build);
@@ -162,10 +212,16 @@ int   			presskey(int keycode, t_build *build);
 int     		ray(t_build *build);
 void         	move(t_build *build);
 int				startgame(t_build *build);
-int     		fill(int x, t_build *build);
+int   			fill(int x, t_build *build);
+int             floor_ceiling(t_build *build);
+char    		*wall_direction(t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
+
+//---------------------------------------sprites------------------------------------------
+void	 		sprite(t_build *build);
 //---------------------------------------utilities------------------------------------
+
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, char *s2);

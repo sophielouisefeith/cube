@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/19 12:30:45 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/22 14:16:32 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ int     ray(t_build *build)
 		else
 			build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + (1 - stepy) / 2) / build->ray.raydiry;
 		build->ray.lineheight = (int)(build->data.res_y/ build->ray.perpwalldist);
-		build->ray.drawstart = -build->ray.lineheight / 2 + build->data.res_y / 2;
+		build->ray.drawstart =- build->ray.lineheight / 2 + build->data.res_y / 2;
 		if (build->ray.drawstart < 0) 
 			build->ray.drawstart = 0;
-		build->ray.drawend = build->ray.lineheight /2 + build->data.res_y / 2;
+		build->ray.drawend = build->ray.lineheight / 2 + build->data.res_y / 2;
 		if (build->ray.drawend >= build->data.res_y )
 			build->ray.drawend = build->data.res_y - 1;
 		fill(x, build);

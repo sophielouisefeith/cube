@@ -16,14 +16,12 @@ int				make(t_build *build)
 {
 	build->img.img1 = mlx_new_image(build->img.mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
 	build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian);
+	//printf("wat is het path: %s", build->data.north);
 	if(build->ray.update)
-	{
-		printf("update\n");
 		move(build);
-	}
-	//printf("de waarde van update: %d\n", build->ray.update);
+	//floor_ceiling(build);
 	ray(build);
-	//texture(build);
+	//sprite(build); dit word een hell. 
 	build->ray.update = 0;
 	return (0);
 }

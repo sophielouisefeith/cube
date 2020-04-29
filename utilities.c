@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/19 12:58:09 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/22 13:19:33 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color)
 {
+	// if (color == 16777215)
+	// 	return ;
     char    *dst;
-
+	//printf(" y waarde in pixel put: %d\n", y);
     dst = build->img.addr + (y * build->img.line_length + x * (build->img.bits_per_pixel / 8));
-    *(unsigned int*)dst = color; // color = *(unsigned int*)dst;
+    *(unsigned int*)dst = color;
 }
 
 

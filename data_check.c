@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 17:21:18 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/30 15:42:41 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/04/23 12:40:44 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,16 @@ void	check_color(char *str, t_build *build)
 
 char	*check_path(char *str)
 {
-		return(str);
+	int i;
+	char *temp;
+	size_t len;
+	i = 0;
+	//temp = 0;
+	
+	while(str[i] != '.' && str[i + 1] != 'x')
+		i++;
+	len = ft_strlen(str);
+	temp = ft_substr(str, i, len);
+	printf(": %s.\n",temp);
+	return(temp);
 }
