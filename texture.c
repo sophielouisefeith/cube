@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/28 13:40:01 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/02 13:25:52 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int      calc(t_build *build)
     return(0);
 }
 
-char    *wall_direction(t_build *build)
+char    *side(t_build *build)
 {
   if (build->ray.side == 1)
   {
@@ -93,7 +93,7 @@ int     fill(int x, t_build *build)
     // int color;
     // y = build->ray.drawstart; 
     char *path;
-    path = wall_direction(build);
+    path = side(build);
     make_tex(path, build);
    // make_tex(build->data.north, build);
     put(x, build);
@@ -113,6 +113,7 @@ int     fill(int x, t_build *build)
 //      my_mlx_pixel_put(build, x, y, color);
 //      y++;
 //     }
+   // build->sprite.zbuffer[x] = build->ray.perpwalldist;
     return(0);    
 }
 
@@ -131,8 +132,43 @@ int     fill(int x, t_build *build)
 	// 	my_mlx_pixel_put(build, x, build->ray.drawstart, rgb);
 	// 	build->ray.drawstart++;
 	// }
-// int             floor_ceiling(t_build *build)
-// {
+void             floor_ceiling(t_build *build)
+{
+    int x;
+    int y;
+
+    y = 8;
+    while( y < build->data.res_y / 2)
+    {
+      x = 0;
+      while( x < build->data.res_x)
+      {
+        my_mlx_pixel_put( build, x, y,build->data.ceiling);
+        x++;
+      }
+      y++;
+    }
+    y= build->data.res_y /2;
+    while(y < build->data.res_y)
+    {
+      x =0;
+      while ( x< build->data.res_x)
+      {
+        my_mlx_pixel_put(build, x ,y , build->data.floor);
+        x++;
+      }
+      y++;
+
+    }
+}
+
+
+
+
+
+
+
+
 
 //     int y;
 
@@ -179,6 +215,13 @@ int     fill(int x, t_build *build)
 //         my_mlx_pixel_put(build, x, y, color);
 //         y++;
 //         x++;
+
+// res _y 
+// re_x  ceiling kleur ophalen met mypixelput x  while Y< res Y /2
+// x = 0 while x < res_x -> my pixelput
+// y++
+// x =0 
+// floor y = res_y/2  
     
 //     }
 //     return(0);

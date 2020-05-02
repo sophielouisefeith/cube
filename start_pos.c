@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/17 17:58:44 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/30 17:36:47 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ static void  direction(int y, int x, t_build *build)
 void    start_pos(int y, t_build *build)
 {
     int x;
+    //int i;
+    
 
     x = 0;
+    //build->sprite.num = 0;
     while( build->map.array[y][x])
     {
         if(build->map.array[y][x] == 'W' || build->map.array[y][x] == 'E'||
@@ -58,6 +61,12 @@ void    start_pos(int y, t_build *build)
         }
         if(build->data.count > 1)
             error("to many start positonions \n");
+        // if(build->map.array[y][x] == '2')
+        // {
+        //     build->sprites_cor[build->sprite.num].x = y + 0.5;
+        //     build->sprites_cor[build->sprite.num].y = x + 0.5;
+        //     build->sprite.num++;
+        // }
         x++; 
     }
 }

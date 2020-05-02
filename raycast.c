@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/22 14:16:32 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/04/30 17:45:21 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@ int     ray(t_build *build)
 {
     int x;  
 	double camerax;
-	//build->ray.raydirx;
-	//build->ray.raydiry;
-
 	x = 0;
-	build->ray.planex = 0;
-	build->ray.planey = 0.66;
+	// build->ray.planex = 0;
+	// build->ray.planey = 10;
 
-	// raycast(x, build);
+	build->ray.planex = (build->cor.diry == 0) ? 0 : 0.66;
+	build->ray.planey = (build->cor.diry == 0) ? 0.66 : 0;
+	
 	while (x < build->data.res_x)  
 	{
-		camerax = 2 * x / build->data.res_x  - 1;
+		camerax = 2 * x / build->data.res_x  - 1; //spiegel
 		build->ray.raydirx = build->cor.dirx + build->ray.planex * camerax;
 		build->ray.raydiry = build->cor.diry + build->ray.planey * camerax;
 		build->cor.mapx = (int)build->cor.start_pos_x;
@@ -35,14 +34,13 @@ int     ray(t_build *build)
     	double sidedisty;
 		double deltadistx =  fabs(1 / build->ray.raydirx);
     	double deltadisty = fabs(1 / build->ray.raydiry);
-		//build->ray.perpwalldist;
+		
 		int stepx;
 		int stepy;
 		int hit = 0;
-		// int side;
+
 		if ( build->ray.raydirx < 0)
 		{
-
 			stepx = -1;
 			sidedistx = (build->cor.start_pos_x - build->cor.mapx) * deltadistx;
 		}
@@ -61,7 +59,7 @@ int     ray(t_build *build)
 			stepy = 1;
 			sidedisty = (build->cor.mapy + 1.0 - build->cor.start_pos_y) * deltadisty;
 		}
-		while ( hit == 0)
+		while (hit == 0)
 		{
 			if (sidedistx < sidedisty)
 			{
@@ -90,6 +88,9 @@ int     ray(t_build *build)
 		if (build->ray.drawend >= build->data.res_y )
 			build->ray.drawend = build->data.res_y - 1;
 		fill(x, build);
+		//locate_sprites(build);
+		// build->sprite.zbuffer[x] = build->ray.perpwalldist;
+		//sprite(build);
         x++;
     }
    	mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/29 14:08:25 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/02 14:37:58 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,33 @@
 # include <time.h>
 
 
-
+#define screenWidth 640 
+#define screenHeight 480
+#define mapWidth 24
+#define mapHeight 24
+#define textwidth 64
+#define textheight 64
+#define numsprites 1
 
 
 // # ifndef DATA
 // #  define DATA build.
 // # endif
 
+typedef struct s_sprite_s
+{
+	int x;
+	int y;
+	
+}		t_sprite_s;
+
 typedef struct s_sprite
 {
 	double  *zbuffer;
-	int		*spriteorder;
-	double  *spritedistance;
-	int		numsprites;
+	int		spriteorder[numsprites];  //*
+	double  spritedistance[numsprites]; //*
+	int 	num;
+	//int		numsprites;
 	double  spritex;
 	double  spritey;
 	double  invdet;
@@ -51,15 +65,17 @@ typedef struct s_sprite
 	int		texx;
 	int 	d;
 	int 	y;
+	int		x;
 	int 	texy;
 	int 	stripe;
-	void 	*sprite;
+	void	*sprite_tex;
 	char	*dataadres;
 	int			bpp;
 	int		endian;
 	int     line_length;
 	int		width;
 	int		height;
+	char	*sprite_cor;
 	
 	
 	
@@ -172,7 +188,13 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		count;
 }			t_data;
 				
-							
+typedef struct				s_sprite_cor    
+{				
+	char			*sprite_cor;	
+	int x;
+	int y;
+		
+}			t_sprite_cor;
 
 typedef struct	s_build   // Umbrella struct 
 {
@@ -183,6 +205,8 @@ typedef struct	s_build   // Umbrella struct
 	t_ray       ray;
 	t_tex		tex;
 	t_sprite	sprite;
+	//t_sprite_cor    *sprites_cor;
+	t_sprite_s	sprite_s[numsprites];
 }				t_build;
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
@@ -213,13 +237,16 @@ int     		ray(t_build *build);
 void         	move(t_build *build);
 int				startgame(t_build *build);
 int   			fill(int x, t_build *build);
-int             floor_ceiling(t_build *build);
-char    		*wall_direction(t_build *build);
+void           floor_ceiling(t_build *build);
+char    		*side(t_build *build);
 //void			loop(t_build *build);
 //int				render(t_build *build);
 
 //---------------------------------------sprites------------------------------------------
 void	 		sprite(t_build *build);
+//void  			locate_sprites(t_build *build);
+void 			order_sprites(t_build *build);
+void 			sort_sprites(t_build *build);	
 //---------------------------------------utilities------------------------------------
 
 size_t	ft_strlen(const char *s);

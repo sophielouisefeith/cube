@@ -14,14 +14,24 @@
 
 int				make(t_build *build)
 {
+	
+	//int y;
 	build->img.img1 = mlx_new_image(build->img.mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
 	build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian);
 	//printf("wat is het path: %s", build->data.north);
 	if(build->ray.update)
 		move(build);
-	//floor_ceiling(build);
+	floor_ceiling(build);
+	//printf("sprite: %s", build->data.sprite);
 	ray(build);
-	//sprite(build); dit word een hell. 
+	//printf("sprite: %s", build->data.sprite);
+	// y = 0;
+	// while (build->map.array[y] != NULL)
+	// {
+	// 	printf("3darray[%d][%s]\n", y, build->map.array[y]);
+	// 	y++;
+	// }
+	sprite(build); 
 	build->ray.update = 0;
 	return (0);
 }
