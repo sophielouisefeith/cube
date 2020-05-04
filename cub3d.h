@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/02 14:37:58 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/04 12:35:48 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_sprite
 	double  invdet;
 	double transformx;
 	double transformy;
-	int 	spritescreenx;
+	int	spritescreenx;
 	int		spriteheight;
 	int 	drawstarty;
 	int		drawstartx;

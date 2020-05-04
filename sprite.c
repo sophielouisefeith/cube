@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 10:23:38 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/02 14:38:43 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/04 12:41:10 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void makesprite(t_build *build)
      printf("x%d\n",build->sprite.stripe);
     while(build->sprite.y < build->sprite.drawendy) 
     {
-        //printf("maken van sprite\n");
+        printf("maken van sprite\n");
         build->sprite.d = build->sprite.y * 256 - build->data.res_y * 128  + build->sprite.spriteheight * 128;
         build->sprite.texy = ((build->sprite.d * 64) / build->sprite.spriteheight) / 256;
         color = *(unsigned int*)(build->sprite.dataadres + (build->sprite.texy * build->sprite.line_length + build->sprite.texx * (build->sprite.bpp / 8)));
@@ -87,7 +87,7 @@ static int loop(t_build *build)
         build->sprite.texx = (int)(256 * (build->sprite.stripe - (-build->sprite.spritewidth / 2 + build->sprite.spritescreenx)) * textwidth / build->sprite.spritewidth / 256); //klopt dit
         // build->sprite.y = build->sprite.drawstarty;
         printf("loopen\n");
-        if(build->sprite.transformy > 0 && build->sprite.stripe > 0 && build->sprite.stripe < build->data.res_x)// && build->sprite.transformy < build->sprite.zbuffer[build->sprite.stripe])
+        if(build->sprite.transformy > 0 && build->sprite.stripe > 0 && build->sprite.stripe < build->data.res_x) //build->sprite.transformy < build->sprite.zbuffer[build->sprite.stripe])
           makesprite(build);
         build->sprite.stripe++;
     }
@@ -152,14 +152,14 @@ void    calc_sprites(t_build *build)
         build->sprite.transformx = build->sprite.invdet * (build->cor.diry - build->cor.dirx * build->sprite.spritey);
         build->sprite.transformy = build->sprite.invdet * (-build->ray.planey * build->sprite.spritex + build->ray.planex * build->sprite.spritey);
         build->sprite.spritescreenx = (int)build->data.res_x / 2 * (1 + build->sprite.transformx / build->sprite.transformy);
-        build->sprite.spriteheight = fabs((int)build->data.res_y / build->sprite.transformy); // ik heb hier nu geen abs voorgezet even aan maran vragen res_y?
+        build->sprite.spriteheight = abs((int)(build->data.res_y / (build->sprite.transformy))); // ik heb hier nu geen abs voorgezet even aan maran vragen res_y?
         build->sprite.drawstarty = -build->sprite.spriteheight / 2 + build->data.res_y / 2;
         if(build->sprite.drawstarty < 0 ) //  dit nog even vergelijken
             build->sprite.drawstarty = 0;
         build->sprite.drawendy = build->sprite.spriteheight / 2 + build->data.res_y / 2;
         if(build->sprite.drawendy >= build->data.res_y)
             build->sprite.drawendy = build->data.res_y - 1; // klopt hier res_y wel?    
-        build->sprite.spritewidth = fabs((int)build->data.res_y / ( build->sprite.transformy));
+        build->sprite.spritewidth = abs((int)(build->data.res_y / ( build->sprite.transformy)));
         build->sprite.drawstartx = (-build->sprite.spritewidth / 2) + build->sprite.spritescreenx;
         if(build->sprite.drawstartx < 0)
             build->sprite.drawstartx = 0;
