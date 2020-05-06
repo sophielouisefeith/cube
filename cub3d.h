@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/04 12:35:48 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/06 18:02:45 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct s_ray
 	int		drawstart;
 	int		drawend;
 	double 	lineheight;
+	int		stepx;
+	int 	stepy;
 	
 }				t_ray;
 				
@@ -209,6 +211,8 @@ typedef struct	s_build   // Umbrella struct
 	t_sprite_s	sprite_s[numsprites];
 }				t_build;
 
+int	close_game(t_build *build);
+
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
 t_build			*savearray(char *argv);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
@@ -222,9 +226,10 @@ void	check_input(char *str, t_build *build);
 void 	initialize(t_build *build);
 int		define_color(char *str, t_build *build, int *i);
 //---------------------------------valid map----------------------------
-void    rule_one(int y, t_build *build);
-void	middel_part(int y, t_build *build);
-void    rule_last(int y, t_build *build);
+void    rule_one(char *str1, char *str2);
+
+void	middel_part(char *str1, char *str2);
+void    rule_last(char *str);
 void    count_rules(int y, t_build *build);
 void    start_pos(int y, t_build *build);
 //---------------------------------error warning----------------------------
@@ -245,8 +250,8 @@ char    		*side(t_build *build);
 //---------------------------------------sprites------------------------------------------
 void	 		sprite(t_build *build);
 //void  			locate_sprites(t_build *build);
-void 			order_sprites(t_build *build);
-void 			sort_sprites(t_build *build);	
+//void 			order_sprites(t_build *build);
+//void 			sort_sprites(t_build *build);	
 //---------------------------------------utilities------------------------------------
 
 size_t	ft_strlen(const char *s);

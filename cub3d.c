@@ -19,9 +19,9 @@ int				make(t_build *build)
 	build->img.img1 = mlx_new_image(build->img.mlx, build->data.res_x, build->data.res_y); // dit moet waarschijnlijk verplaats worden 
 	build->img.addr = mlx_get_data_addr(build->img.img1, &build->img.bits_per_pixel, &build->img.line_length, &build->img.endian);
 	//printf("wat is het path: %s", build->data.north);
+	floor_ceiling(build);
 	if(build->ray.update)
 		move(build);
-	floor_ceiling(build);
 	//printf("sprite: %s", build->data.sprite);
 	ray(build);
 	//printf("sprite: %s", build->data.sprite);
@@ -40,7 +40,12 @@ int startgame(t_build *build)
 {
 	build->img.mlx = mlx_init();
 	build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, build->data.res_y, "WOLFENSTEIN");
+	build->ray.planex = (build->cor.diry == 0) ? 0 : 0.66;
+	build->ray.planey = (build->cor.diry == 0) ? 0.66 : 0;
+	build->ray.oldtime = 0;
+	build->ray.time = 0;
 	mlx_hook(build->img.win, 2, 1L<<0, &presskey, build);
+	mlx_hook(build->img.win, 17, 1L << 17, close_game, &build);
 	mlx_loop_hook(build->img.mlx, make, build); 
 	mlx_loop(build->img.mlx);
 	return(0);

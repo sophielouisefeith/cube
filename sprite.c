@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 10:23:38 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/04 12:41:10 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/06 19:08:49 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,8 @@ static void makesprite(t_build *build)
     //  printf("y%d\n",build->sprite.y );
     //  printf("x%d\n",build->sprite.stripe);
     build->sprite.y = build->sprite.drawstarty;  // y = start x = end wat is de start positie hoe sta ik er voor alle waarden even checkken
-     printf("lengte drawstarty%d\n",build->sprite.drawstarty );
-     printf("y%d\n",build->sprite.y );
-     printf("x%d\n",build->sprite.stripe);
     while(build->sprite.y < build->sprite.drawendy) 
     {
-        printf("maken van sprite\n");
         build->sprite.d = build->sprite.y * 256 - build->data.res_y * 128  + build->sprite.spriteheight * 128;
         build->sprite.texy = ((build->sprite.d * 64) / build->sprite.spriteheight) / 256;
         color = *(unsigned int*)(build->sprite.dataadres + (build->sprite.texy * build->sprite.line_length + build->sprite.texx * (build->sprite.bpp / 8)));
@@ -86,7 +82,6 @@ static int loop(t_build *build)
     {
         build->sprite.texx = (int)(256 * (build->sprite.stripe - (-build->sprite.spritewidth / 2 + build->sprite.spritescreenx)) * textwidth / build->sprite.spritewidth / 256); //klopt dit
         // build->sprite.y = build->sprite.drawstarty;
-        printf("loopen\n");
         if(build->sprite.transformy > 0 && build->sprite.stripe > 0 && build->sprite.stripe < build->data.res_x) //build->sprite.transformy < build->sprite.zbuffer[build->sprite.stripe])
           makesprite(build);
         build->sprite.stripe++;
@@ -136,7 +131,6 @@ void sort_sprites(t_build *build)
 void    calc_sprites(t_build *build)
 {
     //t_sprite      sprite_s[3];   
-    printf("calc\n"); 
     int    x;
     int    i;
     x = 0;
@@ -145,10 +139,9 @@ void    calc_sprites(t_build *build)
    // build->sprite.zbuffer[x] = build->ray.perpwalldist;
     while(i < numsprites)
     {
-        printf("calcloop\n"); 
-        build->sprite.spritex = build->sprite_s[build->sprite.spriteorder[i]].x - build->cor.start_pos_x;
-        build->sprite.spritey = build->sprite_s[build->sprite.spriteorder[i]].x - build->cor.start_pos_y;
-        build->sprite.invdet = 1.0 / (build->ray.planex * build->cor.diry -build->cor.dirx * build->ray.planey);
+        build->sprite.spritex = build->sprite_s[0].x; //- build->cor.start_pos_x;
+        build->sprite.spritey = build->sprite_s[0].y; // - build->cor.start_pos_y;
+        build->sprite.invdet = 1.0 / (build->ray.planex * build->cor.diry - build->cor.dirx * build->ray.planey);
         build->sprite.transformx = build->sprite.invdet * (build->cor.diry - build->cor.dirx * build->sprite.spritey);
         build->sprite.transformy = build->sprite.invdet * (-build->ray.planey * build->sprite.spritex + build->ray.planex * build->sprite.spritey);
         build->sprite.spritescreenx = (int)build->data.res_x / 2 * (1 + build->sprite.transformx / build->sprite.transformy);
@@ -166,7 +159,6 @@ void    calc_sprites(t_build *build)
         build->sprite.drawendx = build->sprite.spritewidth / 2 + build->sprite.spritescreenx;
         if(build->sprite.drawendx >= build->data.res_x )
             build->sprite.drawendx = build->data.res_x - 1;
-        printf("calc\n");
         loop(build);
         //build->sprite.stripe++;
        //sort_sprite(build);
@@ -176,9 +168,8 @@ void    calc_sprites(t_build *build)
 
 void        sprite(t_build *build)
 {
-
-    build->sprite_s[0].x = 6; //#0
-    build->sprite_s[0].y = 10;
+    build->sprite_s[0].x = 5; //#0
+    build->sprite_s[0].y = 8;
    // build->sprite_s[1].x = 37; //#1
    // build->sprite_s[1].y = 17;
    // build->sprite_s[2].x = 29; //#2
@@ -186,9 +177,9 @@ void        sprite(t_build *build)
     build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx, "./texture/health.xpm", &build->sprite.width, &build->sprite.height);
     build->sprite.dataadres = mlx_get_data_addr(build->sprite.sprite_tex, &build->sprite.bpp, &build->sprite.line_length, &build->sprite.endian);
     printf("sprite\n"); 
-    order_sprites(build);
+    //order_sprites(build);
     printf("ordersprite\n"); 
-    sort_sprites(build);
+    //sort_sprites(build);
     printf("sorteprite\n"); 
     calc_sprites(build);
 }

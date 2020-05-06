@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/04/30 17:36:47 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/06 20:37:32 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void  direction(int y, int x, t_build *build)
     {
         printf("noord\n");
         build->cor.dirx = 0;
-        build->cor.diry = -1;
+        build->cor.diry = -1; //-1
     }
     if(build->map.array[y][x] == 'E')
     {
@@ -26,11 +26,11 @@ static void  direction(int y, int x, t_build *build)
         build->cor.dirx = 1;
         build->cor.diry = 0;
     }
-    if(build->map.array[y][x] == 'Z')
+    if(build->map.array[y][x] == 'S')
     {
         printf("zuid\n");
         build->cor.dirx = 0;
-        build->cor.diry = 1;
+        build->cor.diry = 1; //1
     }
     if(build->map.array[y][x] == 'W')
     {
@@ -52,10 +52,10 @@ void    start_pos(int y, t_build *build)
     while( build->map.array[y][x])
     {
         if(build->map.array[y][x] == 'W' || build->map.array[y][x] == 'E'||
-        build->map.array[y][x] == 'N' || build->map.array[y][x] == 'Z')
+        build->map.array[y][x] == 'N' || build->map.array[y][x] == 'S')
         {
-            build->cor.start_pos_x = x;
-            build->cor.start_pos_y = y;
+            build->cor.start_pos_x = x + 0.5;
+            build->cor.start_pos_y = y + 0.5;
             build->data.count++;
             direction(y, x, build);
         }

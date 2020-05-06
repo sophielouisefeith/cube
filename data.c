@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/23 12:05:27 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/06 19:43:51 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,20 @@ void	check_input(char *str, t_build *build)
 
 void 	initialise(t_build *build)
 {
-	build->data.res_x = 0;
-	build->data.res_y = 0;
-	build->data.floor = -1;
-	build->data.ceiling = -1;
-	build->data.color_r = -1;
-	build->data.color_g = -1;
-	build->data.color_b = -1;
-	build->data.check_color = 0;
-	build->data.check_res = 0;
-	build->data.size_map = 0;
+	// build->data.res_x = 0;
+	// build->data.res_y = 0;
+	// build->data.floor = -1;
+	// build->data.ceiling = -1;
+	// build->data.color_r = -1;
+	// build->data.color_g = -1;
+	// build->data.color_b = -1;
+	// build->data.check_color = 0;
+	// build->data.check_res = 0;
+	// build->data.size_map = 0;
 	build->data.count = 0;
-	build->ray.time = 0;
-	build->ray.oldtime = 0;
-	build->ray.frametime= 0;
+	//build->ray.time = 0;
+	//build->ray.oldtime = 0;
+	//build->ray.frametime= 0;
 	// build->ray.movespeed = 0;
 	// build->ray.rotspeed= 0;
 	// build->ray.oldirx = 0;
@@ -77,27 +77,27 @@ void 	initialise(t_build *build)
 	//build->data.error_i = 0;
 	// nog even alle andere structs op NULL zetten. 
 }
-void	check_map(int y,t_build *build)
-{
+// void	check_map(int y,t_build *build)
+// {
 	// moet eigenlijk eerst weten hoeveel regels er zijn en hoelang die zijn 
 
 	//printf(" string in check map[%s]",build->map.array[8]);
 	//printf("in check map \n");
 	//printf("wat is y %d\n", y);
 	//printf(" hoeveel regels[%d]\n",build->data.size_map);
-	if(y == 8)
-	{
-		rule_one(y,build);
-		//printf(" hoeveel size[%d]\n", build->data.size_map);
-		y++;
+	// if(y == 8)
+	// {
+	// 	rule_one(y,build);
+	// 	//printf(" hoeveel size[%d]\n", build->data.size_map);
+	// 	y++;
 		//build->data.size_map--;
-	}
+	//}
 	//printf(" string in check map[%s]\n",build->map.array[y]);
 	//printf(" hoeveel size[%d]\n", build->data.size_map);
-	start_pos(y, build);
-	if(build->data.size_map > 1)
-	{
-		middel_part(y,build);
+	// start_pos(y, build);
+	// if(build->data.size_map > 1)
+	// {
+	// 	middel_part(y,build);
 		// if(!build->data.n)
 		// 	error("no starting point\n");
 
@@ -105,15 +105,15 @@ void	check_map(int y,t_build *build)
 		//build->data.size_map--;
 		
 		//printf("after first rule \n");
-	}
+	//}
 	//printf(" hoeveel size[%d]\n", build->data.size_map);
 	//printf("laatste regel moet dit zijn[%s]\n",build->map.array[y]);
-	if (build->data.size_map == 1)
-	{
-		//printf(" hoeveel size[%d]\n", build->data.size_map);
-	//	printf("laatste regel moet dit zijn[%s]\n",build->map.array[y]);
-		rule_last(y,build);
-	}
+	// if (build->data.size_map == 1)
+	// {
+	// 	//printf(" hoeveel size[%d]\n", build->data.size_map);
+	// //	printf("laatste regel moet dit zijn[%s]\n",build->map.array[y]);
+	// 	rule_last(y,build);
+	// }
 	// {
 	// 	//printf("3darray[%s]\n", build->map.array[y]);
 	// 	printf("x[%d]\n", build->map.array[y][x]);
@@ -156,8 +156,30 @@ void	check_map(int y,t_build *build)
 			// [Y +1] [x] != 1
 			// 8 vakjes er om heen bekijken  voor het midden
 			// 6 aan het eind 
+// }
+
+static void charcheck(char **str)
+{
+    int i;
+    int y;
+    i = 0;
+    y = 0;
+    while (str[y] != NULL)
+    {
+        i = 0;
+        while (str[y][i])
+        {
+            if (str[y][i] != ' ' && str[y][i] != 9 && str[y][i] != '2' && \
+            str[y][i] != '1' && str[y][i] != '0' && str[y][i] != 'N' && \
+            str[y][i] != 'S' && str[y][i] != 'W' && str[y][i] != 'E')
+                error("there is an invalid character in the map");
+            i++;
+        }
+        y++;
+    }
 }
-void 	check_valid_map(int y,t_build *build)
+
+void 	check_valid_map(t_build *build)
 {
 	//printf("kom jij");
 	// while(build->map.array[y][0] == '\n')
@@ -167,14 +189,26 @@ void 	check_valid_map(int y,t_build *build)
 	// }
 	// printf(" string[%s]",build->map.array[y]);
 	// printf("y [%d]", y);
-	count_rules(y, build);
-	while (build->map.array[y])
+	//count_rules(build);
+	int lines = 0;
+	while(build->map.array[lines])
+		lines++;
+	charcheck(build->map.array);
+	rule_one(build->map.array[0], build->map.array[1]);
+	int y = 1;
+	while (y < lines -1)		//< lines -1
 	{
-	//	printf("kom jij");
-		//printf("y [%d]", y);
-		check_map(y, build);
+		middel_part(build->map.array[y], build->map.array[y +1]);
+		start_pos(y, build);
 		y++;
-		build->data.size_map--;
+	}
+	rule_last(build->map.array[y]);
+	//while (build->map.array[y] != NULL)
+	//{
+	//	printf("kom jij");
+		//check_map(y, build);
+	//	y++;
+		//build->data.size_map--;
 		//printf(" hoeveel size[%d]\n", build->data.size_map);
 		//printf("laatste regel moet dit zijn[%s]\n",build->map.array[y]);
 		//printf(" string[%s]",build->map.array[y]);
@@ -185,7 +219,7 @@ void 	check_valid_map(int y,t_build *build)
 		//y++;
 		//printf("y [%d]", y);
 	//	printf("kom je hier");
-	}
+	//}
 	//if(!build->data.n)
 	//	error("not a valid map no starting point\n");
 		//printf("je bent een 1[%x]\n", x);
@@ -194,6 +228,19 @@ void 	check_valid_map(int y,t_build *build)
    	// printf("kom je hier al in");
 	// printf("rule [%d]/n", build->data.check_color);
 	   
+}
+
+static int         space_tab(char *str)
+{
+    int i;
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] != ' ' && str[i] != 9)
+            return (-1);// error
+        i++;
+    }
+    return (0);
 }
 void 	read_string(t_build *build)
 {
@@ -212,16 +259,24 @@ void 	read_string(t_build *build)
 	// 	printf("3darray[%s]\n", build->map.array[y]);
 	// 	y++;
 	// }
-	while (rule < 8) /// tot 9 pas als je iets hebt opgeslagen dan verhoog je hem.
+	while (*build->map.array && rule < 8)
 	{
-		check_input(build->map.array[rule], build );
-		//error messages
-		
-	//	printf(" string[%s]\n",build->map.array[rule]);
-		rule++;	
+		check_input(*build->map.array, build);
+		build->map.array++;
+		rule++;
 	}
+	// while (rule < 8) /// tot 9 pas als je iets hebt opgeslagen dan verhoog je hem.
+	// {
+	// 	check_input(build->map.array[rule], build );
+	// 	//error messages
+		
+	// //	printf(" string[%s]\n",build->map.array[rule]);
+	// 	rule++;	
+	// }
 	//printf("rule [%d]", rule);
 	//printf(" string die ik mee geef[%s]",build->map.array[rule]);
- 	check_valid_map(rule, build);
+	while (space_tab(*build->map.array) == 0 || *build->map.array == 0)
+		build->map.array++;
+ 	check_valid_map(build);
 	
 }
