@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 20:41:26 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 13:31:00 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ char    *side(t_build *build)
 {
   if (build->ray.side ==1)
   {
-    	build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + (1 - build->ray.stepy) / 2) / build->ray.raydiry;
+    	build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + (1 - build->ray.stepy) / 2) / build->ray.raydiry ;
+      if(build->ray.perpwalldist < 1)
+        build->ray.perpwalldist = 1;
       build->tex.wallx = build->cor.start_pos_x + build->ray.perpwalldist * build->ray.raydirx;
     if (build->ray.raydiry < 0)
       return (build->data.north);
@@ -73,7 +75,10 @@ char    *side(t_build *build)
   }
   if (build->ray.side == 0)
   {
+    
     build->ray.perpwalldist = (build->cor.mapx - build->cor.start_pos_x + (1 - build->ray.stepx) / 2) / build->ray.raydirx;
+    if(build->ray.perpwalldist < 1)
+        build->ray.perpwalldist = 1;
     build->tex.wallx = build->cor.start_pos_y + build->ray.perpwalldist * build->ray.raydiry;
     if (build->ray.raydirx < 0)
       return (build->data.west);
@@ -154,7 +159,7 @@ void             floor_ceiling(t_build *build)
     int x;
     int y;
 
-    y = 8;
+    y = 0;
     while( y < build->data.res_y / 2)
     {
       x = 0;
@@ -165,7 +170,7 @@ void             floor_ceiling(t_build *build)
       }
       y++;
     }
-    y= build->data.res_y /2;
+    y = build->data.res_y /2;
     while(y < build->data.res_y)
     {
       x =0;

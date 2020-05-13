@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 20:37:32 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 13:57:43 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void    start_pos(int y, t_build *build)
         }
         if(build->data.count > 1)
             error("to many start positonions \n");
-        // if(build->map.array[y][x] == '2')
-        // {
-        //     build->sprites_cor[build->sprite.num].x = y + 0.5;
-        //     build->sprites_cor[build->sprite.num].y = x + 0.5;
-        //     build->sprite.num++;
-        // }
+        if(build->map.array[y][x] == '2')
+        {
+            build->sprite_s[build->sprite.num].x = y + 0.5; 
+            build->sprite_s[build->sprite.num].y = x + 0.5;
+            build->sprite.num++;
+        }
         x++; 
     }
 }

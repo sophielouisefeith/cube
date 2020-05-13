@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 13:16:25 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/12 12:10:26 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	close_game(t_build *build)
 {
 	mlx_destroy_window(build->img.mlx, build->img.win);
-	exit(0);
+	exit(1);
 }
 
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color)

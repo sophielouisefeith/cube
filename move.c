@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 20:36:14 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/06 21:24:15 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,16 @@ int    presskey( int keycode, t_build *build)
         build->ray.movedown = 1;
 		build->ray.update = 1;
 	}
-    if(keycode == 124)
+    if(keycode == 123)
 	{
         build->ray.moveleft = 1;
 		build->ray.update = 1;
 	}
-    if(keycode == 123 )
+    if(keycode == 124 )
 	{
         build->ray.moveright = 1;
 		build->ray.update = 1;
 	}
-	
-		
-	
     return(0);
 	
 }

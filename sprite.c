@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 10:23:38 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 19:08:49 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 13:54:22 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 //     y = 0;
 //     x = 0;
    
-//     // build->sprite.zbuffer[x] = build->ray.perpwalldist;
+//     //build->sprite.zbuffer[x] = build->ray.perpwalldist;
 //     while (y < build->data.res_y) //mapheight
 //     {
 //         //x = 0;
@@ -96,9 +96,14 @@ void order_sprites(t_build *build)
     i = 0;
     while(i < numsprites)
     {
-        build->sprite.spriteorder[i] = i;
-        build->sprite.spritedistance[i] = ((build->cor.start_pos_x - build->sprite_s[i].x) * (build->cor.start_pos_x - build->sprite_s[i].x) + (build->cor.start_pos_y - build->sprite_s[i].y) * (build->cor.start_pos_y - build->sprite_s[i].y));
+        build->sprite.spriteorder[build->sprite.num] = i;
+        build->sprite.spriteorder[build->sprite.num] = i;
+        build->sprite.spriteorder[build->sprite.num] = i;
         i++;
+    }
+    while(i < numsprites)
+    {
+         build->sprite.spritedistance[i] = ((build->cor.start_pos_x - build->sprite_s[i].x) * (build->cor.start_pos_x - build->sprite_s[i].x) + (build->cor.start_pos_y - build->sprite_s[i].y) * (build->cor.start_pos_y - build->sprite_s[i].y));
     }
 }
 
@@ -110,7 +115,7 @@ void sort_sprites(t_build *build)
     double tmp2;
 
     i = 0;
-    while ( i < numsprites)
+    while ( i < numsprites - 1)
     {
         if (build->sprite.spritedistance[i] < build->sprite.spritedistance[i + 1])
         {
@@ -120,9 +125,8 @@ void sort_sprites(t_build *build)
             tmp = build->sprite.spriteorder[i + 1];
             build->sprite.spriteorder[i + 1] = build->sprite.spriteorder[i];
             build->sprite.spriteorder[i] = tmp;
-            i = 0;
+            i = -1;
         }
-        else
         i++;  
     }
     
@@ -168,18 +172,22 @@ void    calc_sprites(t_build *build)
 
 void        sprite(t_build *build)
 {
-    build->sprite_s[0].x = 5; //#0
-    build->sprite_s[0].y = 8;
+//     build->sprite_s[0].x = 5; //#0
+//     build->sprite_s[0].y = 8;
    // build->sprite_s[1].x = 37; //#1
    // build->sprite_s[1].y = 17;
    // build->sprite_s[2].x = 29; //#2
    // build->sprite_s[2].y = 18;
-    build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx, "./texture/health.xpm", &build->sprite.width, &build->sprite.height);
+
+    char *path;
+    path = build->data.sprite;
+    build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx, path, &build->sprite.width, &build->sprite.height);
     build->sprite.dataadres = mlx_get_data_addr(build->sprite.sprite_tex, &build->sprite.bpp, &build->sprite.line_length, &build->sprite.endian);
     printf("sprite\n"); 
-    //order_sprites(build);
+    //locate_sprites(build);
+    order_sprites(build);
     printf("ordersprite\n"); 
-    //sort_sprites(build);
+    sort_sprites(build);
     printf("sorteprite\n"); 
     calc_sprites(build);
 }

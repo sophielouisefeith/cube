@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/06 18:02:45 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 13:45:29 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #define mapHeight 24
 #define textwidth 64
 #define textheight 64
-#define numsprites 1
+#define numsprites 3
 
 
 // # ifndef DATA
@@ -40,13 +40,14 @@ typedef struct s_sprite_s
 {
 	int x;
 	int y;
+	char **sprite_s;
 	
 }		t_sprite_s;
 
 typedef struct s_sprite
 {
 	double  *zbuffer;
-	int		spriteorder[numsprites];  //*
+	double		spriteorder[numsprites];  //*
 	double  spritedistance[numsprites]; //*
 	int 	num;
 	//int		numsprites;
@@ -129,6 +130,11 @@ typedef struct s_ray
 	double 	lineheight;
 	int		stepx;
 	int 	stepy;
+	double sidedistx;
+	double sidedisty;
+	double deltadistx;
+	double deltadisty;
+	//double camerax;
 	
 }				t_ray;
 				
