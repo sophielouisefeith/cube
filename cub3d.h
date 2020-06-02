@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/13 13:45:29 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 19:25:46 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ typedef struct s_sprite_s
 {
 	int x;
 	int y;
-	char **sprite_s;
+	double  **sprite_cor;
 	
 }		t_sprite_s;
 
 typedef struct s_sprite
 {
 	double  *zbuffer;
-	double		spriteorder[numsprites];  //*
-	double  spritedistance[numsprites]; //*
+	int		**spriteorder;  //*
+	//double  spritedistance; 
 	int 	num;
 	//int		numsprites;
 	double  spritex;
@@ -76,7 +76,7 @@ typedef struct s_sprite
 	int     line_length;
 	int		width;
 	int		height;
-	char	*sprite_cor;
+	//char	*sprite_cor;
 	
 	
 	
@@ -135,6 +135,7 @@ typedef struct s_ray
 	double deltadistx;
 	double deltadisty;
 	//double camerax;
+	int		x_cam;
 	
 }				t_ray;
 				

@@ -6,26 +6,21 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/12 12:10:26 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 14:33:00 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "cub3d.h"
 
 int	close_game(t_build *build)
 {
 	mlx_destroy_window(build->img.mlx, build->img.win);
-	exit(1);
+	exit(0);
 }
 
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color)
 {
-	// if (color == 16777215)
-	// 	return ;
     char    *dst;
-	//printf(" y waarde in pixel put: %d\n", y);
     dst = build->img.addr + (y * build->img.line_length + x * (build->img.bits_per_pixel / 8));
     *(unsigned int*)dst = color;
 }

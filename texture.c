@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/13 13:31:00 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/06/01 12:01:13 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,11 @@ int     fill(int x, t_build *build)
 	// rgb = 0xffe4e1;
 	// if (build->ray.side == 1)
 	// 	rgb = rgb /2;
+  //build->sprite.zbuffer[x] = build->ray.perpwalldist;
   build->tex.texx = (build->tex.wallx * (double)64);
    // (build->ray.side == 0 && build->ray.raydirx > 0);
   build->tex.texx = 64 - build->tex.texx -1;
+  //build->sprite.zbuffer[x] = build->ray.perpwalldist;
   //calc(build);
     // int y;
     // int color;

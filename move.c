@@ -6,48 +6,35 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/06 21:24:15 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/13 14:29:40 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// protect go out of the game
-// the errors looking around. 
-
-int    presskey( int keycode, t_build *build)
+static void zero(int keycode, t_build *build)
 {
-    build->ray.moveup = 0;
+	build->ray.moveup = 0;
 	build->ray.movedown = 0;
 	build->ray.moveright = 0;
 	build->ray.moveleft = 0;
 	build->ray.update = 0;
-
 	if (keycode == 53)
 		close_game(build);
+}
+int    presskey( int keycode, t_build *build)
+{
+	zero(keycode, build);
+	build->ray.update = 1;
     if(keycode == 126)
-	{
-		printf("w\n");
         build->ray.moveup = 1;
-		build->ray.update = 1;
-	}
     if(keycode == 125)
-	{
-        build->ray.movedown = 1;
-		build->ray.update = 1;
-	}
+    	build->ray.movedown = 1;
     if(keycode == 123)
-	{
         build->ray.moveleft = 1;
-		build->ray.update = 1;
-	}
     if(keycode == 124 )
-	{
         build->ray.moveright = 1;
-		build->ray.update = 1;
-	}
     return(0);
-	
 }
 
 static void movefront(t_build *build)
@@ -72,8 +59,6 @@ static void movefront(t_build *build)
 
 static void moveside(t_build *build)
 {
-	printf("perpwall [%f]\n, lineheigh[%f]\n. dirx %f\n, diry %f\n", build->ray.perpwalldist, build->ray.lineheight, build->cor.dirx, build->cor.diry);
-	// hier nog even kijken naar de rotatie 
 	if(build->ray.moveleft == 1)	
 	{
 		build->ray.oldirx = build->cor.dirx;
@@ -84,8 +69,6 @@ static void moveside(t_build *build)
 		build->ray.planey = build->ray.oldplanex * sin(-build->ray.rotspeed) + build->ray.planey * cos(-build->ray.rotspeed);
 		build->ray.moveleft = 0;
 	}
-	
-	// hier moet ik dus nog even gaan kijken naar de rotatie. 
 	if(build->ray.moveright == 1)
 	{
 		build->ray.oldirx = build->cor.dirx;
@@ -102,11 +85,11 @@ void        move(t_build *build)
 {
 	
     // build->ray.oldtime = build->ray.time;
-	// build->ray.time = clock();
-	// build->ray.frametime = (build->ray.time - build->ray.oldtime) / 500.0;
-	// build->ray.movespeed = build->ray.frametime * 1.0;
-	// build->ray.rotspeed = build->ray.frametime * 1.0;
+	//build->ray.time = clock();
+	//build->ray.frametime = (build->ray.time - build->ray.oldtime) / 500.0;
+//	build->ray.movespeed = build->ray.frametime * 1.0;
+	build->ray.rotspeed = build->ray.frametime * 1.0;
 	movefront(build);
 	moveside(build);
-	//build->ray.movespeed = 0;
+	build->ray.movespeed = 0;
 }

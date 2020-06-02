@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/13 08:53:33 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/05/26 13:54:03 by SophieLouis   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static void start(int x, t_build *build)
 {
+	
 	build->ray.camerax = 2 * x / build->data.res_x  - 1;
+	if(build->ray.x_cam == 1)
+		build->ray.camerax *= -1;
 	build->ray.raydirx = build->cor.dirx + build->ray.planex * build->ray.camerax;
 	build->ray.raydiry = build->cor.diry + build->ray.planey * build->ray.camerax;
 	build->cor.mapx = (int)build->cor.start_pos_x;
@@ -75,7 +78,7 @@ static void hit(t_build *build)
 static void border(t_build *build)
 {
 	//build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + (1 - build->ray.stepy) / 2) / build->ray.raydiry;
-	printf("perpwalldist [%f] \n", build->ray.perpwalldist);
+	//printf("perpwalldist [%f] \n", build->ray.perpwalldist);
 	build->ray.lineheight = (int)(build->data.res_y/ build->ray.perpwalldist);
 	build->ray.drawstart = -build->ray.lineheight / 2 + build->data.res_y / 2;
 	if (build->ray.drawstart < 0) 
@@ -100,6 +103,7 @@ int     ray(t_build *build)
 		side_ray(build);
 		hit(build);
 		border(build);
+		build->sprite.zbuffer[x] = build->ray.perpwalldist;
 		fill(x, build);
 		build->ray.oldtime = build->ray.time;
 		build->ray.time = clock();
