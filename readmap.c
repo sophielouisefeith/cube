@@ -189,6 +189,7 @@ t_build		*savearray(char *argv)
 	t_build *new;
 	int fd;
 	
+	checkmap(argv);
 	fd = open(argv, O_RDONLY);
 	if(fd == -1)
 		error("programme didnt succeed");

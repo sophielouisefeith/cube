@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/26 13:54:03 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/04/01 14:22:37 by SophieLouis    #+#    #+#                */
+/*   Updated: 2020/06/02 15:29:49 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ int     ray(t_build *build)
 		side_ray(build);
 		hit(build);
 		border(build);
-		build->sprite.zbuffer[x] = build->ray.perpwalldist;
+		//build->sprite.zbuffer[x] = build->ray.perpwalldist;
 		fill(x, build);
+		//build->sprite.zbuffer[x] = build->ray.perpwalldist;
 		build->ray.oldtime = build->ray.time;
 		build->ray.time = clock();
 		build->ray.frametime = (build->ray.time - build->ray.oldtime) / 500.0;

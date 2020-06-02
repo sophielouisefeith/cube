@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/06 17:19:47 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/03 18:55:17 by sfeith         #+#    #+#                */
+/*   Updated: 2020/06/02 15:51:15 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int main(int argc, char **argv)
     t_build	*build;
 	//t_img	img;
 	if(argc != 2)
-		error("to many arguments");  
-	build = savearray(argv[1]); 
+		error("to many arguments"); 
+	build = savearray(argv[1]);
 	//build->img = &img; // ------------------  dit zou het kunnen zijn---------- //zou het iets te maken kunnen hebben met img1
 	read_string(build);
 	startgame(build);

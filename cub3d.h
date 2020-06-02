@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/13 19:25:46 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
+/*   Updated: 2020/06/02 15:41:32 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_sprite_s
 typedef struct s_sprite
 {
 	double  *zbuffer;
-	int		**spriteorder;  //*
+	//int		**spriteorder;  //*
 	//double  spritedistance; 
 	int 	num;
 	//int		numsprites;
@@ -222,6 +222,7 @@ int	close_game(t_build *build);
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
 t_build			*savearray(char *argv);
+void 	checkmap(char *str);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
 void 	read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------
@@ -256,9 +257,9 @@ char    		*side(t_build *build);
 
 //---------------------------------------sprites------------------------------------------
 void	 		sprite(t_build *build);
-//void  			locate_sprites(t_build *build);
-//void 			order_sprites(t_build *build);
-//void 			sort_sprites(t_build *build);	
+// void  			locate_sprites(t_build *build);
+// void 			order_sprites(t_build *build);
+// void 			sort_sprites(t_build *build);	
 //---------------------------------------utilities------------------------------------
 
 size_t	ft_strlen(const char *s);

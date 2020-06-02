@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/26 15:37:34 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/04/07 12:34:46 by SophieLouis    #+#    #+#                */
+/*   Updated: 2020/06/02 15:14:23 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ static void sprite_cor(t_build *build)
     y = 0;
     i = 0;
    
-    printf("spritenum %d\n", build->sprite.num);
+   
     if(!(build->sprite_s->sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
         error("malloc failed");
-    while(build->map.array[y] != NULL)
+    while(build->map.array[y])
     {
         x = 0;
         while (build->map.array[y][x])
         {
             if(build->map.array[y][x] == '2')
+			printf("spritenum %d\n", build->sprite.num);
             {
+				//printf("kom je dan hier wel in\n");
                 build->sprite_s->sprite_cor[i] = malloc(sizeof(int) * 2);
                 build->sprite_s->sprite_cor[i][0] = x;
                 build->sprite_s->sprite_cor[i][1] = y;
@@ -71,14 +73,17 @@ static void sprite_cor(t_build *build)
         y++;
     
     }
-    // build->sprite.num = i -1;
+   build->sprite.num =  build->sprite.num;
 }
+
 void    start_pos(int y, t_build *build)
 {
     int x;
    
     
     x = 0;
+	 if(!(build->sprite_s->sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
+        error("malloc failed");
     while( build->map.array[y][x])
     {
         if(build->map.array[y][x] == 'W' || build->map.array[y][x] == 'E'||
@@ -95,5 +100,5 @@ void    start_pos(int y, t_build *build)
             build->sprite.num++;
         x++; 
     }
-    sprite_cor(build);
+   	sprite_cor(build);
 }

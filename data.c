@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/05/26 15:32:25 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
+/*   Updated: 2020/06/02 15:50:31 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ void 	initialise(t_build *build)
 	// nog even alle andere structs op NULL zetten. 
 }
 
+void 	checkmap(char *str)
+{
+	int i;
+	printf("filename %s\n", str);
+	i = ft_strlen(str);
+	i--;
+	if(str[i] == 'b' && str[i -1] == 'u' && str[i - 2] == 'c' && \
+	str[i -3] == '.')
+		return;
+	else
+		error("the file has an incorrect name");
+}
 
 static void charcheck(char **str)
 {
