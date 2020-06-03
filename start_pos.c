@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/07 12:34:46 by SophieLouis    #+#    #+#                */
-/*   Updated: 2020/06/02 15:14:23 by sfeith        ########   odam.nl         */
+/*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
+/*   Updated: 2020/06/03 17:26:18 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void  direction(int y, int x, t_build *build)
     }
     if(build->map.array[y][x] == 'W')
     {
+        printf("west\n");
         build->cor.dirx = -1;
         build->cor.diry = 0;
         build->ray.x_cam = 1;
@@ -47,11 +48,10 @@ static void sprite_cor(t_build *build)
     int y;
     int i;
     
+    
     y = 0;
     i = 0;
-   
-   
-    if(!(build->sprite_s->sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
+    if(!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
         error("malloc failed");
     while(build->map.array[y])
     {
@@ -59,30 +59,25 @@ static void sprite_cor(t_build *build)
         while (build->map.array[y][x])
         {
             if(build->map.array[y][x] == '2')
-			printf("spritenum %d\n", build->sprite.num);
             {
-				//printf("kom je dan hier wel in\n");
-                build->sprite_s->sprite_cor[i] = malloc(sizeof(int) * 2);
-                build->sprite_s->sprite_cor[i][0] = x;
-                build->sprite_s->sprite_cor[i][1] = y;
+               
+                build->sprite_s.sprite_cor[i] = malloc(sizeof(double) * 2);
+                build->sprite_s.sprite_cor[i][0] = (double) x;
+                build->sprite_s.sprite_cor[i][1] = (double) y;
                 i++;
-            
             }
             x++;
         }
         y++;
-    
     }
-   build->sprite.num =  build->sprite.num;
 }
 
 void    start_pos(int y, t_build *build)
 {
     int x;
    
-    
     x = 0;
-	 if(!(build->sprite_s->sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
+	if(!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
         error("malloc failed");
     while( build->map.array[y][x])
     {

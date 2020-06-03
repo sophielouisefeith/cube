@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/05/13 14:29:40 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/06/03 17:28:35 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,7 @@ static void moveside(t_build *build)
 
 void        move(t_build *build)
 {
-	
-    // build->ray.oldtime = build->ray.time;
-	//build->ray.time = clock();
-	//build->ray.frametime = (build->ray.time - build->ray.oldtime) / 500.0;
-//	build->ray.movespeed = build->ray.frametime * 1.0;
-	build->ray.rotspeed = build->ray.frametime * 1.0;
 	movefront(build);
 	moveside(build);
-	build->ray.movespeed = 0;
+	//build->ray.movespeed = 0;
 }

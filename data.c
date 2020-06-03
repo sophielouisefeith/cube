@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 13:11:59 by sfeith         #+#    #+#                */
-/*   Updated: 2020/06/02 15:50:31 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/03 15:02:50 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void 	initialise(t_build *build)
 void 	checkmap(char *str)
 {
 	int i;
-	printf("filename %s\n", str);
+	// printf("filename %s\n", str);
 	i = ft_strlen(str);
 	i--;
 	if(str[i] == 'b' && str[i -1] == 'u' && str[i - 2] == 'c' && \

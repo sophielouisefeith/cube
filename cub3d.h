@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 12:54:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/06/02 15:41:32 by sfeith        ########   odam.nl         */
+/*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/03 16:35:05 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #define mapHeight 24
 #define textwidth 64
 #define textheight 64
-#define numsprites 3
+// #define numsprites 3
 
 
 // # ifndef DATA
@@ -215,7 +215,7 @@ typedef struct	s_build   // Umbrella struct
 	t_tex		tex;
 	t_sprite	sprite;
 	//t_sprite_cor    *sprites_cor;
-	t_sprite_s	sprite_s[numsprites];
+	t_sprite_s	sprite_s;
 }				t_build;
 
 int	close_game(t_build *build);
