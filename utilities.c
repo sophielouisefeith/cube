@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/03 17:28:24 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/04 16:59:29 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void            my_mlx_pixel_put(t_build *build, int x, int y, int color)
     dst = build->img.addr + (y * build->img.line_length + x * (build->img.bits_per_pixel / 8));
     *(unsigned int*)dst = color;
 }
-
 
 char			*ft_strdup(const char *s1)
 {

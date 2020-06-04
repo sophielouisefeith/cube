@@ -6,12 +6,13 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/03 15:02:50 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/04 17:27:19 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3d.h"
+#include <CoreGraphics/CGDirectDisplay.h>
 
 void	check_input(char *str, t_build *build)
 {
@@ -74,7 +75,7 @@ void 	initialise(t_build *build)
 void 	checkmap(char *str)
 {
 	int i;
-	// printf("filename %s\n", str);
+
 	i = ft_strlen(str);
 	i--;
 	if(str[i] == 'b' && str[i -1] == 'u' && str[i - 2] == 'c' && \
@@ -117,9 +118,10 @@ void 	check_valid_map(t_build *build)
 	while (y < lines -1)
 	{
 		middel_part(build->map.array[y], build->map.array[y +1]);
-		start_pos(y, build);
+		//start_pos(0 ,build);
 		y++;
 	}
+	start_pos(build);
 	rule_last(build->map.array[y]);	   
 }
 
@@ -135,6 +137,22 @@ static int         space_tab(char *str)
     }
     return (0);
 }
+
+static void		dis_res(double *res_x, double *res_y )
+{
+	int		maindisplayid;
+	int		pixelswidth;
+	int		pixelsheight;
+
+	maindisplayid = CGMainDisplayID();
+	pixelswidth = CGDisplayPixelsWide(maindisplayid);
+	pixelsheight = CGDisplayPixelsHigh(maindisplayid);
+	if (*res_x > pixelswidth)
+		*res_x = pixelswidth;
+	if (*res_y > pixelsheight)
+		*res_y = pixelsheight;
+}
+
 void 	read_string(t_build *build)
 {
 	int rule;
@@ -147,7 +165,8 @@ void 	read_string(t_build *build)
 		build->map.array++;
 		rule++;
 	}
+	dis_res(&build->data.res_x, &build->data.res_y);
 	while (space_tab(*build->map.array) == 0 || *build->map.array == 0)
 		build->map.array++;
- 	check_valid_map(build);	
+ 	check_valid_map(build);
 }

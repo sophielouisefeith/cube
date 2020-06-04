@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/03 16:35:05 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/04 18:31:09 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ typedef struct s_sprite_s
 typedef struct s_sprite
 {
 	double  *zbuffer;
-	//int		**spriteorder;  //*
-	//double  spritedistance; 
 	int 	num;
-	//int		numsprites;
 	double  spritex;
 	double  spritey;
 	double  invdet;
@@ -76,11 +73,7 @@ typedef struct s_sprite
 	int     line_length;
 	int		width;
 	int		height;
-	//char	*sprite_cor;
-	
-	
-	
-
+	//double  spritedistance;
 }				t_sprite;
 
 typedef struct s_tex
@@ -134,13 +127,12 @@ typedef struct s_ray
 	double sidedisty;
 	double deltadistx;
 	double deltadisty;
-	//double camerax;
 	int		x_cam;
 	
 }				t_ray;
 				
 
-typedef struct s_img	// Building the image 
+typedef struct s_img
 {
 	void		*img1;
 	char		*addr;
@@ -195,6 +187,7 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		len_be;
 	int		len_middel;	
 	int		count;
+	int 	start;
 }			t_data;
 				
 typedef struct				s_sprite_cor    
@@ -239,7 +232,7 @@ void    rule_one(char *str1, char *str2);
 void	middel_part(char *str1, char *str2);
 void    rule_last(char *str);
 void    count_rules(int y, t_build *build);
-void    start_pos(int y, t_build *build);
+void    start_pos(t_build *build);
 //---------------------------------error warning----------------------------
 void 			error(char *str);
 //--------------------------------image building/raycasting -------------------------------

@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/03 17:28:35 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/04 17:50:26 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void zero(int keycode, t_build *build)
 	if (keycode == 53)
 		close_game(build);
 }
+
 int    presskey( int keycode, t_build *build)
 {
 	zero(keycode, build);
@@ -41,17 +42,21 @@ static void movefront(t_build *build)
 {
 	if(build->ray.moveup == 1)
 	{
-		if(build->map.array[(int)build->cor.start_pos_y][(int)(build->cor.start_pos_x + build->cor.dirx * build->ray.movespeed)] == '0')
+		if(build->map.array[(int)build->cor.start_pos_y]\
+		[(int)(build->cor.start_pos_x + build->cor.dirx * build->ray.movespeed)] == '0')
 			build->cor.start_pos_x += build->cor.dirx * build->ray.movespeed;
-		if(build->map.array[(int)(build->cor.start_pos_y + build->cor.diry * build->ray.movespeed)][(int)build->cor.start_pos_x] == '0')
+		if(build->map.array[(int)(build->cor.start_pos_y + build->cor.diry \
+		* build->ray.movespeed)][(int)build->cor.start_pos_x] == '0')
 			build->cor.start_pos_y += build->cor.diry * build->ray.movespeed;
 		build->ray.moveup = 0;
 	}
 	if(build->ray.movedown == 1)
 	{
-		if(build->map.array[build->cor.start_pos_y][(int)(build->cor.start_pos_x + build->cor.diry * build->ray.movespeed)]== '0')
+		if(build->map.array[build->cor.start_pos_y][(int)(build->cor.start_pos_x + \
+		build->cor.diry * build->ray.movespeed)]== '0')
 			build->cor.start_pos_y += build->cor.diry * build->ray.movespeed;
-		if(build->map.array[(int)(build->cor.start_pos_y + build->cor.diry * build->ray.movespeed)][build->cor.start_pos_x] == '0')
+		if(build->map.array[(int)(build->cor.start_pos_y + build->cor.diry *\
+		 build->ray.movespeed)][build->cor.start_pos_x] == '0')
 			build->cor.start_pos_x += build->cor.dirx * build->ray.movespeed;
 		build->ray.movedown = 0;
 	}
@@ -59,31 +64,31 @@ static void movefront(t_build *build)
 
 static void moveside(t_build *build)
 {
+	build->ray.oldirx = build->cor.dirx;
+	// build->ray.oldplanex = build->ray.planex;
 	if(build->ray.moveleft == 1)	
 	{
-		build->ray.oldirx = build->cor.dirx;
 		build->cor.dirx = build->cor.dirx * cos(-build->ray.rotspeed) - build->cor.diry * sin(-build->ray.rotspeed);
 		build->cor.diry = build->ray.oldirx * sin(-build->ray.rotspeed) + build->cor.diry * cos(-build->ray.rotspeed);
 		build->ray.oldplanex = build->ray.planex;
 		build->ray.planex = build->ray.planex * cos(-build->ray.rotspeed) - build->ray.planey * sin(-build->ray.rotspeed);
 		build->ray.planey = build->ray.oldplanex * sin(-build->ray.rotspeed) + build->ray.planey * cos(-build->ray.rotspeed);
-		build->ray.moveleft = 0;
+		build->ray.oldplanex = build->ray.planex;
 	}
 	if(build->ray.moveright == 1)
 	{
-		build->ray.oldirx = build->cor.dirx;
 		build->cor.dirx = build->cor.dirx * cos(build->ray.rotspeed) - build->cor.diry * sin(build->ray.rotspeed);
 		build->cor.diry = build->ray.oldirx * sin(build->ray.rotspeed) + build->cor.diry * cos(build->ray.rotspeed);
 		build->ray.oldplanex = build->ray.planex;
 		build->ray.planex = build->ray.planex * cos(build->ray.rotspeed) - build->ray.planey * sin(build->ray.rotspeed);
 		build->ray.planey = build->ray.oldplanex * sin(build->ray.rotspeed) + build->ray.planey * cos(build->ray.rotspeed);
-		build->ray.moveright = 0;
+		
 	}	
 }
 
 void        move(t_build *build)
 {
-	movefront(build);
+	if(build->ray.moveup == 1 || build->ray.movedown  == 1)
+		movefront(build);
 	moveside(build);
-	//build->ray.movespeed = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/04/23 12:40:44 by SophieLouis   ########   odam.nl         */
+/*   Updated: 2020/06/04 16:43:37 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void		check_res(char *str, t_build *build)
 	int i;
 	 
  	i = 1;
-	
 	while((str[i] == ' ' || str[i] == 9 ) && str[i])
 		i++;
-	
 	while((str[i] >= '0' && str[i] <= '9' ))
 	{
 		build->data.res_x = build->data.res_x * 10 + str[i] - '0';
@@ -33,8 +31,6 @@ void		check_res(char *str, t_build *build)
 		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
 		i++;
 	}
-	
-	
 }
 
 int		create_trgb(int r, int g, int b, t_build *build)
@@ -94,9 +90,11 @@ void	check_color(char *str, t_build *build)
 	if (build->data.color_b == -1)
 		error("color b is not valid.\n");
 	if((build->data.check_color < 4) && build->data.floor == 1)
-		build->data.floor = create_trgb(build->data.color_r, build->data.color_g, build->data.color_b, build);
+		build->data.floor = create_trgb(build->data.color_r,\
+		build->data.color_g, build->data.color_b, build);
 	if((build->data.check_color < 4) && build->data.ceiling == 1)
-		build->data.ceiling = create_trgb(build->data.color_r, build->data.color_g, build->data.color_b, build);
+		build->data.ceiling = create_trgb(build->data.color_r,\
+		build->data.color_g, build->data.color_b, build);
 }
 
 char	*check_path(char *str)
@@ -104,9 +102,8 @@ char	*check_path(char *str)
 	int i;
 	char *temp;
 	size_t len;
-	i = 0;
-	//temp = 0;
 	
+	i = 0;
 	while(str[i] != '.' && str[i + 1] != 'x')
 		i++;
 	len = ft_strlen(str);
