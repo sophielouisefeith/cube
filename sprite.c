@@ -101,10 +101,10 @@ static void order(t_build *build)
 
     path = build->data.sprite;
     if (!(build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx, path, &width, &height)))
-        error("no");
+        error("no", 2);
     if(!(build->sprite.dataadres = mlx_get_data_addr(build->sprite.sprite_tex, &build->sprite.bpp,\
     &build->sprite.line_length, &build->sprite.endian)))
-        error("no");
+        error("no", 2);
     i = 0;
     while( i < build->sprite.num)
     {

@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/04 17:50:26 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/08 13:52:06 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void movefront(t_build *build)
 static void moveside(t_build *build)
 {
 	build->ray.oldirx = build->cor.dirx;
-	// build->ray.oldplanex = build->ray.planex;
 	if(build->ray.moveleft == 1)	
 	{
 		build->cor.dirx = build->cor.dirx * cos(-build->ray.rotspeed) - build->cor.diry * sin(-build->ray.rotspeed);

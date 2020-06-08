@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/04 18:31:18 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/08 12:02:24 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void sprite_cor(t_build *build)
     y = 0;
     i = 0;
     if(!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
-        error("malloc failed");
+        error("malloc failed", 13);
     while(build->map.array[y] != NULL)
     {
         x = 0;
@@ -64,7 +64,7 @@ static void sprite_cor(t_build *build)
                 build->sprite_s.sprite_cor[i] = malloc(sizeof(double) * 2);
                 build->sprite_s.sprite_cor[i][0] = (double) x;
                 build->sprite_s.sprite_cor[i][1] = (double) y;
-                printf("coordinaten %f en %f en %d\n", build->sprite_s.sprite_cor[i][0], build->sprite_s.sprite_cor[i][1], i);
+                //printf("coordinaten %f en %f en %d\n", build->sprite_s.sprite_cor[i][0], build->sprite_s.sprite_cor[i][1], i);
                 i++;
                
             }
@@ -83,7 +83,7 @@ void    start_pos(t_build *build)
     x = 0;
     y = 0;
 	if(!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) * build->sprite.num)))
-        error("malloc failed");
+        error("malloc failed", 13);
     while(build->map.array[y])
     {
         x = 0;
@@ -98,7 +98,7 @@ void    start_pos(t_build *build)
                 direction(y, x, build);
             }
             if(build->data.count > 1)
-                error("to many start positonions \n");
+                error("to many start positonions",26 );
             if(build->map.array[y][x] == '2')
                 build->sprite.num++;
             x++;

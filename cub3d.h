@@ -6,11 +6,9 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/04 18:31:09 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/08 14:11:21 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 # include <mlx.h>
 # include <stdlib.h>
@@ -22,6 +20,9 @@
 # include <math.h>
 # include <time.h>
 
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 50
+# endif
 
 #define screenWidth 640 
 #define screenHeight 480
@@ -29,19 +30,13 @@
 #define mapHeight 24
 #define textwidth 64
 #define textheight 64
-// #define numsprites 3
-
-
-// # ifndef DATA
-// #  define DATA build.
-// # endif
 
 typedef struct s_sprite_s
 {
 	int x;
 	int y;
 	double  **sprite_cor;
-	
+
 }		t_sprite_s;
 
 typedef struct s_sprite
@@ -188,6 +183,8 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		len_middel;	
 	int		count;
 	int 	start;
+	int		scrsht;
+	
 }			t_data;
 				
 typedef struct				s_sprite_cor    
@@ -216,6 +213,10 @@ int	close_game(t_build *build);
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
 t_build			*savearray(char *argv);
 void 	checkmap(char *str);
+void		arg_check(t_build *build, char *str);
+void 		make_bmp(char *name, t_build *build);
+char		**ft_split(char const *s, char c);
+char				*get_next_line(const int fd);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
 void 	read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------
@@ -234,7 +235,7 @@ void    rule_last(char *str);
 void    count_rules(int y, t_build *build);
 void    start_pos(t_build *build);
 //---------------------------------error warning----------------------------
-void 			error(char *str);
+void 			error(char *str, int i);
 //--------------------------------image building/raycasting -------------------------------
 void            my_mlx_pixel_put(t_build *build, int x, int y, int color);
 void    		square(t_build *build);

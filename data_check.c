@@ -6,30 +6,36 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/04 16:43:37 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/08 14:14:00 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		check_res(char *str, t_build *build)
+void	check_res(char *str, t_build *build)
 {
 	int i;
-	 
- 	i = 1;
-	while((str[i] == ' ' || str[i] == 9 ) && str[i])
+
+	i = 1;
+	while ((str[i] == ' ' || str[i] == 9) && str[i])
 		i++;
-	while((str[i] >= '0' && str[i] <= '9' ))
+	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		build->data.res_x = build->data.res_x * 10 + str[i] - '0';
 		i++;
 	}
-	while((str[i] == ' ' || str[i] == 9 ) && str[i])
+	while ((str[i] == ' ' || str[i] == 9) && str[i])
 		i++;
-	while((str[i] >= '0' && str[i] <= '9' ))
+	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
 		i++;
+	}
+	if (build->data.res_x && build->data.res_y)
+	{
+		i++;
+		if (str[i] == ' ' || str[i] >= '0')
+			error("to many res", 11);
 	}
 }
 
@@ -82,13 +88,13 @@ void	check_color(char *str, t_build *build)
 		i++;
 	build->data.color_r = define_color(str, build, &i);
 	if (build->data.color_r == -1)
-		error("color r is not valid\n");
+		error("color r", 7);
 	build->data.color_g = define_color(str, build, &i);
 	if (build->data.color_g == -1)
-		error("color g is not valid\n");
+		error("color g", 7);
 	build->data.color_b = define_color(str, build, &i);
 	if (build->data.color_b == -1)
-		error("color b is not valid.\n");
+		error("color b", 7);
 	if((build->data.check_color < 4) && build->data.floor == 1)
 		build->data.floor = create_trgb(build->data.color_r,\
 		build->data.color_g, build->data.color_b, build);
@@ -108,6 +114,5 @@ char	*check_path(char *str)
 		i++;
 	len = ft_strlen(str);
 	temp = ft_substr(str, i, len);
-	printf(": %s.\n",temp);
 	return(temp);
 }

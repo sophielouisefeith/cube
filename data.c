@@ -6,10 +6,9 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/04 17:27:19 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/08 14:07:52 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 #include <CoreGraphics/CGDirectDisplay.h>
@@ -82,7 +81,7 @@ void 	checkmap(char *str)
 	str[i -3] == '.')
 		return;
 	else
-		error("the file has an incorrect name");
+		error("incorrect name", 16);
 }
 
 static void charcheck(char **str)
@@ -99,7 +98,7 @@ static void charcheck(char **str)
             if (str[y][i] != ' ' && str[y][i] != 9 && str[y][i] != '2' && \
             str[y][i] != '1' && str[y][i] != '0' && str[y][i] != 'N' && \
             str[y][i] != 'S' && str[y][i] != 'W' && str[y][i] != 'E')
-                error("there is an invalid character in the map");
+                error("invalid character", 17);
             i++;
         }
         y++;
@@ -112,13 +111,14 @@ void 	check_valid_map(t_build *build)
 	int lines = 0;
 	while(build->map.array[lines])
 		lines++;
+	if(lines == 0)
+		error("there is no map", 15);
 	charcheck(build->map.array);
 	rule_one(build->map.array[0], build->map.array[1]);
 	int y = 1;
 	while (y < lines -1)
 	{
 		middel_part(build->map.array[y], build->map.array[y +1]);
-		//start_pos(0 ,build);
 		y++;
 	}
 	start_pos(build);
