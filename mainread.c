@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/08 14:03:10 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/12 14:05:46 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int main(int argc, char **argv)
 {
     t_build	*build = NULL;
 	
-	//t_img	img;
 	if(argc != 2 && argc != 3)
 		error("to many arguments", 17);
 	if (argc == 3)

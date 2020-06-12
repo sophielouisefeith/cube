@@ -10,14 +10,6 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// hij loopt niet goed
-//hij checked de map niet goed 
-// hij moet de res nog opslaan
-// hij moet nog een printscreen maken 
-// en altijd goed chekken op errors. 
-
-// coordinaten printen en distance en als die hetzelfde blijft dan is het ok. 
-
 #include "cub3d.h"
 
 void sort_sprites(double *spritedistance, t_build *build)
@@ -148,8 +140,6 @@ void        sprite(t_build *build)
             build->sprite.transformx = (build->sprite.invdet * (build->cor.diry *  build->sprite.spritex - build->cor.dirx * build->sprite.spritey) * -1);
         else
             build->sprite.transformx = build->sprite.invdet * (build->cor.diry - build->cor.dirx * build->sprite.spritey);
-        // if( build->ray.x_cam == 1)
-        //     build->sprite.transformx *= -1;
         build->sprite.transformy = build->sprite.invdet * (-build->ray.planey \
         * build->sprite.spritex + build->ray.planex * build->sprite.spritey);
         calc_sprites(build);
