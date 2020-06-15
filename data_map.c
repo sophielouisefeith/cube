@@ -6,13 +6,13 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/26 15:58:16 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/08 14:07:22 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 15:01:05 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void    rule_onesecond(char *str1, int x, char *str2, int len1, int len2)
+static void     rule_onesecond(char *str1, int x, char *str2, int len1, int len2)
 {
     while(str1[x] != '\0')
 	{
@@ -39,8 +39,8 @@ void    rule_one(char *str1, char *str2)
     int x2= 0;
 
 	x = 0;
-    len1 = ft_strlen(str1);         
-    len2 = ft_strlen(str2);         
+    len1 = ft_strlen(str1);
+    len2 = ft_strlen(str2);
     while(str1[x] == 9 || str1[x] == ' ')
         x++;
     while(str2[x2] == 9 || str2[x2] == ' ')
@@ -73,8 +73,8 @@ static void middel_part_second(char *str1, char *str2, int len1, int len2)
             len1++;
         }
     }
-
 }
+
 void   middel_part(char *str1, char *str2)
 {
     int x;
@@ -108,8 +108,8 @@ void    rule_last(char *str)
     x = 0;
     while(str[x] != '\0')
 	{
-		if(str[x] != '1')
-			error("not a valid last rule", 21);
+        if(str[x] != '1')
+            error("not a valid last rule", 21);
         x++;
-    }   
+    }
 }

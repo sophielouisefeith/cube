@@ -6,33 +6,33 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/04 18:11:59 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 14:44:21 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int      put(int x, t_build *build)
+static int  put(int x, t_build *build)
 {
-    int y;
-    int color;
-    
-    build->tex.step = 1.0 * 64 / build->ray.lineheight;
-    build->tex.texpos = (build->ray.drawstart - build->data.res_y / 2 + build->ray.lineheight / 2) * build->tex.step;
-    y = build->ray.drawstart;
-    while(y < build->ray.drawend)
-    {
-        build->tex.texy = (int)build->tex.texpos & (63);
-        build->tex.texpos += build->tex.step;
-        color = *(unsigned int*)(build->tex.dataadres + (build->tex.texy * build->tex.line_length + build->tex.texx * (build->tex.bpp / 8)));
-        if(build->ray.side == 1)
-            color = (color >> 1) & 8355711;
-        my_mlx_pixel_put(build, x, y, color);
-        y++;
-    }
-    
-    return(0);
-    
+  int y;
+  int color;
+
+  build->tex.step = 1.0 * 64 / build->ray.lineheight;
+  build->tex.texpos = (build->ray.drawstart - build->data.res_y / 2 + \
+  build->ray.lineheight / 2) * build->tex.step;
+  y = build->ray.drawstart;
+  while(y < build->ray.drawend)
+  {
+    build->tex.texy = (int)build->tex.texpos & (63);
+    build->tex.texpos += build->tex.step;
+    color = *(unsigned int*)(build->tex.dataadres + (build->tex.texy * \
+    build->tex.line_length + build->tex.texx * (build->tex.bpp / 8))); 
+    if(build->ray.side == 1)
+      color = (color >> 1) & 8355711;
+      my_mlx_pixel_put(build, x, y, color);
+      y++;
+  }
+  return(0);
 }
 
 char    *side(t_build *build)
@@ -77,32 +77,31 @@ int     fill(int x, t_build *build)
   return(0);    
 }
 
-void             floor_ceiling(t_build *build)
+void  floor_ceiling(t_build *build)
 {
-    int x;
-    int y;
+  int x;
+  int y;
 
-    y = 0;
-    while( y < build->data.res_y / 2)
+  y = 0;
+  while( y < build->data.res_y / 2)
+  {
+    x = 0;
+    while( x < build->data.res_x)
     {
-      x = 0;
-      while( x < build->data.res_x)
-      {
-        my_mlx_pixel_put( build, x, y,build->data.ceiling);
-        x++;
-      }
-      y++;
+      my_mlx_pixel_put( build, x, y,build->data.ceiling);
+      x++;
     }
-    y = build->data.res_y /2;
-    while(y < build->data.res_y)
-    {
-      x =0;
-      while ( x< build->data.res_x)
-      {
-        my_mlx_pixel_put(build, x ,y , build->data.floor);
-        x++;
-      }
-      y++;
-
+    y++;
     }
+  y = build->data.res_y /2;
+  while(y < build->data.res_y)
+  {
+  x =0;
+  while ( x< build->data.res_x)
+  {
+    my_mlx_pixel_put(build, x ,y , build->data.floor);
+    x++;
+  }
+    y++;
+  }
 }

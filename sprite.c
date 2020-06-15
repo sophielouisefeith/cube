@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-void sort_sprites(double *spritedistance, t_build *build)
+void    sort_sprites(double *spritedistance, t_build *build)
 {
     int i;
     int tmp;
-    double tmp2;
+    double  tmp2;
 
     i = 0;
     while ( i < (build->sprite.num -1))

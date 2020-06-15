@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/08 14:11:21 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 17:08:22 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,58 +33,58 @@
 
 typedef struct s_sprite_s
 {
-	int x;
-	int y;
-	double  **sprite_cor;
+	int		x;
+	int		y;
+	double	**sprite_cor;
 
 }		t_sprite_s;
 
-typedef struct s_sprite
+typedef	struct	s_sprite
 {
-	double  *zbuffer;
-	int 	num;
-	double  spritex;
-	double  spritey;
-	double  invdet;
+	double	*zbuffer;
+	int		num;
+	double	spritex;
+	double	spritey;
+	double	invdet;
 	double transformx;
 	double transformy;
 	int	spritescreenx;
 	int		spriteheight;
-	int 	drawstarty;
+	int		drawstarty;
 	int		drawstartx;
-	int 	drawendy;
+	int		drawendy;
 	int		drawendx;
-	int 	spritewidth;
+	int		spritewidth;
 	int		texx;
-	int 	d;
-	int 	y;
+	int		d;
+	int		y;
 	int		x;
-	int 	texy;
-	int 	stripe;
+	int		texy;
+	int		stripe;
 	void	*sprite_tex;
 	char	*dataadres;
 	int			bpp;
 	int		endian;
-	int     line_length;
+	int		line_length;
 	int		width;
 	int		height;
-	//double  spritedistance;
+
 }				t_sprite;
 
-typedef struct s_tex
+typedef struct	s_tex
 {
-	int 	texnum;
-	double  wallx;
-	int 	texx;
-	double  step;
-	double  texpos;
-	int 	texy;
-	void  	*texture;
-	void  	*texture_w;
+	int		texnum;
+	double	wallx;
+	int		texx;
+	double	step;
+	double	texpos;
+	int		texy;
+	void	*texture;
+	void	*texture_w;
 	char *dataadres;
 	int			bpp;
 	int		endian;
-	int     line_length;
+	int		line_length;
 	int		width;
 	int		height;
 
@@ -110,22 +110,21 @@ typedef struct s_ray
 	double camerax;
 	double raydiry;
 	double raydirx;
-	int hit;	
+	int		hit;	
 	int side;
 	double perpwalldist;
 	int		drawstart;
 	int		drawend;
-	double 	lineheight;
+	double	lineheight;
 	int		stepx;
-	int 	stepy;
+	int		stepy;
 	double sidedistx;
 	double sidedisty;
 	double deltadistx;
 	double deltadisty;
 	int		x_cam;
-	
+
 }				t_ray;
-				
 
 typedef struct s_img
 {
@@ -134,8 +133,8 @@ typedef struct s_img
 	int			bits_per_pixel;		
 	int			line_length;		
 	int			endian;				
- 	void	    *mlx;
- 	void	    *win;
+	void	    *mlx;
+	void	    *win;
 	int			floor;
 	int			*fill;
 	// int			bpp;		
@@ -184,6 +183,7 @@ typedef struct s_data //-------------to collect and validate information--------
 	int		count;
 	int 	start;
 	int		scrsht;
+	int		rule;
 	
 }			t_data;
 				
@@ -211,12 +211,15 @@ typedef struct	s_build   // Umbrella struct
 int	close_game(t_build *build);
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
-t_build			*savearray(char *argv);
-void 	checkmap(char *str);
+t_build		*savearray(char *argv);
+void 		checkmap(char *str);
 void		arg_check(t_build *build, char *str);
 void 		make_bmp(char *name, t_build *build);
 char		**ft_split(char const *s, char c);
-char				*get_next_line(const int fd);
+char		*get_next_line(const int fd);
+void		free_game(t_build *build);
+void    	free_map(t_build  *build);
+int 		close_game(t_build *build);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
 void 	read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------

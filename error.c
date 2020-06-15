@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 19:39:34 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/08 14:10:39 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 17:06:31 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,28 @@ void	error(char *str, int i)
 	exit(0);
 }
 
+// void	error_map(char *str, int i, t_build *build)
+// {
+// 	free_map(build);
+// 	write(1, "An error occured because:\n", 27);
+// 	write(1, str, i);
+// 	write(1, ".\n", 2);
+// 	exit(0);
+// }
+
+// void	error_start(char *str, int i, t_build *build)
+// {
+// 	write(1, "An error occured because:\n", 27);
+// 	write(1, str, i);
+// 	write(1, ".\n", 2);
+// 	exit(0);
+// }
+
+void	error_game(char *str, int i, t_build *build)
+{
+	free_game(build);
+	write(1, "An error occured because:\n", 27);
+	write(1, str, i);
+	write(1, ".\n", 2);
+	exit(0);
+}

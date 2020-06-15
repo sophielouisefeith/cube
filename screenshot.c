@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/08 13:53:14 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 17:05:58 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static void	put_pixel(int fd, char *addr, int width, int height)
 	}
 }
 
-void 		make_bmp(char *name, t_build *build)
+void	make_bmp(char *name, t_build *build)
 {
-	int fd;
-	char *addr;
-	int  width;
-	int height;
+	int		fd;
+	char	*addr;
+	int		width;
+	int		height;
 
 	fd = open(name, O_TRUNC | O_WRONLY | O_CREAT, 0777);
 	if (fd < 0)
@@ -79,6 +79,6 @@ void 		make_bmp(char *name, t_build *build)
 	height = build->data.res_y;
 	header_bmp(fd, width, height);
 	put_pixel(fd, addr, width, height);
+	free_game(build);
 	exit(0);
-
 }

@@ -6,23 +6,19 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/08 14:10:24 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/15 15:57:37 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	close_game(t_build *build)
+void	my_mlx_pixel_put(t_build *build, int x, int y, int color)
 {
-	mlx_destroy_window(build->img.mlx, build->img.win);
-	exit(0);
-}
+	char *dst;
 
-void            my_mlx_pixel_put(t_build *build, int x, int y, int color)
-{
-    char    *dst;
-    dst = build->img.addr + (y * build->img.line_length + x * (build->img.bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	dst = build->img.addr + (y * build->img.line_length + x * \
+	(build->img.bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
 char			*ft_strdup(const char *s1)
