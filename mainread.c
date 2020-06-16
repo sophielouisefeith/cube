@@ -6,38 +6,35 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/12 14:05:46 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/16 16:58:38 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-void		arg_check(t_build *build, char *str)
+void	arg_check(t_build *build, char *str)
 {
 	char *check;
 	int		i;
-	
+
 	check = "--save";
 	i = 0;
-	while(check[i])
+	while (check[i])
 	{
 		if (check[i] != str[i])
 			error("2 argument invalid", 18);
 		i++;
 	}
-	if(str[i] != '\0')
+	if (str[i] != '\0')
 		error("2 argument invalid", 18);
 	build->data.scrsht = 1;
 	return ;
-		
 }
 
-
-t_build		*savearray(char *argv)
+t_build	*savearray(char *argv)
 {
-	t_build *new;
-	int fd;
+	t_build	*new;
+	int		fd;
 
 	checkmap(argv);
 	fd = open(argv, O_RDONLY);
@@ -54,16 +51,16 @@ t_build		*savearray(char *argv)
 	return (new);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-    t_build	*build = NULL;
-	
-	if(argc != 2 && argc != 3)
+	t_build	*build = NULL;
+
+	if (argc != 2 && argc != 3)
 		error("to many arguments", 17);
 	if (argc == 3)
 		arg_check(build, argv[2]);
 	build = savearray(argv[1]);
 	read_string(build);
 	startgame(build);
-	return(0);
+	return (0);
 }

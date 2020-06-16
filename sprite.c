@@ -14,12 +14,12 @@
 
 void    sort_sprites(double *spritedistance, t_build *build)
 {
-    int i;
-    int tmp;
+    int     i;
+    int     tmp;
     double  tmp2;
 
     i = 0;
-    while ( i < (build->sprite.num -1))
+    while (i < (build->sprite.num -1))
     {
         if (spritedistance[i] < spritedistance[i + 1])
         {
@@ -27,10 +27,12 @@ void    sort_sprites(double *spritedistance, t_build *build)
             spritedistance[i] = spritedistance[i + 1];
             spritedistance[i + 1] = tmp2;
             tmp = build->sprite_s.sprite_cor[i][0];
-            build->sprite_s.sprite_cor[i][0] = build->sprite_s.sprite_cor[i + 1][0];
+            build->sprite_s.sprite_cor[i][0] = \
+            build->sprite_s.sprite_cor[i + 1][0];
             build->sprite_s.sprite_cor[i + 1][0] = tmp; 
             tmp = build->sprite_s.sprite_cor[i][1];
-            build->sprite_s.sprite_cor[i][1] = build->sprite_s.sprite_cor[i + 1][1];
+            build->sprite_s.sprite_cor[i][1] =\
+            build->sprite_s.sprite_cor[i + 1][1];
             build->sprite_s.sprite_cor[i + 1][1] = tmp; 
             i = -1;
         }
@@ -38,7 +40,7 @@ void    sort_sprites(double *spritedistance, t_build *build)
     }
 }
 
-static void makesprite(t_build *build)
+static void     makesprite(t_build *build)
 {
     int x;
     int color;
@@ -50,17 +52,17 @@ static void makesprite(t_build *build)
     y = build->sprite.drawstarty; 
     while(y < build->sprite.drawendy) 
     {
-        int d = y * 256 - build->data.res_y * 128  + build->sprite.spriteheight * 128;
+        int d = y * 256 - build->data.res_y * \
+        128  + build->sprite.spriteheight * 128;
         build->sprite.texy = ((d * 64) / build->sprite.spriteheight) / 256;
-        color = *(unsigned int*)(build->sprite.dataadres + (build->sprite.texy * \
-        build->sprite.line_length 
+        color = *(unsigned int*)(build->sprite.dataadres + \
+        (build->sprite.texy * build->sprite.line_length 
         + build->sprite.texx * (build->sprite.bpp / 8)));
         if ((color & 0x00FFFFFF) != 0)
         my_mlx_pixel_put(build, build->sprite.stripe, y, color);
         y++;
     }
 }
-
 
 void    calc_sprites(t_build *build)
 {  
@@ -125,7 +127,7 @@ static int loop(t_build *build)
     return(0);
 }
 
-void        sprite(t_build *build)
+void    sprite(t_build *build)
 {
     int i;
 

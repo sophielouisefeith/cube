@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/15 14:44:21 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/16 17:09:09 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ int     fill(int x, t_build *build)
   return(0);    
 }
 
-void  floor_ceiling(t_build *build)
+void    floor_ceiling(t_build *build)
 {
   int x;
   int y;
 
   y = 0;
-  while( y < build->data.res_y / 2)
+  while(y < build->data.res_y / 2)
   {
     x = 0;
-    while( x < build->data.res_x)
+    while(x < build->data.res_x)
     {
-      my_mlx_pixel_put( build, x, y,build->data.ceiling);
+      my_mlx_pixel_put(build, x, y,build->data.ceiling);
       x++;
     }
     y++;
@@ -97,7 +97,7 @@ void  floor_ceiling(t_build *build)
   while(y < build->data.res_y)
   {
   x =0;
-  while ( x< build->data.res_x)
+  while (x< build->data.res_x)
   {
     my_mlx_pixel_put(build, x ,y , build->data.floor);
     x++;
