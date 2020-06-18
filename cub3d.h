@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/15 17:08:22 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/18 14:21:56 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ int	close_game(t_build *build);
 
 //--------------------------------- Opens the file reads in then safe first a string and then dubbel array--------------------------
 t_build		*savearray(char *argv);
-void 		checkmap(char *str);
+void		checkmap(char *str);
 void		arg_check(t_build *build, char *str);
 void 		make_bmp(char *name, t_build *build);
 char		**ft_split(char const *s, char c);
@@ -221,7 +221,7 @@ void		free_game(t_build *build);
 void    	free_map(t_build  *build);
 int 		close_game(t_build *build);
 //-----------------------------------Will check all the strings------------------------------------------------------------------
-void 	read_string(t_build *build);
+void 		read_string(t_build *build);
 //-----------------------------------will read the arrays and saves it in data------------------------
 void	check_res(char *str, t_build *build);
 void	check_color(char *str, t_build *build);

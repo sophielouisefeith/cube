@@ -21,8 +21,7 @@ static void		prep_scrsht(t_build *build)
 
 int				make(t_build *build)
 {
-	mlx_put_image_to_window(build->img.mlx, build->img.win, \
-	build->img.img1, 0, 0);
+	mlx_put_image_to_window(build->img.mlx, build->img.win, build->img.img1, 0, 0);
 	floor_ceiling(build);
 	if (build->ray.update)
 		move(build);
@@ -36,6 +35,7 @@ int				make(t_build *build)
 
 int	startgame(t_build *build)
 {
+	printf("kom je hier");
 	build->sprite.zbuffer = (double*)malloc(sizeof(double) * build->data.res_x);
 	build->ray.planex = (build->cor.diry == 0) ? 0 : 0.66;
 	build->ray.planey = (build->cor.diry == 0) ? 0.66 : 0;

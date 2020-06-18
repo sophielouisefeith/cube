@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/16 16:58:38 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/18 15:25:43 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	arg_check(t_build *build, char *str)
 {
-	char *check;
+	char	*check;
 	int		i;
 
 	check = "--save";
@@ -47,12 +47,13 @@ t_build	*savearray(char *argv)
 	new->map.array = ft_split(new->map.str, '\n');
 	if (!new->map.array)
 		return (NULL);
-	//free(new->map.str);
+	free(new->map.str);
 	return (new);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	printf("hallo kom je hier");
 	t_build	*build = NULL;
 
 	if (argc != 2 && argc != 3)
