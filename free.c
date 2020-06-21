@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:40:29 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/18 10:53:56 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 16:25:40 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	free_game(t_build *build)
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
 	if (build->sprite.zbuffer)
 		free(build->sprite.zbuffer);
-	// if (build->sprite.texx)
-	// 	free(build->sprite.texx);
+	if (build->sprite.sprite_tex)
+		free(build->sprite.sprite_tex);
 	if (build->data.north)
 		free(build->data.north);
 	if (build->data.south)

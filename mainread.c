@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/18 15:25:43 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 17:28:27 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	arg_check(t_build *build, char *str)
 {
+	printf("je komt toch niet voor screenshot");
 	char	*check;
 	int		i;
 
@@ -51,17 +52,28 @@ t_build	*savearray(char *argv)
 	return (new);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	printf("hallo kom je hier");
-	t_build	*build = NULL;
-
+	t_build	*build;
+	printf("kom je hier in\n");
+	// exit (0);
+	build = NULL;
 	if (argc != 2 && argc != 3)
 		error("to many arguments", 17);
+	printf("check  arguments\n");
+	//exit (0);
 	if (argc == 3)
+	{
 		arg_check(build, argv[2]);
+		printf("screemsjpt aan\n");
+	}
+	//exit(0);
 	build = savearray(argv[1]);
+	printf("array\n");
+	//exit(0);
 	read_string(build);
+	printf("readstring\n");
+	//exit(0);
 	startgame(build);
 	return (0);
 }

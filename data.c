@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/15 16:20:07 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 17:42:43 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,40 @@ void	check_input(char *str, t_build *build)
 
 void	initialise(t_build *build)
 {
+	build->data.count 	= 0;
+	build->data.rule	= 0;
+	// build->data.res_x 	= 0;
+	// build->data.res_y	= 0;
+	build->data.check_res = -1;
+	build->data.res_x = -1;
+	build->data.res_y = -1;
+	build->data.floor = -1;
+	build->data.ceiling = -1;
+	build->data.color_r = -1;
+	build->data.color_g = -1;
+	build->data.color_b = -1;
+	build->data.check_color = 0;
+	build->data.check_res = 0;
+	build->data.size_map = 0;
 	build->data.count = 0;
+	build->ray.time = 0;
+	build->ray.oldtime = 0;
+	build->ray.frametime= 0;
+	build->ray.movespeed = 0;
+	build->ray.rotspeed= 0;
+	build->ray.oldirx = 0;
+	build->ray.moveup = 0;
+	build->ray.movedown = 0;
+	build->ray.moveright = 0;
+	build->ray.moveleft = 0;
+	build->ray.oldplanex = 0;
+	build->ray.oldplaney = 0;
+	build->ray.side = 0;
+	build->ray.drawstart = 0;
+	build->ray.drawend = 0;
+	build->data.error_i = 0;
+	build->sprite.num = 0;
+	build->sprite.zbuffer = 0;
 }
 
 void	checkmap(char *str)
@@ -139,15 +172,19 @@ void	read_string(t_build *build)
 	int rule;
 
 	rule = 0;
+	printf("hallo\n");
 	initialise(build);
-	while (*build->map.array)
+	while (build->map.array[build->data.rule])
 		build->data.rule++;
+	printf("hallo2\n");	
 	while (*build->map.array && rule < 8)
 	{
+		printf("hallo3\n");	
 		check_input(*build->map.array, build);
 		build->map.array++;
 		rule++;
 	}
+	printf("hallo4\n");
 	dis_res(&build->data.res_x, &build->data.res_y);
 	while (space_tab(*build->map.array) == 0 || *build->map.array == 0)
 		build->map.array++;

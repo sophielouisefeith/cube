@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/26 15:58:16 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/18 11:27:41 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 15:44:24 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	rule_one(char *str1, char *str2)
 	int x;
 	int x2;
 
-	x2	= 0;
-	x	= 0;
+	x2	=	0;
+	x	=	0;
 	len1 = ft_strlen(str1);
 	len2 = ft_strlen(str2);
 	while (str1[x] == 9 || str1[x] == ' ')

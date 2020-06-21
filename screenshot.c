@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/15 17:05:58 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 16:24:13 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	make_bmp(char *name, t_build *build)
 
 	fd = open(name, O_TRUNC | O_WRONLY | O_CREAT, 0777);
 	if (fd < 0)
-		error("cant open BMP", 13);
+		error_game("cant open BMP", 13, build);
 	addr = build->img.addr;
 	width = build->data.res_x;
 	height = build->data.res_y;

@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/15 16:04:06 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/21 17:19:25 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_res(char *str, t_build *build)
 		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
 		i++;
 	}
-	if (build->data.res_x && build->data.res_y)
+	if (build->data.res_x && build->data.res_y && str[i])
 	{
 		i++;
 		if (str[i] == ' ' || str[i] >= '0')
