@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/21 16:19:56 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 15:01:35 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct	s_cor
 	int		mapy;
 	double	dirx;
 	double	diry;
+	int		validstartpost;
 }				t_cor;
 
 typedef struct	s_map
@@ -223,8 +224,6 @@ void					check_input(char *str, t_build *build);
 void					initialize(t_build *build);
 int						define_color(char *str, t_build *build, int *i);
 void					rule_one(char *str1, char *str2);
-char					*side_two(t_build *build);
-
 void					middel_part(char *str1, char *str2);
 void					rule_last(char *str);
 void					count_rules(int y, t_build *build);
@@ -239,7 +238,7 @@ void					move(t_build *build);
 int						startgame(t_build *build);
 int						fill(int x, t_build *build);
 void					floor_ceiling(t_build *build);
-char					*side(t_build *build);
+void					*side(t_build *build);
 void					sprite(t_build *build);
 size_t					ft_strlen(const char *s);
 char					*ft_strdup(const char *s1);
@@ -254,3 +253,4 @@ void					error_game(char *str, int i, t_build *build);
 void					error_start(char *str, int i);
 void					error_map(char *str, int i, t_build *build);
 void					error(char *str, int i);
+int						releasekey(int keycode, t_build *build);

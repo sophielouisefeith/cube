@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2020/06/21 16:50:47 by sfeith        ########   odam.nl          #
+#    Updated: 2020/06/23 14:24:00 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,13 @@ LIBMLX = libmlx.a
 SRC = cub3d.c utilities.c readmap.c  data.c data_check.c error.c \
 		data_map.c  start_pos.c raycast.c move.c  mainread.c texture.c \
 		sprite.c screenshot.c lines.c utilssecond.c free.c
-LINKING = -lmlx  -framework OpenGL -framework AppKit
-#OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -Wno-deprecated-declarations
-# remove debugger flag later
+LINKING = -lmlx  -framework OpenGL -framework AppKit 
+OBJ = $(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror -o cub3D
 
 all: $(LIBMLX) $(NAME)
 
-$(NAME): $(LIBMLX) $(OBJ)
+$(NAME): $(LIBMLX)
 	gcc $(FLAGS) -I $(MLX) -L $(MLX) $(LINKING) $(SRC)
 
 $(LIBMLX):
@@ -31,7 +30,7 @@ $(LIBMLX):
 
 clean:
 	make clean -C $(MLX)
-	$(RM) $(OBJ) a.out
+	$(RM) $(OBJ) screenshot.bmp cub3D
 
 fclean: clean
 	$(RM) $(NAME)

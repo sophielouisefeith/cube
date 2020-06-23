@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/15 15:57:45 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/16 17:12:10 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 14:42:51 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	close_game(t_build *build)
 {
-	free_game(build);
-	mlx_destroy_window(build->img.mlx, build->img.win);
+	if (build->img.win)
+		mlx_destroy_window(build->img.mlx, build->img.win);
+	if (build->img.img1)
+		mlx_destroy_image(build->img.mlx, build->img.img1);
+	if (build->tex.texture)
+		mlx_destroy_image(build->img.mlx, build->tex.texture);
+	free(build);
 	exit(0);
 }
 

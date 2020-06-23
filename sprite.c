@@ -149,15 +149,12 @@ void	sprite(t_build *build)
 		- build->cor.start_pos_y + 0.5;
 		build->sprite.invdet = 1.0 / (build->ray.planex * build->cor.diry \
 		- build->cor.dirx * build->ray.planey);
-		if (build->data.start == 2 || build->data.start == 3)
-			build->sprite.transformx = (build->sprite.invdet * \
-			(build->cor.diry * build->sprite.spritex - \
-			build->cor.dirx * build->sprite.spritey) * -1);
-		else
-			build->sprite.transformx = build->sprite.invdet * \
-			(build->cor.diry - build->cor.dirx * build->sprite.spritey);
+		build->sprite.transformx = (build->sprite.invdet * (build->cor.diry *\
+		build->sprite.spritex - build->cor.dirx * build->sprite.spritey));
 		build->sprite.transformy = build->sprite.invdet * (-build->ray.planey \
 		* build->sprite.spritex + build->ray.planex * build->sprite.spritey);
+		if( build->ray.x_cam == 1)
+        	build->sprite.transformx *= -1;
 		calc_sprites(build);
 		loop(build);
 		i++;

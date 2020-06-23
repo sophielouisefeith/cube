@@ -6,18 +6,27 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 21:05:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/18 10:18:51 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/22 18:38:46 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		releasekey(int keycode, t_build *build)
+{
+	build->ray.update = 0;
+	if (keycode == 126)
+		build->ray.moveup = 0;
+	if (keycode == 125)
+		build->ray.movedown = 0;
+	if (keycode == 123)
+		build->ray.moveleft = 0;
+	if (keycode == 124)
+		build->ray.moveright = 0;
+	return (0);
+}
 int		presskey(int keycode, t_build *build)
 {
-	build->ray.moveup = 0;
-	build->ray.movedown = 0;
-	build->ray.moveright = 0;
-	build->ray.moveleft = 0;
 	build->ray.update = 0;
 	if (keycode == 53)
 		close_game(build);

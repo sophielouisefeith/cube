@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/21 17:28:27 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 14:07:30 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	arg_check(t_build *build, char *str)
 {
-	printf("je komt toch niet voor screenshot");
 	char	*check;
 	int		i;
 
@@ -32,7 +31,7 @@ void	arg_check(t_build *build, char *str)
 	return ;
 }
 
-t_build	*savearray(char *argv)
+t_build		*savearray(char *argv)
 {
 	t_build	*new;
 	int		fd;
@@ -47,7 +46,10 @@ t_build	*savearray(char *argv)
 		return (NULL);
 	new->map.array = ft_split(new->map.str, '\n');
 	if (!new->map.array)
+	{
+		free(new->map.str);
 		return (NULL);
+	}
 	free(new->map.str);
 	return (new);
 }
@@ -55,25 +57,21 @@ t_build	*savearray(char *argv)
 int		main(int argc, char **argv)
 {
 	t_build	*build;
-	printf("kom je hier in\n");
-	// exit (0);
+
 	build = NULL;
 	if (argc != 2 && argc != 3)
 		error("to many arguments", 17);
-	printf("check  arguments\n");
-	//exit (0);
-	if (argc == 3)
-	{
-		arg_check(build, argv[2]);
-		printf("screemsjpt aan\n");
-	}
-	//exit(0);
 	build = savearray(argv[1]);
-	printf("array\n");
-	//exit(0);
+	if (argc == 3)
+		arg_check(build, argv[2]);
 	read_string(build);
-	printf("readstring\n");
-	//exit(0);
+	if (!(build->sprite.zbuffer = (double *)\
+	malloc(sizeof(double) * build->data.res_x)))
+		error_map("malloc failed1", 14, build);
 	startgame(build);
+	while(1)
+	{
+		
+	}
 	return (0);
 }

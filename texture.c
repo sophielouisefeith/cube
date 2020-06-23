@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/21 16:14:55 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 12:01:53 by msiemons      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int		put(int x, t_build *build)
 {
-	int y;
-	int color;
+	int		y;
+	int		color;
 
 	build->tex.step = 1.0 * 64 / build->ray.lineheight;
 	build->tex.texpos = (build->ray.drawstart - build->data.res_y / 2 + \
@@ -35,32 +35,19 @@ static int		put(int x, t_build *build)
 	return (0);
 }
 
-char	*side_two(t_build *build)
+static void		check_side(t_build *build)
 {
-	if (build->ray.side == 1)
-	{
-		build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y \
-		+ (1 - build->ray.stepy) / 2) / build->ray.raydiry;
-		if (build->ray.perpwalldist < 1)
-			build->ray.perpwalldist = 1;
-		build->tex.wallx = build->cor.start_pos_x + \
-		build->ray.perpwalldist * build->ray.raydirx;
-		if (build->ray.raydiry < 0)
-			return (build->data.north);
-		else
-			return (build->data.south);
-	}
-	return (NULL);
+	build->ray.perpwalldist = (build->cor.mapx - build->cor.start_pos_x \
+		+ (1 - build->ray.stepx) / 2) / build->ray.raydirx;
+	if (build->ray.perpwalldist < 1)
+		build->ray.perpwalldist = 1;
 }
 
-char	*side(t_build *build)
+void	*side(t_build *build)
 {
 	if (build->ray.side == 0)
 	{
-		build->ray.perpwalldist = (build->cor.mapx - build->cor.start_pos_x + \
-		(1 - build->ray.stepx) / 2) / build->ray.raydirx;
-		if (build->ray.perpwalldist < 1)
-			build->ray.perpwalldist = 1;
+		check_side(build);
 		build->tex.wallx = build->cor.start_pos_y + \
 		build->ray.perpwalldist * build->ray.raydiry;
 		if (build->ray.raydiry < 0)
@@ -68,7 +55,19 @@ char	*side(t_build *build)
 		else
 			return (build->data.east);
 	}
-	side_two(build);
+	else
+	{
+		build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + \
+		(1 - build->ray.stepy) / 2) / build->ray.raydiry;
+		if (build->ray.perpwalldist < 1)
+			build->ray.perpwalldist = 1;
+		build->tex.wallx = build->cor.start_pos_x +\
+		build->ray.perpwalldist * build->ray.raydirx;
+		if (build->ray.raydiry < 0)
+			return (build->data.north);
+		else
+			return (build->data.south);
+	}
 	return (NULL);
 }
 
@@ -121,3 +120,4 @@ void	floor_ceiling(t_build *build)
 		y++;
 	}
 }
+

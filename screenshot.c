@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/21 16:24:13 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 14:42:30 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	make_bmp(char *name, t_build *build)
 	height = build->data.res_y;
 	header_bmp(fd, width, height);
 	put_pixel(fd, addr, width, height);
-	free_game(build);
+	//free_game(build);
 	exit(0);
 }
+

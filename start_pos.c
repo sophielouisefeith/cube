@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/21 16:22:46 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 15:01:04 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void		start_cor(int y, int x, t_build *build)
 		if (build->map.array[y][x] == 'W' || build->map.array[y][x] == 'E' || \
 		build->map.array[y][x] == 'N' || build->map.array[y][x] == 'S')
 		{
+			build->cor.validstartpost = 1;
 			build->cor.start_pos_x = x + 0.5;
 			build->cor.start_pos_y = y + 0.5;
 			build->data.count++;
