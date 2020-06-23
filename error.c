@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 19:39:34 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/22 17:58:06 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/23 16:34:00 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	error_start(char *str, int i)
 
 void	error_game(char *str, int i, t_build *build)
 {
-	free_game(build);
+	//free_game(build);
 	build = NULL;
 	write(1, "An error occured because:\n", 27);
 	write(1, str, i);
