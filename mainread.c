@@ -6,11 +6,28 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/23 14:07:30 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 15:52:56 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	error(char *str, int i)
+{
+	write(1, "An error occured because:\n", 27);
+	write(1, str, i);
+	write(1, ".\n", 2);
+	exit(0);
+}
+
+void	error_map(char *str, int i, t_build *build)
+{
+	free_map(build);
+	write(1, "An error occured because:\n", 27);
+	write(1, str, i);
+	write(1, ".\n", 2);
+	exit(0);
+}
 
 void	arg_check(t_build *build, char *str)
 {
@@ -50,7 +67,8 @@ t_build		*savearray(char *argv)
 		free(new->map.str);
 		return (NULL);
 	}
-	free(new->map.str);
+	// free(new->map.str);
+	// new->map.str = NULL;
 	return (new);
 }
 

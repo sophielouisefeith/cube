@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/23 12:01:53 by msiemons      ########   odam.nl         */
+/*   Updated: 2020/06/28 14:03:58 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ int		fill(int x, t_build *build)
 	build->sprite.zbuffer[x] = build->ray.perpwalldist;
 	path = side(build);
 	if (path == NULL)
-		error_game("there is no texture", 19, build);
+		error_total("there is no texture", 19, build);
 	if (!(build->tex.texture = mlx_xpm_file_to_image(build->img.mlx, path, \
 	&build->tex.width, &build->tex.height)))
-		error_game("malloc failed", 14, build);
+		error_total("malloc failed", 14, build);
 	if (!(build->tex.dataadres = mlx_get_data_addr(build->tex.texture,\
 	&build->tex.bpp, &build->tex.line_length, &build->tex.endian)))
 	{
 		free(build->tex.texture);
-		error_game("malloc failed", 14, build);
+		error_total("malloc failed", 14, build);
 	}
 	put(x, build);
 	return (0);

@@ -35,16 +35,16 @@ int	startgame(t_build *build)
 	build->ray.oldtime = 0;
 	build->ray.time = 0;
 	if (!(build->img.mlx = mlx_init()))
-		error_game("malloc failed2", 15, build);
+		error_total("malloc failed2", 15, build);
 	if (!(build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, \
 	build->data.res_y, "WOLFENSTEIN")))
-		error_game("malloc failed3", 16, build);
+		error_total("malloc failed3", 16, build);
 	if (!(build->img.img1 = mlx_new_image(build->img.mlx, \
 	build->data.res_x, build->data.res_y)))
-		error_game("malloc failed4", 17, build);
+		error_total("malloc failed4", 17, build);
 	if (!(build->img.addr = mlx_get_data_addr(build->img.img1, \
 	&build->img.bits_per_pixel, &build->img.line_length, &build->img.endian)))
-		error_game("malloc failed5", 18, build);
+		error_total("malloc failed5", 18, build);
 	if (build->data.scrsht == 1)
 	{
 		make(build);

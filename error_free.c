@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   free.c                                             :+:    :+:            */
+/*   error_free.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:40:29 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/23 14:51:23 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 15:04:08 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 void	free_rules(int i, t_build *build)
 {
@@ -39,7 +40,7 @@ void	free_sprites(int i, double **sprite_cor)
 	return ;
 }
 
-void	free_game(t_build *build)
+void	free_total(t_build *build)
 {
 	free_rules(build->data.rule, build);
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
@@ -57,7 +58,7 @@ void	free_game(t_build *build)
 		free(build->data.east);
 	if (build->data.sprite)
 		free(build->data.sprite);
-	free(build);
+	//free(build);
 }
 
 void	free_map(t_build *build)
@@ -72,5 +73,15 @@ void	free_map(t_build *build)
 		free(build->data.east);
 	free_rules(build->data.rule, build);
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
-	free(build);
+	//free(build);
+}
+
+void	error_total(char *str, int i, t_build *build)
+{
+	free_total(build);
+	build = NULL;
+	write(1, "An error occured because:\n", 27);
+	write(1, str, i);
+	write(1, ".\n", 2);
+	exit(0);
 }

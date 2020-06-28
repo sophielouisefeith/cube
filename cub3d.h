@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/23 15:01:35 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 15:51:59 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void					arg_check(t_build *build, char *str);
 void					make_bmp(char *name, t_build *build);
 char					**ft_split(char const *s, char c);
 char					*get_next_line(const int fd);
-void					free_game(t_build *build);
+void					free_total(t_build *build);
 void					free_map(t_build *build);
 int						close_game(t_build *build);
 void					read_string(t_build *build);
@@ -249,8 +249,8 @@ size_t					ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char					*ft_strchr(const char *s, int c);
 int						ft_atoi(const char *str);
 int						ft_isdigit(int c);
-void					error_game(char *str, int i, t_build *build);
-void					error_start(char *str, int i);
+void					error_total(char *str, int i, t_build *build);
+void					error_begin(char *str, int i);
 void					error_map(char *str, int i, t_build *build);
 void					error(char *str, int i);
 int						releasekey(int keycode, t_build *build);

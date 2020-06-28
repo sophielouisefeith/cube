@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/23 14:48:12 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 15:39:04 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ char	*check_path(char *str)
 		i++;
 	len = ft_strlen(str);
 	temp = ft_substr(str, i, len);
+	free(str);
 	return (temp);
 }

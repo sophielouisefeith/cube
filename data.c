@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/23 15:03:52 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 15:37:12 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,16 @@ void	check_input(char *str, t_build *build)
 	if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == \
 	' ' && str[i + 3] == '.')
 		build->data.east = check_path(str);
-	// if(!build->data.east && !build->data.west && !build->data.north\
-	// && !build->data.south)
-	// 	error("no start position", 17);
 }
 
 void	initialise(t_build *build)
 {
-	build->cor.validstartpost  = 0;
-	build->data.count 	= 0;
-	build->data.rule	= 0;
-	build->data.res_x 	= 0;
-	build->data.res_y	= 0;
+	build->cor.validstartpost = 0;
+	build->data.count = 0;
+	build->data.rule = 0;
+	build->data.res_x = 0;
+	build->data.res_y = 0;
 	build->data.check_res = -1;
-	// build->data.res_x = -1;
-	// build->data.res_y = -1;
 	build->data.floor = -1;
 	build->data.ceiling = -1;
 	build->data.color_r = -1;
@@ -65,27 +60,15 @@ void	initialise(t_build *build)
 	build->data.size_map = 0;
 	build->data.count = 0;
 	build->ray.time = 0;
-	build->ray.oldtime = 0;
-	build->ray.frametime= 0;
-	build->ray.movespeed = 0;
-	build->ray.rotspeed= 0;
 	build->ray.oldirx = 0;
-	
 	build->ray.oldplanex = 0;
 	build->ray.oldplaney = 0;
 	build->ray.side = 0;
 	build->ray.drawstart = 0;
 	build->ray.drawend = 0;
-
 	build->sprite.num = 0;
-	//build->sprite.zbuffer = 0;
-	// build->img.mlx = NULL;
 	build->img.mlx = NULL;
 	build->img.win = NULL;
-	//build->img.mlx = NULL;
-	//build->data.scrsht = 0;
-	//build->img.img1 = NULL;
-	// img mlx window for exit game/ 
 }
 
 void	checkmap(char *str)
@@ -188,6 +171,7 @@ void	read_string(t_build *build)
 	while (*build->map.array && rule < 8)
 	{
 		check_input(*build->map.array, build);
+		// free(*build->map.array);
 		build->map.array++;
 		rule++;
 	}
