@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 15:52:56 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 17:01:25 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ t_build		*savearray(char *argv)
 		free(new->map.str);
 		return (NULL);
 	}
-	// free(new->map.str);
-	// new->map.str = NULL;
+	free(new->map.str);
+	new->map.str = NULL;
 	return (new);
 }
 
@@ -87,9 +87,9 @@ int		main(int argc, char **argv)
 	malloc(sizeof(double) * build->data.res_x)))
 		error_map("malloc failed1", 14, build);
 	startgame(build);
-	while(1)
+	while (1)
 	{
-		
+
 	}
 	return (0);
 }

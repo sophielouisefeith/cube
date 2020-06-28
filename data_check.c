@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 15:39:04 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 17:33:08 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ void	check_color(char *str, t_build *build)
 		i++;
 	build->data.color_r = define_color(str, build, &i);
 	if (build->data.color_r == -1)
-		error("color r", 7);
+		error("color red", 9);
 	build->data.color_g = define_color(str, build, &i);
 	if (build->data.color_g == -1)
-		error("color g", 7);
+		error("color green", 11);
 	build->data.color_b = define_color(str, build, &i);
 	if (build->data.color_b == -1)
-		error("color b", 7);
+		error("color blue", 10);
 	if ((build->data.check_color < 4) && build->data.floor == 1)
 		build->data.floor = create_trgb(build->data.color_r,\
 		build->data.color_g, build->data.color_b, build);

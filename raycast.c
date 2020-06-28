@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/28 15:11:07 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 16:51:07 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	border(t_build *build)
 	build->tex.texx = 64 - build->tex.texx - 1;
 }
 
-// 	static void border(t_build *build)
+// static void border(t_build *build)
 // {
 // 	build->ray.lineheight = abs((int)(build->data.res_y/ build->ray.perpwalldist));
 // 	build->ray.drawstart = -build->ray.lineheight / 2 + build->data.res_y / 2;

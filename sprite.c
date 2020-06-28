@@ -153,8 +153,8 @@ void	sprite(t_build *build)
 		build->sprite.spritex - build->cor.dirx * build->sprite.spritey));
 		build->sprite.transformy = build->sprite.invdet * (-build->ray.planey \
 		* build->sprite.spritex + build->ray.planex * build->sprite.spritey);
-		if( build->ray.x_cam == 1)
-        	build->sprite.transformx *= -1;
+		if(build->ray.x_cam == 1)
+			build->sprite.transformx *= -1;
 		calc_sprites(build);
 		loop(build);
 		i++;

@@ -6,27 +6,11 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 14:05:20 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/08 14:06:27 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 16:40:27 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static char			*ft_cut(char *new)
-{
-	int		i;
-
-	i = 0;
-	while (new[i] != '\0')
-		i++;
-	new = ft_substr(new, 0, i);
-	if (new == NULL)
-	{
-		free(new);
-		return (NULL);
-	}
-	return (new);
-}
 
 static char			*ft_treatment(char *new, int ret, int fd)
 {
@@ -70,11 +54,5 @@ char				*get_next_line(const int fd)
 	new = ft_treatment(new, ret, fd);
 	if (new == NULL)
 		return (NULL);
-	new = ft_cut(new);
-	if (new == NULL)
-	{
-		free(new);
-		new = NULL;
-	}
 	return (new);
 }

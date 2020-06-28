@@ -6,12 +6,11 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:40:29 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 15:04:08 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/28 17:05:41 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	free_rules(int i, t_build *build)
 {
@@ -44,8 +43,6 @@ void	free_total(t_build *build)
 {
 	free_rules(build->data.rule, build);
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
-	if (build->sprite.zbuffer)
-		free(build->sprite.zbuffer);
 	if (build->sprite.sprite_tex)
 		free(build->sprite.sprite_tex);
 	if (build->data.north)
@@ -73,7 +70,7 @@ void	free_map(t_build *build)
 		free(build->data.east);
 	free_rules(build->data.rule, build);
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
-	//free(build);
+	free(build);
 }
 
 void	error_total(char *str, int i, t_build *build)
