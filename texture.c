@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 14:11:56 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 19:38:01 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	*side(t_build *build)
 		else
 			return (build->data.east);
 	}
-	else
+	if (build->ray.side == 1)
 	{
 		build->ray.perpwalldist = (build->cor.mapy - build->cor.start_pos_y + \
 		(1 - build->ray.stepy) / 2) / build->ray.raydiry;

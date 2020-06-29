@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 18:29:22 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 19:22:35 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	initialise(t_build *build)
 	build->data.rule = 0;
 	// build->data.res_x = 0;
 	// build->data.res_y = 0;
-	build->data.check_res = -1;
+	// build->data.check_res = -1;
 	build->data.floor = -1;
 	build->data.ceiling = -1;
 	build->data.color_r = -1;

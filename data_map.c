@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/26 15:58:16 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 17:55:20 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 19:22:55 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void		middel_part_second(char *str1, char *str2, int len1, int len2)
 	{
 		while (len1 < len2)
 		{
-			if(str2[len1] == ' ' )
+			if(str2[len1] == ' ')
 				error("black whole/wall is not protected with 1", 40);
 			len1++;
 		}

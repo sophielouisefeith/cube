@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 17:39:56 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 19:11:11 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,3 +254,4 @@ void					error_begin(char *str, int i);
 void					error_map(char *str, int i, t_build *build);
 void					error(char *str, int i);
 int						releasekey(int keycode, t_build *build);
+

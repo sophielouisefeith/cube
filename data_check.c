@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 14:56:30 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 18:58:47 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_res(char *str, t_build *build)
 	//int j;
 
 	i = 1;
-	while((str[i] == ' ' || str[i] == 9) && str[i] != '\0')
+	while ((str[i] == ' ' || str[i] == 9) && str[i] != '\0')
 	{
 		//j = i;
 		//if((str[j] < '0' || str[j] > '9') && ( str[j] != ' '))
@@ -45,7 +45,6 @@ void	check_res(char *str, t_build *build)
 		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
 		i++;
 	}
-
 	if (build->data.res_x && build->data.res_y && str[i])
 	{
 		i++;

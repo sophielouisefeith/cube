@@ -1,4 +1,4 @@
-R  800 600 
+R  600 600
 WE ./texture/ice.xpm
 NO ./texture/GemOv4.xpm
 S ./texture/barrel.xpm

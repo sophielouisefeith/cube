@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 18:34:44 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 19:44:33 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	header_bmp(int fd, int width, int height)
 	}
 }
 
-static void	put_pixel(int fd, char *addr, int width, int height)
+static void	put_pixel(int fd, char *addr, int width, int height, t_build *build)
 {
 	int x;
 	int length;
@@ -75,7 +75,8 @@ static void	put_pixel(int fd, char *addr, int width, int height)
 	{
 		while (x < width)
 		{
-			write(fd, &addr[height * length + x * 4], 4);
+			// write(fd, &addr[height * length + x * 4], 4);
+			write(fd, &addr[height * build->img.line_length + x *4], 4);
 			x++;
 		}
 		x = 0;
@@ -97,8 +98,9 @@ void	make_bmp(char *name, t_build *build)
 	width = build->data.res_x;
 	height = build->data.res_y;
 	header_bmp(fd, width, height);
-	put_pixel(fd, addr, width, height);
+	put_pixel(fd, addr, width, height, build);
 	//free_total(build);
 	exit(0);
 }
 
+//hoeveel bits heb ik geschreven = /4 
