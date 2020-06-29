@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 13:17:20 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 17:39:56 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,6 @@ char					**ft_split(char const *s, char c);
 char					*get_next_line(const int fd);
 void					free_total(t_build *build);
 void					free_map(t_build *build);
-int						close_game(t_build *build);
 void					read_string(t_build *build);
 void					check_res(char *str, t_build *build);
 void					check_color(char *str, t_build *build);

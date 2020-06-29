@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 14:49:21 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 14:56:30 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,17 @@ char	*check_path(char *str)
 	int		i;
 	char	*temp;
 	size_t	len;
+	int		ret;
 
 	i = 0;
 	while (str[i] != '.' && str[i + 1] != 'x')
 		i++;
 	len = ft_strlen(str);
 	temp = ft_substr(str, i, len);
+	ret = open(temp, O_RDONLY);
+	if (ret == -1)
+		error("Invalid path", 12);
 	free(str);
+	close(ret);
 	return (temp);
 }

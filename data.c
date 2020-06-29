@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 13:43:54 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 18:29:22 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,21 @@ void	initialise(t_build *build)
 	build->data.res = 0;
 	build->data.count = 0;
 	build->data.rule = 0;
-	build->data.res_x = 0;
-	build->data.res_y = 0;
+	// build->data.res_x = 0;
+	// build->data.res_y = 0;
 	build->data.check_res = -1;
 	build->data.floor = -1;
 	build->data.ceiling = -1;
 	build->data.color_r = -1;
 	build->data.color_g = -1;
 	build->data.color_b = -1;
+	build->ray.movespeed = 0;
+	build->ray.rotspeed= 0;
+	build->ray.oldirx = 0;
 	build->data.check_color = 0;
 	build->data.check_res = 0;
 	build->data.size_map = 0;
 	build->data.count = 0;
-	build->ray.time = 0;
-	build->ray.oldirx = 0;
 	build->ray.oldplanex = 0;
 	build->ray.oldplaney = 0;
 	build->ray.side = 0;

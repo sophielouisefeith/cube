@@ -6,11 +6,30 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 17:05:51 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 18:34:44 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	arg_check(t_build *build, char *str)
+{
+	char	*check;
+	int		i;
+
+	check = "--save";
+	i = 0;
+	while (check[i])
+	{
+		if (check[i] != str[i])
+			error("2 argument invalid", 18);
+		i++;
+	}
+	if (str[i] != '\0')
+		error("2 argument invalid", 18);
+	build->data.scrsht = 1;
+	return ;
+}
 
 static void	header_bmp(int fd, int width, int height)
 {

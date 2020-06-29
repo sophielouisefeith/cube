@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 14:20:11 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 18:21:15 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,37 @@ static void		hit(t_build *build)
 			hit = 1;
 	}
 }
+
+
+// static void	border(t_build *build)
+// {
+// 	build->ray.lineheight = abs((int)(build->data.res_y / \
+// 	build->ray.perpwalldist));
+// 	build->ray.drawstart = -build->ray.lineheight / \
+// 	2 + build->data.res_y / 2;
+// 	if (build->ray.drawstart < 0)
+// 		build->ray.drawstart = 0;
+// 	build->ray.drawend = build->ray.lineheight / 2 + build->data.res_y / 2;
+// 	if (build->ray.drawend >= build->data.res_y)
+// 		build->ray.drawend = build->data.res_y - 1;
+// 	if (build->ray.side == 1)
+// 	{
+// 		build->tex.wallx = build->cor.start_pos_x + \
+// 		((build->cor.mapy - build->cor.start_pos_y +\
+// 		(1 - build->ray.stepy) / 2) / \
+// 		build->ray.raydiry) * build->ray.raydirx;
+// 	}
+// 	else
+// 		build->tex.wallx = build->cor.start_pos_y + \
+// 		((build->cor.mapx - build->cor.start_pos_x +\
+// 		(1 - build->ray.stepx) / 2)\
+// 		/ build->ray.raydirx) * build->ray.raydiry;
+// 	build->tex.wallx -= floor((build->tex.wallx));
+// 	build->tex.texx = (build->tex.wallx * (double)64);
+// 	build->tex.texx = 64 - build->tex.texx - 1;
+// }
+
+
 
 static void	border(t_build *build)
 {
