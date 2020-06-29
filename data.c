@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 17:44:42 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 13:43:54 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	check_input(char *str, t_build *build)
 void	initialise(t_build *build)
 {
 	build->cor.validstartpost = 0;
+	build->data.res = 0;
 	build->data.count = 0;
 	build->data.rule = 0;
 	build->data.res_x = 0;
@@ -110,7 +111,6 @@ void	check_valid_map(t_build *build)
 {
 	int		lines;
 	int		y;
-	//char	**temp = build->map.array;
 
 	y = 1;
 	lines = 0;
@@ -176,7 +176,8 @@ void	read_string(t_build *build)
 		rule++;
 	}
 	if (!build->data.north || !build->data.south || \
-	!build->data.west || !build->data.east)
+	!build->data.west || !build->data.east || !build->data.floor \
+	|| !build->data.ceiling || !build->data.res)
 		error("not a valid map", 15);
 	dis_res(&build->data.res_x, &build->data.res_y);
 	while (space_tab(*build->map.array) == 0 || *build->map.array == 0)

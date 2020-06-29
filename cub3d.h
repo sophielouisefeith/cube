@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 12:54:42 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 15:51:59 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 13:17:20 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef struct	s_data
 	int			start;
 	int			scrsht;
 	int			rule;
+	int 		res;
 
 }				t_data;
 

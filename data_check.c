@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/28 17:33:08 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 14:49:21 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,38 @@
 
 void	check_res(char *str, t_build *build)
 {
+    build->data.res = 1;
+	printf("str [%s]\n", str);
 	int i;
+	//int j;
 
 	i = 1;
-	while ((str[i] == ' ' || str[i] == 9) && str[i])
+	while((str[i] == ' ' || str[i] == 9) && str[i] != '\0')
+	{
+		//j = i;
+		//if((str[j] < '0' || str[j] > '9') && ( str[j] != ' '))
+			//error("not", 3);
 		i++;
+	}
+	
+	// while(str[j] == ' ' ||str[j] <= '0' || str[j] >= '9')
+	// {
+	// 	error("not a valid res", 15);
+	// 	j++;
+	// }
 	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		build->data.res_x = build->data.res_x * 10 + str[i] - '0';
 		i++;
 	}
-	while ((str[i] == ' ' || str[i] == 9) && str[i])
+	while (str[i] == ' ' || str[i] == 9)
 		i++;
 	while ((str[i] >= '0' && str[i] <= '9'))
 	{
 		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
 		i++;
 	}
+
 	if (build->data.res_x && build->data.res_y && str[i])
 	{
 		i++;

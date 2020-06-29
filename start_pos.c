@@ -6,7 +6,7 @@
 /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/23 15:01:04 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/29 14:48:35 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	start_pos(t_build *build)
 
 	x = 0;
 	y = 0;
-	if (!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) \
-	* build->sprite.num)))
-		error("malloc failed", 13);
+	// if (!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) \
+	// * build->sprite.num)))
+	// 	error("malloc failed", 13);
 	while (build->map.array[y])
 	{
 		start_cor(y, x, build);
