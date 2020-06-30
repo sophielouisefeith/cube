@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2020/06/29 18:00:20 by sfeith        ########   odam.nl          #
+#    Updated: 2020/06/30 18:06:08 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ MLX = minilibx
 LIBMLX = libmlx.a
 SRC = cub3d.c utilities.c readmap.c  data.c data_check.c  \
 		data_map.c  start_pos.c raycast.c move.c  mainread.c texture.c \
-		sprite.c screenshot.c lines.c utilssecond.c error_free.c
+		sprite.c screenshot.c lines.c utilssecond.c error_free.c extra_check.c
 LINKING = -lmlx  -framework OpenGL -framework AppKit 
 OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror -o cub3D -O3
@@ -36,3 +36,4 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+

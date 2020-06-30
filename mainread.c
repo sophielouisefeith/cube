@@ -6,13 +6,13 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/03 18:55:17 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 19:18:35 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 18:05:47 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	error(char *str, int i)
+void			error(char *str, int i)
 {
 	write(1, "An error occured because:\n", 27);
 	write(1, str, i);
@@ -20,7 +20,7 @@ void	error(char *str, int i)
 	exit(0);
 }
 
-void	error_map(char *str, int i, t_build *build)
+void			error_map(char *str, int i, t_build *build)
 {
 	free_map(build);
 	write(1, "An error occured because:\n", 27);
@@ -29,7 +29,7 @@ void	error_map(char *str, int i, t_build *build)
 	exit(0);
 }
 
-t_build		*savearray(char *argv)
+t_build			*savearray(char *argv)
 {
 	t_build	*new;
 	int		fd;
@@ -53,7 +53,7 @@ t_build		*savearray(char *argv)
 	return (new);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_build	*build;
 

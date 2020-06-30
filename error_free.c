@@ -6,13 +6,13 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:40:29 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 19:45:47 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 18:00:20 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	error_total(char *str, int i, t_build *build)
+void			error_total(char *str, int i, t_build *build)
 {
 	free_total(build);
 	write(1, "An error occured because:\n", 27);
@@ -21,7 +21,7 @@ void	error_total(char *str, int i, t_build *build)
 	exit(0);
 }
 
-void	free_rules(int i, t_build *build)
+void			free_rules(int i, t_build *build)
 {
 	if (i == 0)
 		return ;
@@ -35,7 +35,7 @@ void	free_rules(int i, t_build *build)
 	return ;
 }
 
-void	free_sprites(int i, double **sprite_cor)
+void			free_sprites(int i, double **sprite_cor)
 {
 	if (i == 0)
 		return ;
@@ -48,7 +48,7 @@ void	free_sprites(int i, double **sprite_cor)
 	return ;
 }
 
-void	free_total(t_build *build)
+void			free_total(t_build *build)
 {
 	free_rules(build->data.rule, build);
 	free_sprites(build->sprite.num, build->sprite_s.sprite_cor);
@@ -68,7 +68,7 @@ void	free_total(t_build *build)
 		free(build->data.sprite);
 }
 
-void	free_map(t_build *build)
+void			free_map(t_build *build)
 {
 	if (build->data.north)
 		free(build->data.north);

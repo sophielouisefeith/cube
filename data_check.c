@@ -6,54 +6,39 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 17:21:18 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 18:58:47 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 17:57:42 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_res(char *str, t_build *build)
+void			check_res(char *str, t_build *build)
 {
-    build->data.res = 1;
-	printf("str [%s]\n", str);
 	int i;
-	//int j;
 
+	build->data.res = 1;
 	i = 1;
-	while ((str[i] == ' ' || str[i] == 9) && str[i] != '\0')
-	{
-		//j = i;
-		//if((str[j] < '0' || str[j] > '9') && ( str[j] != ' '))
-			//error("not", 3);
+	while ((str[i] == ' ' || str[i] == '9') && str[i] != '\0')
 		i++;
-	}
-	
-	// while(str[j] == ' ' ||str[j] <= '0' || str[j] >= '9')
-	// {
-	// 	error("not a valid res", 15);
-	// 	j++;
-	// }
-	while ((str[i] >= '0' && str[i] <= '9'))
-	{
-		build->data.res_x = build->data.res_x * 10 + str[i] - '0';
-		i++;
-	}
+	extra_check(&i, str, build);
 	while (str[i] == ' ' || str[i] == 9)
 		i++;
-	while ((str[i] >= '0' && str[i] <= '9'))
-	{
-		build->data.res_y = build->data.res_y * 10 + str[i] - '0';
+	if (str[i] <= '0' || str[i] >= '9')
+		error("not a valid res\n", 20);
+	extra_check(&i, str, build);
+	while (str[i] == ' ' || str[i] == 9)
 		i++;
-	}
+	if ((str[i] <= '0' || str[i] >= '9') && str[i] != '\0')
+		error("not a valid res \n", 16);
 	if (build->data.res_x && build->data.res_y && str[i])
 	{
 		i++;
 		if (str[i] == ' ' || str[i] >= '0')
-			error("to many res", 11);
+			error("to many res\n", 11);
 	}
 }
 
-int		create_trgb(int r, int g, int b, t_build *build)
+int				create_trgb(int r, int g, int b, t_build *build)
 {
 	int color;
 
@@ -65,7 +50,7 @@ int		create_trgb(int r, int g, int b, t_build *build)
 	return (color);
 }
 
-int		define_color(char *str, t_build *build, int *i)
+int				define_color(char *str, t_build *build, int *i)
 {
 	int color;
 
@@ -87,7 +72,7 @@ int		define_color(char *str, t_build *build, int *i)
 	return (color);
 }
 
-void	check_color(char *str, t_build *build)
+void			check_color(char *str, t_build *build)
 {
 	int i;
 
@@ -116,14 +101,16 @@ void	check_color(char *str, t_build *build)
 		build->data.color_g, build->data.color_b, build);
 }
 
-char	*check_path(char *str)
+char			*check_path(char *str, int i)
 {
-	int		i;
 	char	*temp;
 	size_t	len;
 	int		ret;
 
-	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] != '.')
+		error("invalid path", 12);
 	while (str[i] != '.' && str[i + 1] != 'x')
 		i++;
 	len = ft_strlen(str);

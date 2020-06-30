@@ -1,16 +1,80 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   build3d.c                                            :+:    :+:            */
+/*   cub3d.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 12:53:05 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/30 16:43:48 by SophieLouis   ########   odam.nl         */
+/*   Created: 2020/02/28 12:53:05 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 17:50:18 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void			extra_check(int *i, char *str, t_build *build)
+{
+	if (build->data.res == 1)
+	{
+		while ((str[*i] >= '0' && str[*i] <= '9'))
+		{
+			build->data.res_x = build->data.res_x * 10 + str[*i] - '0';
+			(*i)++;
+		}
+		build->data.res++;
+		return ;
+	}
+	if (build->data.res == 2)
+	{
+		while ((str[*i] >= '0' && str[*i] <= '9'))
+		{
+			build->data.res_y = build->data.res_y * 10 + str[*i] - '0';
+			(*i)++;
+		}
+	}
+}
+
+void			sort_sprites(double *spritedistance, t_build *build)
+{
+	int		i;
+	int		tmp;
+	double	tmp2;
+
+	i = 0;
+	while (i < (build->sprite.num - 1))
+	{
+		if (spritedistance[i] < spritedistance[i + 1])
+		{
+			tmp2 = spritedistance[i + 1];
+			spritedistance[i] = spritedistance[i + 1];
+			spritedistance[i + 1] = tmp2;
+			tmp = build->sprite_s.sprite_cor[i][0];
+			build->sprite_s.sprite_cor[i][0] = \
+			build->sprite_s.sprite_cor[i + 1][0];
+			build->sprite_s.sprite_cor[i + 1][0] = tmp;
+			tmp = build->sprite_s.sprite_cor[i][1];
+			build->sprite_s.sprite_cor[i][1] =\
+			build->sprite_s.sprite_cor[i + 1][1];
+			build->sprite_s.sprite_cor[i + 1][1] = tmp;
+			i = -1;
+		}
+		i++;
+	}
+}
+
+int				releasekey(int keycode, t_build *build)
+{
+	build->ray.update = 0;
+	if (keycode == 126)
+		build->ray.moveup = 0;
+	if (keycode == 125)
+		build->ray.movedown = 0;
+	if (keycode == 123)
+		build->ray.moveleft = 0;
+	if (keycode == 124)
+		build->ray.moveright = 0;
+	return (0);
+}
 
 int				make(t_build *build)
 {
@@ -28,7 +92,7 @@ int				make(t_build *build)
 	return (0);
 }
 
-int	startgame(t_build *build)
+int				startgame(t_build *build)
 {
 	build->ray.planex = (build->cor.diry == 0) ? 0 : 0.66;
 	build->ray.planey = (build->cor.diry == 0) ? 0.66 : 0;

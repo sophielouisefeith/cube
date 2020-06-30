@@ -1,46 +1,18 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        ::::::::            */
-// /*   sprite.c                                           :+:    :+:            */
-// /*                                                     +:+                    */
-// /*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
-// /*                                                   +#+                      */
-// /*   Created: 2020/04/28 10:23:38 by SophieLouis    #+#    #+#                */
-// /*   Updated: 2020/06/02 15:04:18 by sfeith        ########   odam.nl         */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   sprite.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:10:27 by sfeith        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	sort_sprites(double *spritedistance, t_build *build)
-{
-	int		i;
-	int		tmp;
-	double	tmp2;
-
-	i = 0;
-	while (i < (build->sprite.num - 1))
-	{
-		if (spritedistance[i] < spritedistance[i + 1])
-		{
-			tmp2 = spritedistance[i + 1];
-			spritedistance[i] = spritedistance[i + 1];
-			spritedistance[i + 1] = tmp2;
-			tmp = build->sprite_s.sprite_cor[i][0];
-			build->sprite_s.sprite_cor[i][0] = \
-			build->sprite_s.sprite_cor[i + 1][0];
-			build->sprite_s.sprite_cor[i + 1][0] = tmp;
-			tmp = build->sprite_s.sprite_cor[i][1];
-			build->sprite_s.sprite_cor[i][1] =\
-			build->sprite_s.sprite_cor[i + 1][1];
-			build->sprite_s.sprite_cor[i + 1][1] = tmp;
-			i = -1;
-		}
-		i++;
-	}
-}
-
-static void		makesprite(t_build *build)
+static void				makesprite(t_build *build)
 {
 	int x;
 	int color;
@@ -64,7 +36,7 @@ static void		makesprite(t_build *build)
 	}
 }
 
-void	calc_sprites(t_build *build)
+void					calc_sprites(t_build *build)
 {
 	build->sprite.spritescreenx = (int)build->data.res_x / 2 * \
 	(1 + build->sprite.transformx / build->sprite.transformy);
@@ -90,7 +62,7 @@ void	calc_sprites(t_build *build)
 		build->sprite.drawendx = build->data.res_x - 1;
 }
 
-static void		order(t_build *build)
+static void				order(t_build *build)
 {
 	int		i;
 	int		width;
@@ -118,14 +90,14 @@ static void		order(t_build *build)
 	sort_sprites(spritedistance, build);
 }
 
-static int	loop(t_build *build)
+static int				loop(t_build *build)
 {
 	build->sprite.stripe = build->sprite.drawstartx;
 	while (build->sprite.stripe < build->sprite.drawendx)
 	{
 		build->sprite.texx = (int)(256 * (build->sprite.stripe\
 		- (-build->sprite.spritewidth / 2 + build->sprite.spritescreenx))\
-		* textwidth / build->sprite.spritewidth / 256);
+		* 64 / build->sprite.spritewidth / 256);
 		if (build->sprite.transformy > 0 && build->sprite.stripe > 0 \
 		&& build->sprite.stripe < build->data.res_x && \
 		build->sprite.transformy < build->sprite.zbuffer[build->sprite.stripe])
@@ -135,7 +107,7 @@ static int	loop(t_build *build)
 	return (0);
 }
 
-void	sprite(t_build *build)
+void					sprite(t_build *build)
 {
 	int	i;
 
@@ -153,7 +125,7 @@ void	sprite(t_build *build)
 		build->sprite.spritex - build->cor.dirx * build->sprite.spritey));
 		build->sprite.transformy = build->sprite.invdet * (-build->ray.planey \
 		* build->sprite.spritex + build->ray.planex * build->sprite.spritey);
-		if(build->ray.x_cam == 1)
+		if (build->ray.x_cam == 1)
 			build->sprite.transformx *= -1;
 		calc_sprites(build);
 		loop(build);

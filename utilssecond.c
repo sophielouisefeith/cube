@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/15 15:57:45 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 18:07:23 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:12:51 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	close_game(t_build *build)
+int			close_game(t_build *build)
 {
 	if (build->img.win)
 		mlx_destroy_window(build->img.mlx, build->img.win);
@@ -24,7 +24,7 @@ int	close_game(t_build *build)
 	exit(0);
 }
 
-int	ft_isdigit(int c)
+int			ft_isdigit(int c)
 {
 	int i;
 
@@ -34,7 +34,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int		ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int						i;
 	unsigned long long		b;
@@ -61,7 +61,7 @@ int		ft_atoi(const char *str)
 	return ((int)mp * b);
 }
 
-void	my_mlx_pixel_put(t_build *build, int x, int y, int color)
+void		my_mlx_pixel_put(t_build *build, int x, int y, int color)
 {
 	char *dst;
 
@@ -70,7 +70,7 @@ void	my_mlx_pixel_put(t_build *build, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-char			*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{

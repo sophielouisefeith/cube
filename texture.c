@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   texture.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/19 10:31:03 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 19:38:01 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:11:58 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		put(int x, t_build *build)
+static int			put(int x, t_build *build)
 {
 	int		y;
 	int		color;
@@ -35,7 +35,7 @@ static int		put(int x, t_build *build)
 	return (0);
 }
 
-static void		check_side(t_build *build)
+static void			check_side(t_build *build)
 {
 	build->ray.perpwalldist = (build->cor.mapx - build->cor.start_pos_x \
 		+ (1 - build->ray.stepx) / 2) / build->ray.raydirx;
@@ -43,7 +43,7 @@ static void		check_side(t_build *build)
 		build->ray.perpwalldist = 1;
 }
 
-void	*side(t_build *build)
+void				*side(t_build *build)
 {
 	if (build->ray.side == 0)
 	{
@@ -71,7 +71,7 @@ void	*side(t_build *build)
 	return (NULL);
 }
 
-int		fill(int x, t_build *build)
+int					fill(int x, t_build *build)
 {
 	char *path;
 
@@ -92,7 +92,7 @@ int		fill(int x, t_build *build)
 	return (0);
 }
 
-void	floor_ceiling(t_build *build)
+void				floor_ceiling(t_build *build)
 {
 	int x;
 	int y;
@@ -120,4 +120,3 @@ void	floor_ceiling(t_build *build)
 		y++;
 	}
 }
-

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   utilities.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/31 13:18:17 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/28 15:29:09 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:12:26 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char			*ft_substr(char *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-size_t				ft_strlen(const char *s)
+size_t			ft_strlen(const char *s)
 {
 	size_t	i;
 

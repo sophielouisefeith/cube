@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   raycast.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/01 14:22:37 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 19:23:09 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:08:24 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		start(int x, t_build *build)
+static void			start(int x, t_build *build)
 {
 	build->ray.camerax = 2 * x / build->data.res_x - 1;
 	if (build->ray.x_cam == 1)
@@ -27,7 +27,7 @@ static void		start(int x, t_build *build)
 	build->ray.deltadisty = fabs(1 / build->ray.raydiry);
 }
 
-static void	side_ray(t_build *build)
+static void			side_ray(t_build *build)
 {
 	if (build->ray.raydirx < 0)
 	{
@@ -55,7 +55,7 @@ static void	side_ray(t_build *build)
 	}
 }
 
-static void		hit(t_build *build)
+static void			hit(t_build *build)
 {
 	int hit;
 
@@ -79,7 +79,7 @@ static void		hit(t_build *build)
 	}
 }
 
-static void	border(t_build *build)
+static void			border(t_build *build)
 {
 	build->ray.lineheight = abs((int)(build->data.res_y / \
 	build->ray.perpwalldist));
@@ -95,7 +95,7 @@ static void	border(t_build *build)
 	build->tex.texx = 64 - build->tex.texx - 1;
 }
 
-int		ray(t_build *build)
+int					ray(t_build *build)
 {
 	int x;
 

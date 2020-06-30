@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   readarray.c                                          :+:    :+:            */
+/*   readmap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 18:01:42 by sfeith         #+#    #+#                */
-/*   Updated: 2020/03/04 15:06:38 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:08:58 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		ft_wordcount(char const *s, char c)
+static int			ft_wordcount(char const *s, char c)
 {
 	int		i;
 	int		wcount;
@@ -35,7 +35,7 @@ static int		ft_wordcount(char const *s, char c)
 	return (wcount);
 }
 
-static int		ft_lettercount(char const *s, char c, int i)
+static int			ft_lettercount(char const *s, char c, int i)
 {
 	int	count;
 
@@ -50,7 +50,7 @@ static int		ft_lettercount(char const *s, char c, int i)
 	return (count);
 }
 
-static char		**ft_freenewstring(char **ns, int j)
+static char			**ft_freenewstring(char **ns, int j)
 {
 	while (j >= 0)
 	{
@@ -63,7 +63,7 @@ static char		**ft_freenewstring(char **ns, int j)
 	return (NULL);
 }
 
-static char		**ft_newstring(char const *s, char c, char **ns)
+static char			**ft_newstring(char const *s, char c, char **ns)
 {
 	int i;
 	int lcount;
@@ -89,7 +89,7 @@ static char		**ft_newstring(char const *s, char c, char **ns)
 	return (ns);
 }
 
-char			**ft_split(char const *s, char c)
+char				**ft_split(char const *s, char c)
 {
 	int		i;
 	char	**words;

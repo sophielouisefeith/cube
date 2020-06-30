@@ -6,13 +6,13 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/08 13:51:27 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 19:44:33 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 18:09:18 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	arg_check(t_build *build, char *str)
+void			arg_check(t_build *build, char *str)
 {
 	char	*check;
 	int		i;
@@ -31,7 +31,7 @@ void	arg_check(t_build *build, char *str)
 	return ;
 }
 
-static void	header_bmp(int fd, int width, int height)
+static void		header_bmp(int fd, int width, int height)
 {
 	int		size;
 	int		first_pix;
@@ -60,11 +60,13 @@ static void	header_bmp(int fd, int width, int height)
 	}
 }
 
-static void	put_pixel(int fd, char *addr, int width, int height, t_build *build)
+static void		put_pixel(int fd, int width, int height, t_build *build)
 {
-	int x;
-	int length;
+	int		x;
+	int		length;
+	char	*addr;
 
+	addr = build->img.addr;
 	length = 0;
 	if (width % 64 != 0)
 		length = 1;
@@ -75,8 +77,7 @@ static void	put_pixel(int fd, char *addr, int width, int height, t_build *build)
 	{
 		while (x < width)
 		{
-			// write(fd, &addr[height * length + x * 4], 4);
-			write(fd, &addr[height * build->img.line_length + x *4], 4);
+			write(fd, &addr[height * build->img.line_length + x * 4], 4);
 			x++;
 		}
 		x = 0;
@@ -84,23 +85,18 @@ static void	put_pixel(int fd, char *addr, int width, int height, t_build *build)
 	}
 }
 
-void	make_bmp(char *name, t_build *build)
+void			make_bmp(char *name, t_build *build)
 {
 	int		fd;
-	char	*addr;
 	int		width;
 	int		height;
 
 	fd = open(name, O_TRUNC | O_WRONLY | O_CREAT, 0777);
 	if (fd < 0)
 		error_total("cant open BMP", 13, build);
-	addr = build->img.addr;
 	width = build->data.res_x;
 	height = build->data.res_y;
 	header_bmp(fd, width, height);
-	put_pixel(fd, addr, width, height, build);
-	//free_total(build);
+	put_pixel(fd, width, height, build);
 	exit(0);
 }
-
-//hoeveel bits heb ik geschreven = /4 

@@ -6,87 +6,14 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/29 19:22:35 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 17:59:49 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <CoreGraphics/CGDirectDisplay.h>
 
-void	check_input(char *str, t_build *build)
-{
-	int i;
-
-	i = 0;
-	while ((str[i] == ' ' || str[i] == 9) && str[i])
-		i++;
-	if (str[i] == 'R' && str[i + 1] == ' ' && build->data.check_res != 1)
-		check_res(str, build);
-	if (str[i] == 'F' && str[i + 1] == ' ')
-		check_color(str, build);
-	if (str[i] == 'C' && str[i + 1] == ' ')
-		check_color(str, build);
-	if (str[i] == 'S' && str[i + 1] == ' ' && str[i + 2] == '.')
-		build->data.sprite = check_path(str);
-	if (str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == \
-	' ' && str[i + 3] == '.')
-		build->data.north = check_path(str);
-	if (str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == \
-	' ' && str[i + 3] == '.')
-		build->data.south = check_path(str);
-	if (str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == \
-	' ' && str[i + 3] == '.')
-		build->data.west = check_path(str);
-	if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == \
-	' ' && str[i + 3] == '.')
-		build->data.east = check_path(str);
-}
-
-void	initialise(t_build *build)
-{
-	build->cor.validstartpost = 0;
-	build->data.res = 0;
-	build->data.count = 0;
-	build->data.rule = 0;
-	// build->data.res_x = 0;
-	// build->data.res_y = 0;
-	// build->data.check_res = -1;
-	build->data.floor = -1;
-	build->data.ceiling = -1;
-	build->data.color_r = -1;
-	build->data.color_g = -1;
-	build->data.color_b = -1;
-	build->ray.movespeed = 0;
-	build->ray.rotspeed= 0;
-	build->ray.oldirx = 0;
-	build->data.check_color = 0;
-	build->data.check_res = 0;
-	build->data.size_map = 0;
-	build->data.count = 0;
-	build->ray.oldplanex = 0;
-	build->ray.oldplaney = 0;
-	build->ray.side = 0;
-	build->ray.drawstart = 0;
-	build->ray.drawend = 0;
-	build->sprite.num = 0;
-	build->img.mlx = NULL;
-	build->img.win = NULL;
-}
-
-void	checkmap(char *str)
-{
-	int i;
-
-	i = ft_strlen(str);
-	i--;
-	if (str[i] == 'b' && str[i - 1] == 'u' && str[i - 2] == 'c' && \
-	str[i - 3] == '.')
-		return ;
-	else
-		error("incorrect name", 16);
-}
-
-static void		charcheck(char **str)
+static void				charcheck(char **str)
 {
 	int i;
 	int y;
@@ -108,7 +35,7 @@ static void		charcheck(char **str)
 	}
 }
 
-void	check_valid_map(t_build *build)
+void					check_valid_map(t_build *build)
 {
 	int		lines;
 	int		y;
@@ -133,7 +60,7 @@ void	check_valid_map(t_build *build)
 	rule_last(build->map.array[y]);
 }
 
-static int		space_tab(char *str)
+static int				space_tab(char *str)
 {
 	int i;
 
@@ -147,7 +74,7 @@ static int		space_tab(char *str)
 	return (0);
 }
 
-static void	dis_res(double *res_x, double *res_y)
+static void				dis_res(double *res_x, double *res_y)
 {
 	int		maindisplayid;
 	int		pixelswidth;
@@ -162,7 +89,7 @@ static void	dis_res(double *res_x, double *res_y)
 		*res_y = pixelsheight;
 }
 
-void	read_string(t_build *build)
+void					read_string(t_build *build)
 {
 	int rule;
 
@@ -178,7 +105,7 @@ void	read_string(t_build *build)
 	}
 	if (!build->data.north || !build->data.south || \
 	!build->data.west || !build->data.east || !build->data.floor \
-	|| !build->data.ceiling || !build->data.res)
+	|| !build->data.ceiling || !build->data.res || !build->data.sprite)
 		error("not a valid map", 15);
 	dis_res(&build->data.res_x, &build->data.res_y);
 	while (space_tab(*build->map.array) == 0 || *build->map.array == 0)

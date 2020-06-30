@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   start_pos.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/07 12:34:46 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/29 14:48:35 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:10:50 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,13 @@ static void		start_cor(int y, int x, t_build *build)
 	}
 }
 
-void	start_pos(t_build *build)
+void			start_pos(t_build *build)
 {
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
-	// if (!(build->sprite_s.sprite_cor = (double **)malloc(sizeof(double *) \
-	// * build->sprite.num)))
-	// 	error("malloc failed", 13);
 	while (build->map.array[y])
 	{
 		start_cor(y, x, build);
