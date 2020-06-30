@@ -6,7 +6,7 @@
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
-/*   Updated: 2020/06/30 18:10:27 by sfeith        ########   odam.nl         */
+/*   Updated: 2020/06/30 18:18:06 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ static void				order(t_build *build)
 	char	*path;
 
 	path = build->data.sprite;
-	if (!(build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx,\
+	if (!(build->sprite.sprite_tex = mlx_xpm_file_to_image(build->img.mlx,
 	path, &width, &height)))
 		error_total("malloc failed", 13, build);
-	if (!(build->sprite.dataadres = mlx_get_data_addr(build->sprite.sprite_tex,\
+	if (!(build->sprite.dataadres = mlx_get_data_addr(build->sprite.sprite_tex,
 	&build->sprite.bpp, &build->sprite.line_length, &build->sprite.endian)))
 		error_total("malloc failed", 13, build);
 	i = 0;
 	while (i < build->sprite.num)
 	{
-		spritedistance[i] = ((build->cor.start_pos_x \
-		- build->sprite_s.sprite_cor[i][0]) * \
+		spritedistance[i] = ((build->cor.start_pos_x
+		- build->sprite_s.sprite_cor[i][0]) *
 		(build->cor.start_pos_x - build->sprite_s.sprite_cor[i][0]) +
-		(build->cor.start_pos_y - build->sprite_s.sprite_cor[i][1]) * \
+		(build->cor.start_pos_y - build->sprite_s.sprite_cor[i][1]) *
 		(build->cor.start_pos_y - build->sprite_s.sprite_cor[i][1]));
 		i++;
 	}

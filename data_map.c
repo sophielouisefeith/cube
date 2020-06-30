@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   data_map.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: SophieLouiseFeith <SophieLouiseFeith@st      +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/26 15:58:16 by SophieLouis   #+#    #+#                 */
-/*   Updated: 2020/06/30 17:58:55 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:15:34 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
