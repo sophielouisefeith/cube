@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2021/04/28 11:27:49 by sfeith        ########   odam.nl          #
+#    Updated: 2021/04/28 11:31:02 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,13 @@ LINKING = -lmlx  -framework OpenGL -framework AppKit
 OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror -o cub3D -O3
 
+RESET			= 	\033[0m
+GREEN 			= 	\033[38;5;46m
+WHITE 			= 	\033[38;5;15m
+GREY 			= 	\033[38;5;8m
+ORANGE 			= 	\033[38;5;202m
+RED 			= 	\033[38;5;160m
+
 all: $(LIBMLX) $(NAME)
 
 $(NAME): $(LIBMLX)
@@ -27,7 +34,7 @@ $(NAME): $(LIBMLX)
 
 $(LIBMLX):
 	make -C $(MLX)
-	@echo "Executable: ./cub3D map.cub"
+	@echo "$(GREEN)Executable: ./cub3D map.cub $(RESET)"
 clean:
 	make clean -C $(MLX)
 	$(RM) $(OBJ) screenshot.bmp cub3D
