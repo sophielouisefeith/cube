@@ -3,19 +3,110 @@
 /*                                                        ::::::::            */
 /*   utilities.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mmourik <mmourik@student.codam.nl>           +#+                     */
+/*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 09:21:21 by mmourik        #+#    #+#                */
-/*   Updated: 2020/02/28 15:50:29 by sfeith        ########   odam.nl         */
+/*   Created: 2020/03/09 13:11:59 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 18:12:26 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void            my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
+char			*ft_strdup(const char *s1)
 {
-    char    *dst;
+	int		len;
+	char	*str;
 
-    dst = cub->img->addr + (y * cub->img->line_length + x * (cub->img->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	len = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (str == 0)
+		return (0);
+	while (s1[len])
+	{
+		str[len] = s1[len];
+		len++;
+	}
+	str[len] = '\0';
+	return (str);
+}
+
+static char		*ft_strcpy(char *dest, char const *src1, char const *src2)
+{
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	while (src1[i] != '\0')
+	{
+		dest[i] = src1[i];
+		i++;
+	}
+	while (src2[c] != '\0')
+	{
+		dest[i] = src2[c];
+		i++;
+		c++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char			*ft_strjoin(char *s1, char *s2)
+{
+	size_t		s1len;
+	size_t		s2len;
+	char		*ns;
+
+	if (!s2)
+		return (NULL);
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	ns = (char *)malloc((s1len + s2len + 1) * sizeof(char));
+	if (ns == NULL)
+	{
+		free(s1);
+		free(s2);
+		return (NULL);
+	}
+	ft_strcpy(ns, s1, s2);
+	free(s1);
+	free(s2);
+	return (ns);
+}
+
+char			*ft_substr(char *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	srclen;
+	char	*sub;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	srclen = ft_strlen(s);
+	sub = (char *)malloc(sizeof(char) * len + 1);
+	if (sub == NULL)
+	{
+		free(s);
+		return (NULL);
+	}
+	while (i < len && start < srclen)
+	{
+		sub[i] = s[start];
+		i++;
+		start++;
+	}
+	sub[i] = '\0';
+	return (sub);
+}
+
+size_t			ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

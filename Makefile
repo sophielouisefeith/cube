@@ -5,28 +5,34 @@
 #                                                      +:+                     #
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/02/28 12:24:37 by sfeith         #+#    #+#                 #
-#    Updated: 2020/02/28 18:38:49 by sfeith        ########   odam.nl          #
+#    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
+#    Updated: 2020/06/30 18:17:03 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 MLX = minilibx
-LIBMLX = libmlx.dylib
-SRC = cub3d.c utilities.c
-#OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror
-# You may also need to specify the path to the  MiniLibX  library,  using the -L flag.
-LINKING = -lmlx -framework OpenGL -framework AppKit
-all: $(NAME)
-$(NAME): $(LIBMLX) $(OBJ)
+LIBMLX = libmlx.a
+SRC = cub3d.c utilities.c readmap.c  data.c data_check.c  \
+		data_map.c  start_pos.c raycast.c move.c  mainread.c texture.c \
+		sprite.c screenshot.c lines.c utilssecond.c error_free.c extra_check.c
+LINKING = -lmlx  -framework OpenGL -framework AppKit
+OBJ = $(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror -o cub3D -O3
+
+all: $(LIBMLX) $(NAME)
+
+$(NAME): $(LIBMLX)
 	gcc $(FLAGS) -I $(MLX) -L $(MLX) $(LINKING) $(SRC)
-#$(LIBMLX):
-#   @make -C $(MLX)
-#   @cp $(MLX)/$(LIBMLX) .
+
+$(LIBMLX):
+	make -C $(MLX)
+
 clean:
 	make clean -C $(MLX)
-	$(RM) $(OBJ) a.out
+	$(RM) $(OBJ) screenshot.bmp cub3D
+
 fclean: clean
 	$(RM) $(NAME)
+
 re: fclean all

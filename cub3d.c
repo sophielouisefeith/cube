@@ -5,82 +5,117 @@
 /*                                                     +:+                    */
 /*   By: sfeith <sfeith@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 12:53:05 by sfeith         #+#    #+#                */
-/*   Updated: 2020/02/28 18:36:44 by sfeith        ########   odam.nl         */
+/*   Created: 2020/02/28 12:53:05 by sfeith        #+#    #+#                 */
+/*   Updated: 2020/06/30 17:50:18 by sfeith        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_west(t_cub *cub)
+void			extra_check(int *i, char *str, t_build *build)
 {
-	cub->var.x--;
-	return ;
+	if (build->data.res == 1)
+	{
+		while ((str[*i] >= '0' && str[*i] <= '9'))
+		{
+			build->data.res_x = build->data.res_x * 10 + str[*i] - '0';
+			(*i)++;
+		}
+		build->data.res++;
+		return ;
+	}
+	if (build->data.res == 2)
+	{
+		while ((str[*i] >= '0' && str[*i] <= '9'))
+		{
+			build->data.res_y = build->data.res_y * 10 + str[*i] - '0';
+			(*i)++;
+		}
+	}
 }
 
-void	move_east(t_cub *cub)
+void			sort_sprites(double *spritedistance, t_build *build)
 {
-	cub->var.x++;
-	square(cub);
-	mlx_put_image_to_window(cub->img->mlx, cub->img->win1, cub->img->img1, 0, 0);
-	return ;
+	int		i;
+	int		tmp;
+	double	tmp2;
+
+	i = 0;
+	while (i < (build->sprite.num - 1))
+	{
+		if (spritedistance[i] < spritedistance[i + 1])
+		{
+			tmp2 = spritedistance[i + 1];
+			spritedistance[i] = spritedistance[i + 1];
+			spritedistance[i + 1] = tmp2;
+			tmp = build->sprite_s.sprite_cor[i][0];
+			build->sprite_s.sprite_cor[i][0] = \
+			build->sprite_s.sprite_cor[i + 1][0];
+			build->sprite_s.sprite_cor[i + 1][0] = tmp;
+			tmp = build->sprite_s.sprite_cor[i][1];
+			build->sprite_s.sprite_cor[i][1] =\
+			build->sprite_s.sprite_cor[i + 1][1];
+			build->sprite_s.sprite_cor[i + 1][1] = tmp;
+			i = -1;
+		}
+		i++;
+	}
 }
 
-int		pressed_key(int keycode, t_cub *cub)
+int				releasekey(int keycode, t_build *build)
 {
-
-	if (keycode == 13)			//W
-		move_west(cub);
-	if (keycode == 14)			//E
-		move_east(cub);
-	// if (keycode == 1)			//S
-	// if (keycode == 45)			//N
+	build->ray.update = 0;
+	if (keycode == 126)
+		build->ray.moveup = 0;
+	if (keycode == 125)
+		build->ray.movedown = 0;
+	if (keycode == 123)
+		build->ray.moveleft = 0;
+	if (keycode == 124)
+		build->ray.moveright = 0;
 	return (0);
 }
 
-void    square(t_cub *cub)
+int				make(t_build *build)
 {
-	int y = cub->var.y;			
-	int x = cub->var.x;			
-	int width = x + 200;		
-	int heigth = y + 200;		
-	while (y <= heigth)
+	mlx_put_image_to_window(build->img.mlx, build->img.win, \
+	build->img.img1, 0, 0);
+	floor_ceiling(build);
+	if (build->ray.update)
+		move(build);
+	ray(build);
+	sprite(build);
+	mlx_hook(build->img.win, 2, 1L << 0, &presskey, build);
+	mlx_hook(build->img.win, 3, 1L << 0, &releasekey, build);
+	mlx_hook(build->img.win, 17, 1L << 17, &close_game, build);
+	build->ray.update = 0;
+	return (0);
+}
+
+int				startgame(t_build *build)
+{
+	build->ray.planex = (build->cor.diry == 0) ? 0 : 0.66;
+	build->ray.planey = (build->cor.diry == 0) ? 0.66 : 0;
+	build->ray.oldtime = 0;
+	build->ray.time = 0;
+	if (!(build->img.mlx = mlx_init()))
+		error_total("malloc failed2", 15, build);
+	if (!(build->img.win = mlx_new_window(build->img.mlx, build->data.res_x, \
+	build->data.res_y, "WOLFENSTEIN")))
+		error_total("malloc failed3", 16, build);
+	if (!(build->img.img1 = mlx_new_image(build->img.mlx, \
+	build->data.res_x, build->data.res_y)))
+		error_total("malloc failed4", 17, build);
+	if (!(build->img.addr = mlx_get_data_addr(build->img.img1, \
+	&build->img.bits_per_pixel, &build->img.line_length, &build->img.endian)))
+		error_total("malloc failed5", 18, build);
+	if (build->data.scrsht == 1)
 	{
-		x = cub->var.x;
-		while (x <= width && x < 750)
-		{
-			
-			my_mlx_pixel_put(cub, x, y, 0x000000FF);
-			x++;
-		}
-		y++;
+		make(build);
+		make_bmp("screenshot.bmp", build);
+		return (0);
 	}
-	return ;
-}
-
-t_cub	initialize(t_cub *cub)
-{
-	cub->var.x = 10000;
-	cub->var.y = 10000;
-	return(*cub);
-}
-
-int main()
-{
-    t_cub	cub;
-	t_img	img;
-
-	cub.img = &img;
-
-	cub.var.x = 50;
-	cub.var.y = 0;
-    cub.img->mlx = mlx_init();
-    cub.img->win1 = mlx_new_window(cub.img->mlx, 750, 750, "start");
-   	cub.img->img1 = mlx_new_image(cub.img->mlx, 650, 650);
-	cub.img->addr = mlx_get_data_addr(cub.img->img1, &cub.img->bits_per_pixel, &cub.img->line_length, &cub.img->endian); 
-	cub = initialize(&cub);
-	square(&cub);
-    mlx_put_image_to_window(cub.img->mlx, cub.img->win1, cub.img->img1, 500, 500);
-    mlx_hook(cub.img->win1, 2, 1L<<0, pressed_key, &cub);
-	mlx_loop(cub.img->mlx);
+	mlx_loop_hook(build->img.mlx, make, build);
+	mlx_loop(build->img.mlx);
+	return (0);
 }
