@@ -6,7 +6,7 @@
 #    By: sfeith <sfeith@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/28 12:24:37 by sfeith        #+#    #+#                  #
-#    Updated: 2020/06/30 18:17:03 by sfeith        ########   odam.nl          #
+#    Updated: 2021/04/28 11:27:49 by sfeith        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ $(NAME): $(LIBMLX)
 
 $(LIBMLX):
 	make -C $(MLX)
-
+	@echo "Executable: ./cub3D map.cub"
 clean:
 	make clean -C $(MLX)
 	$(RM) $(OBJ) screenshot.bmp cub3D
